@@ -130,65 +130,64 @@
         color: #666666;
     }
 
-    .order-button-section {
-        display: flex;
-        position: fixed;
-        visibility: hidden;
-        justify-content: space-between;
-        background-color: #ffff;
-        width: 100%;
-        padding: 10px;
-        bottom: 0;
-    }
-
-    .order-button-section .order-place-ul {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .order-button-section .order-place-ul .order-place-li {
-        display: flex;
-        align-items: center;
-    }
-
-    .order-button-section .order-place-ul .order-place-li .total {
-        margin: 0;
-        font-size: 18px;
-        color: black;
-        margin: 0 5px;
-    }
-
-    .order-button-section .order-place-ul .order-place-li .price {
-        color: #f85606;
-        margin: 0;
-        font-size: 18px;
-        letter-spacing: 1;
-    }
-
-    .order-button-section .order-place-ul .vat {
-        margin: 0 7px;
-    }
-
-    .order-button-section .order-place-ul .vat p {
-        color: black;
-        margin: 0;
-        font-size: 14px;
-    }
-
-    .order-button-section .place-btn {
-        display: flex;
-        align-items: center;
-    }
-
-    .order-button-section .order-button {
-        background-color: #f85606;
-        color: #fff;
-        height: fit-content;
-        font-size: 18px;
-    }
-
     .btn-success {
         width: 100%;
+    }
+
+    .place-button-bar {
+        padding: 10px;
+        padding-top: 5px;
+        background-color: #fff;
+        visibility: hidden;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .place-button-bar .total-bar {
+        display: flex;
+        align-items: center;
+    }
+
+    .place-button-bar .total-bar p {
+        margin: 0;
+    }
+
+    .place-button-bar .total-bar .name {
+        padding: 5px 0;
+        text-transform: uppercase;
+    }
+
+    .place-button-bar .total-bar .price {
+        color: rgb(255, 0, 149);
+        padding: 5px;
+        font-weight: 600;
+    }
+
+    .place-button-bar .total-bar .details-bar {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right: 15px;
+    }
+
+    .place-button-bar .total-bar .details-bar .arr {
+        width: 9px;
+        height: 9px;
+        border-top: 2px solid;
+        border-left: 2px solid;
+        transform: rotate(-135deg);
+        margin: 5px;
+        margin-top: 0;
+    }
+
+    .place-button-bar .button {
+        width: 100%;
+    }
+
+    .place-button-bar .button button {
+        width: 100%;
+        font-weight: 600;
     }
 
     @media (max-width: 1280px) {
@@ -243,7 +242,7 @@
         main {
             display: flex;
             flex-direction: column;
-            margin: 10px 10px 70px 10px;
+            margin: 10px 10px 90px 10px;
         }
 
         main .order-content table thead tr th {
@@ -268,12 +267,12 @@
             display: none;
         }
 
-        .order-button-section {
+        .place-button-bar {
             visibility: visible;
         }
 
         .footer {
-            margin-bottom: 70px;
+            display: none;
         }
     }
 
@@ -281,7 +280,7 @@
 
     @media (max-width: 320px) {
         main {
-            margin-bottom: 40px;
+            margin-bottom: 75px;
         }
 
         .order-content-container {
@@ -289,25 +288,6 @@
             margin-bottom: 30px;
         }
 
-        .order-button-section .order-place-ul .order-place-li .total {
-            font-size: 16px;
-        }
-
-        .order-button-section .order-place-ul .order-place-li .price {
-            font-size: 16px;
-        }
-
-        .order-button-section .order-place-ul .vat p {
-            font-size: 12px;
-        }
-
-        .order-button-section .order-button {
-            font-size: 16px;
-        }
-
-        .footer {
-            margin-bottom: 65px;
-        }
     }
 </style>
 
@@ -317,7 +297,7 @@
         <main>
             <!-- ORDER FORM CUSTOMER DETAILS -->
             <div class="order-form">
-                <h4>Shipping Address</h4>
+                <h4>Add New Address</h4>
                 <div class="form-group">
                     <label for="Name">Full Name</label>
                     <input type="text" class="form-control" placeholder="Enter your Name" name="c-name">
@@ -344,89 +324,88 @@
                     <input type="address" class="form-control" placeholder="Enter your Address" name="c-address">
                 </div>
             </div>
+    </form>
+    <!-- ORDER TABLE CONTENT SECTION -->
 
-            <!-- ORDER TABLE CONTENT SECTION -->
+    <div class="order-content-container">
+        <div class="order-content">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th></th>
+                        <th> </th>
+                        <th></th>
+                        <th></th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                        $total = 0;
+                        $delivery = 80;
+                    @endphp
+                    @foreach ($cart_items as $items)
+                        <tr>
+                            <td class="align-middle" style="display: flex;">
+                                <img src="{{ asset('assets/img/product/images.jpeg') }}" alt="" width="40px"
+                                    height="40px">
+                                <p>smart shirt smart shirt smart shirt <span>x{{ $items->quantity }}</span></p>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="align-middle">{{ $items->quantity * $items->product_price }}Tk</td>
+                        </tr>
+                        @php
+                            $price = $items->quantity * $items->product_price;
+                            $total = $total + $price;
+                        @endphp
+                        <input type="hidden" name="cartitem" value="{{ json_encode($cart_items) }}">
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
 
-            <div class="order-content-container">
-                <div class="order-content">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th></th>
-                                <th> </th>
-                                <th></th>
-                                <th></th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                                $total = 0;
-                                $delivery = 80;
-                            @endphp
-                            @foreach ($cart_items as $items)
-                                <tr>
-                                    <td class="align-middle" style="display: flex;">
-                                        <img src="{{ asset('assets/img/product/images.jpeg') }}" alt=""
-                                            width="40px" height="40px">
-                                        <p>smart shirt smart shirt smart shirt <span>x{{ $items->quantity }}</span></p>
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td class="align-middle">{{ $items->quantity * $items->product_price }}Tk</td>
-                                </tr>
-                                @php
-                                    $price = $items->quantity * $items->product_price;
-                                    $total = $total + $price;
-                                @endphp
-                                <input type="hidden" name="cartitem" value="{{ json_encode($cart_items) }}">
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+        <!-- TOTAL SUMMARY PRICE SECTION -->
 
-                <!-- TOTAL SUMMARY PRICE SECTION -->
+        <div class="summary-ul">
+            <h4>Total Summary</h4>
+            <div class="summary-li">
+                <p>Items Total</p>
+                <p>2</p>
+            </div>
+            <div class="summary-li">
+                <p>Delivery Fee</p>
+                <p style="text-transform: uppercase;">{{ $delivery }}tk</p>
+            </div>
+            <div class="summary-li">
+                <p>Total Payment</p>
+                <p style="text-transform: uppercase;">{{ $delivery + $total }}tk</p>
+            </div>
+            <div class="summary-li" id="total-div">
+                <p>Total</p>
+                <p style="text-transform: uppercase;">{{ $delivery + $total }}tk</p>
+            </div>
+            <button type="submit" class="btn btn-success">Place Order</button>
+        </div>
+    </div>
+    </main>
 
-                <div class="summary-ul">
-                    <h4>Total Summary</h4>
-                    <div class="summary-li">
-                        <p>Items Total</p>
-                        <p>2</p>
-                    </div>
-                    <div class="summary-li">
-                        <p>Delivery Fee</p>
-                        <p style="text-transform: uppercase;">{{ $delivery }}tk</p>
-                    </div>
-                    <div class="summary-li">
-                        <p>Total Payment</p>
-                        <p style="text-transform: uppercase;">{{ $delivery + $total }}tk</p>
-                    </div>
-                    <div class="summary-li" id="total-div">
-                        <p>Total</p>
-                        <p style="text-transform: uppercase;">{{ $delivery + $total }}tk</p>
-                    </div>
-                    <button type="submit" class="btn btn-success">Place Order</button>
+    <!-- ORDER BUTTON SECTION -->
+    <form action="{{ route('shipping.product') }}" method="POST">
+        <div class="place-button-bar">
+            <div class="total-bar">
+                <p class="name">Total:</p>
+                <p class="price">{{ $delivery + $total }}Tk</p>
+                <div class="details-bar">
+                    <p>Details</p>
+                    <div class="arr"></div>
                 </div>
             </div>
-        </main>
-
-        <!-- ORDER BUTTON SECTION -->
-
-        <div class="order-button-section">
-            <div class="order-place-ul">
-                <div class="order-place-li">
-                    <p class="total">Total:</p>
-                    <p class="price">210TK</p>
-                </div>
-                <div class="vat">
-                    <p>VAT included where applicable</p>
-                </div>
-            </div>
-            <div class="place-btn">
-                <button type="submit" class="btn float-right order-button">Place Order</button>
+            <div class="button">
+                <button type="submit" class="btn btn-success">Place Order</button>
             </div>
         </div>
     </form>

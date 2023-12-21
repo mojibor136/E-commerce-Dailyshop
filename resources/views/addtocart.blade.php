@@ -130,6 +130,61 @@
         border-radius: 0;
     }
 
+    .checkout-button-bar {
+        padding: 10px;
+        padding-top: 5px;
+        background-color: #fff;
+        visibility: hidden;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .checkout-button-bar .total-bar {
+        display: flex;
+        align-items: center;
+    }
+
+    .checkout-button-bar .total-bar p {
+        margin: 0;
+    }
+
+    .checkout-button-bar .total-bar .name {
+        padding: 5px 0;
+        text-transform: uppercase;
+    }
+
+    .checkout-button-bar .total-bar .price {
+        color: rgb(255, 0, 149);
+        padding: 5px;
+        font-weight: 600;
+    }
+
+    .checkout-button-bar .total-bar .details-bar {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right: 15px;
+    }
+
+    .checkout-button-bar .total-bar .details-bar .arr {
+        width: 9px;
+        height: 9px;
+        border-top: 2px solid;
+        border-left: 2px solid;
+        transform: rotate(-135deg);
+        margin: 5px;
+        margin-top: 0;
+    }
+
+    .checkout-button-bar .button {
+        width: 100%;
+    }
+
+    .checkout-button-bar .button button {
+        width: 100%;
+    }
+
     /* PRODUCT SECTION START */
 
     .card-titel {
@@ -235,62 +290,6 @@
         color: #41464b;
     }
 
-    .order-button-section {
-        display: flex;
-        position: fixed;
-        visibility: hidden;
-        justify-content: space-between;
-        background-color: #ffff;
-        width: 100%;
-        padding: 10px;
-        bottom: 0;
-    }
-
-    .order-button-section .order-place-ul {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .order-button-section .order-place-ul .order-place-li {
-        display: flex;
-        align-items: center;
-    }
-
-    .order-button-section .order-place-ul .order-place-li .total {
-        margin: 0;
-        font-size: 18px;
-        color: black;
-        margin: 0 5px;
-    }
-
-    .order-button-section .order-place-ul .order-place-li .price {
-        color: #f85606;
-        margin: 0;
-        font-size: 18px;
-        letter-spacing: 1;
-    }
-
-    .order-button-section .order-place-ul .vat {
-        margin: 0 7px;
-    }
-
-    .order-button-section .order-place-ul .vat p {
-        color: black;
-        margin: 0;
-        font-size: 14px;
-    }
-
-    .order-button-section .place-btn {
-        display: flex;
-        align-items: center;
-    }
-
-    .order-button-section .place-btn a {
-        background-color: #f85606;
-        color: #ffffff;
-        height: fit-content;
-    }
-
     @media (max-width: 1280px) {
         main {
             padding: 2% 5%;
@@ -378,10 +377,12 @@
             font-size: 14px;
         }
 
-        .btn-success {
+        .checkout {
             display: none;
         }
-
+        .checkout-button-bar {
+            visibility: visible;
+        }
         .product-ul {
             margin: 0 2%;
             margin-bottom: 100px;
@@ -391,14 +392,8 @@
             grid-template-columns: 1fr 1fr 1fr;
         }
 
-        .order-button-section {
-            visibility: visible;
-            background-color: #fff;
-            box-shadow: 1px 0px 2px 1px #e9ecef;
-        }
-
-        .footer {
-            margin-bottom: 70px
+        footer {
+            display: none;
         }
     }
 
@@ -417,303 +412,286 @@
             margin-top: 5px;
             padding: 5px;
         }
-
-        .order-button-section .order-place-ul .order-place-li .total {
-            font-size: 16px;
-        }
-
-        .order-button-section .order-place-ul .order-place-li .price {
-            font-size: 16px;
-        }
-
-        .order-button-section .order-place-ul .vat p {
-            font-size: 12px;
-        }
-
-        .order-button-section .order-button {
-            font-size: 16px;
-        }
     }
 </style>
 
 <body>
-    <form action="">
-        <main>
 
-            <div class="cart-container">
-                <div class="delete-content-btn">
-                    <div class="select-box">
-                        <span>All Product Items</span>
-                    </div>
-                    <div>
-                        <a href="">
-                            <span class="ri-delete-bin-7-fill" style="color: #adb5bd;"></span>
-                            <span style="font-size: 14px;">All Delete</span>
-                        </a>
-                    </div>
+    <main>
+        <div class="cart-container">
+            <div class="delete-content-btn">
+                <div class="select-box">
+                    <span>All Product Items</span>
                 </div>
+                <div>
+                    <a href="">
+                        <span class="ri-delete-bin-7-fill" style="color: #adb5bd;"></span>
+                        <span style="font-size: 14px;">All Delete</span>
+                    </a>
+                </div>
+            </div>
 
-                <!-- ORDER TABLE PRODUCT SECTION  -->
+            <!-- ORDER TABLE PRODUCT SECTION  -->
 
-                <div class="cart-content">
-                    <table class="table">
-                        <thead>
+            <div class="cart-content">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>image</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $total = 0;
+                        @endphp
+                        @foreach ($cart_items as $items)
+                            @if (session()->has('massage'))
+                                <div class="alert alert-success">
+                                    <li>{{ session()->get('massage') }}</li>
+                                </div>
+                            @endif
                             <tr>
-                                <th>image</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Delete</th>
+                                <td class="align-middle">
+                                    <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
+                                </td>
+                                <td class="align-middle">{{ $items->product_name }}</td>
+                                <td class="align-middle"><input type="text" style="text-align: center;"
+                                        class="form-control" value="{{ $items->quantity }}"></td>
+                                <td class="align-middle">TK-{{ $items->quantity * $items->product_price }}</td>
+                                <td class="align-middle">
+                                    <a href="{{ route('delete.cart.item', $items->id) }}"
+                                        class="btn btn-warning">Delete</a>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
                             @php
-                                $total = 0;
+                                $price = $items->quantity * $items->product_price;
+                                $total = $total + $price;
                             @endphp
-                            @foreach ($cart_items as $items)
-                                @if (session()->has('massage'))
-                                    <div class="alert alert-success">
-                                        <li>{{ session()->get('massage') }}</li>
-                                    </div>
-                                @endif
-                                <tr>
-                                    <td class="align-middle">
-                                        <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
-                                    </td>
-                                    <td class="align-middle">{{ $items->product_name }}</td>
-                                    <td class="align-middle"><input type="text" style="text-align: center;"
-                                            class="form-control" value="{{ $items->quantity }}"></td>
-                                    <td class="align-middle">TK-{{ $items->quantity * $items->product_price }}</td>
-                                    <td class="align-middle">
-                                        <a href="{{ route('delete.cart.item', $items->id) }}"
-                                            class="btn btn-warning">Delete</a>
-                                    </td>
-                                </tr>
-                                @php
-                                    $price = $items->quantity * $items->product_price;
-                                    $total = $total + $price;
-                                @endphp
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!--
-        ORDER PRODUCT LIST SECTION -->
-
-            <div class="list-content">
-                <h4>Order Summary</h4>
-                <div class="summary-li">
-                    <p>Subtotal items(3)</p>
-                    <p>2</p>
-                </div>
-                <div class="summary-li">
-                    <p>Shopping Fee Discount</p>
-                    <p style="text-transform: uppercase;">0tk</p>
-                </div>
-                <div class="summary-li" id="total-div">
-                    <p>Total</p>
-                    <p style="text-transform: uppercase;">{{ $total }}tk</p>
-                </div>
-                <div class="summary-li" id="total-div">
-                    <input type="text" class="form-control" placeholder="Enter Vaoucher Code"
-                        style="border-radius: 0;">
-                    <button class="btn btn-primary">APPLY</button>
-                </div>
-                <a href="{{ route('shipping') }}" class="btn btn-success mt-3" style="width: 100%;">PROCEED TO
-                    CHECKOUT</a>
-            </div>
-        </main>
-
-        <!-- PRODUCT -->
-        <div class="product-ul">
-            <div class="card-titel">
-                <p>Just For You</p>
-            </div>
-
-            <div class="product-li">
-                <a href="">
-                    <div class="product-card">
-                        <div class="img">
-                            <img src="{{ asset('assets/img/product/uujjjj.jpg') }}" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
-
-                <a href="single-product.html">
-                    <div class="product-card">
-                        <div class="img">
-                            <img src="{{ asset('assets/img/product/images.jpeg') }}" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="single-product.html">
-                    <div class="product-card">
-                        <div class="img">
-                            <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="">
-                    <div class="product-card">
-                        <div class="img">
-                            <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
-
-                <a href="single-product.html">
-                    <div class="product-card">
-                        <div class="img">
-                            <img src="{{ asset('assets/img/product/omor.png') }}" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="single-product.html">
-                    <div class="product-card">
-                        <div class="img">
-                            <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
+        <!--
+        ORDER PRODUCT LIST SECTION -->
 
-        <!-- ORDER BUTTON SECTION -->
+        <div class="list-content">
+            <h4>Order Summary</h4>
+            <div class="summary-li">
+                <p>Subtotal items(3)</p>
+                <p>2</p>
+            </div>
+            <div class="summary-li">
+                <p>Shopping Fee Discount</p>
+                <p style="text-transform: uppercase;">0tk</p>
+            </div>
+            <div class="summary-li" id="total-div">
+                <p>Total</p>
+                <p style="text-transform: uppercase;">{{ $total }}tk</p>
+            </div>
+            <div class="summary-li" id="total-div">
+                <input type="text" class="form-control" value="Enter Vaoucher Code" style="border-radius: 0;">
+                <button class="btn btn-primary">APPLY</button>
+            </div>
+            <form action="{{ route('shipping') }}" class="checkout">
+                <input type="submit" class="btn btn-success mt-3" style="width: 100%;" value="Checkout">
+            </form>
+        </div>
+    </main>
 
-        <div class="order-button-section">
-            <div class="order-place-ul">
-                <div class="order-place-li">
-                    <p class="total">Total:</p>
-                    <p class="price">210TK</p>
+    <!-- PRODUCT -->
+    <div class="product-ul">
+        <div class="card-titel">
+            <p>Just For You</p>
+        </div>
+
+        <div class="product-li">
+            <a href="">
+                <div class="product-card">
+                    <div class="img">
+                        <img src="{{ asset('assets/img/product/uujjjj.jpg') }}" alt="">
+                    </div>
+                    <div class="title">
+                        <span>i will data entry data mining copy paste typing china</span>
+                    </div>
+                    <div class="price"><span>Tk:530</span></div>
+                    <div class="price-details">
+                        <span>Tk270</span>
+                        <span>32%</span>
+                        <span>2k-Sold</span>
+                    </div>
+                    <div class="sell-details">
+                        <div class="rating-icon">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                        <div class="sell">(32)</div>
+                    </div>
                 </div>
-                <div class="vat">
-                    <p>VAT included where applicable</p>
+            </a>
+
+
+            <a href="single-product.html">
+                <div class="product-card">
+                    <div class="img">
+                        <img src="{{ asset('assets/img/product/images.jpeg') }}" alt="">
+                    </div>
+                    <div class="title">
+                        <span>i will data entry data mining copy paste typing china</span>
+                    </div>
+                    <div class="price"><span>Tk:530</span></div>
+                    <div class="price-details">
+                        <span>Tk270</span>
+                        <span>32%</span>
+                        <span>2k-Sold</span>
+                    </div>
+                    <div class="sell-details">
+                        <div class="rating-icon">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                        <div class="sell">(32)</div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="single-product.html">
+                <div class="product-card">
+                    <div class="img">
+                        <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
+                    </div>
+                    <div class="title">
+                        <span>i will data entry data mining copy paste typing china</span>
+                    </div>
+                    <div class="price"><span>Tk:530</span></div>
+                    <div class="price-details">
+                        <span>Tk270</span>
+                        <span>32%</span>
+                        <span>2k-Sold</span>
+                    </div>
+                    <div class="sell-details">
+                        <div class="rating-icon">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                        <div class="sell">(32)</div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="">
+                <div class="product-card">
+                    <div class="img">
+                        <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
+                    </div>
+                    <div class="title">
+                        <span>i will data entry data mining copy paste typing china</span>
+                    </div>
+                    <div class="price"><span>Tk:530</span></div>
+                    <div class="price-details">
+                        <span>Tk270</span>
+                        <span>32%</span>
+                        <span>2k-Sold</span>
+                    </div>
+                    <div class="sell-details">
+                        <div class="rating-icon">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                        <div class="sell">(32)</div>
+                    </div>
+                </div>
+            </a>
+
+
+            <a href="single-product.html">
+                <div class="product-card">
+                    <div class="img">
+                        <img src="{{ asset('assets/img/product/omor.png') }}" alt="">
+                    </div>
+                    <div class="title">
+                        <span>i will data entry data mining copy paste typing china</span>
+                    </div>
+                    <div class="price"><span>Tk:530</span></div>
+                    <div class="price-details">
+                        <span>Tk270</span>
+                        <span>32%</span>
+                        <span>2k-Sold</span>
+                    </div>
+                    <div class="sell-details">
+                        <div class="rating-icon">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                        <div class="sell">(32)</div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="single-product.html">
+                <div class="product-card">
+                    <div class="img">
+                        <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
+                    </div>
+                    <div class="title">
+                        <span>i will data entry data mining copy paste typing china</span>
+                    </div>
+                    <div class="price"><span>Tk:530</span></div>
+                    <div class="price-details">
+                        <span>Tk270</span>
+                        <span>32%</span>
+                        <span>2k-Sold</span>
+                    </div>
+                    <div class="sell-details">
+                        <div class="rating-icon">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                        <div class="sell">(32)</div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- ORDER BUTTON SECTION -->
+    <form action="{{ route('shipping') }}" method="POST">
+        <div class="checkout-button-bar">
+            <div class="total-bar">
+                <p class="name">Total:</p>
+                <p class="price">2500Tk</p>
+                <div class="details-bar">
+                    <p>Details</p>
+                    <div class="arr"></div>
                 </div>
             </div>
-            <div class="place-btn">
-                <a href="{{ route('shipping') }}" class="btn">Checkout</a>
+            <div class="button">
+                <button type="submit" class="btn btn-warning" style="color: #fff; font-weight:600;">Checkout Order</button>
             </div>
         </div>
     </form>
+
     @include('layouts.footer')
