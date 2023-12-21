@@ -486,7 +486,7 @@
                                     <td class="align-middle">TK-{{ $items->quantity * $items->product_price }}</td>
                                     <td class="align-middle">
                                         <a href="{{ route('delete.cart.item', $items->id) }}"
-                                            class="btn btn-warning">Delete</a>
+                                            class="btn btn-warning">Delet</a>
                                     </td>
                                 </tr>
                                 @php
