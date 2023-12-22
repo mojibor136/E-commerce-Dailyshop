@@ -138,6 +138,31 @@
 
     header .icon .btn i {
         font-size: 22px;
+        position: relative;
+    }
+
+    header .icon .btn i .count {
+        top: -12px;
+        right: -12px;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: orchid;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* Keeping border-radius and making the border "clear" */
+        border-radius: 50%;
+        border: 5px solid transparent;
+        /* or border: none; */
+    }
+
+    header .icon .btn i .count span {
+        margin: 0;
+        font-size: 16px;
+        font-family: monospace;
+        font-weight: 900;
     }
 
     header .icon .btn:hover {
@@ -391,8 +416,16 @@
         @else
             <a href="{{ route('login.form') }}"><span class="btn">Login</span></a>
         @endif
-        <a href=""> <span class="btn"><i class="ri-heart-line"></i></span></a>
-        <a href="{{ route('addtocart') }}"><span class="btn"><i class="ri-shopping-cart-line"></i></span></a>
+        <a href=""> <span class="btn"><i class="ri-heart-line">
+                    <div class="count">
+                        <span>0</span>
+                    </div>
+                </i></span></a>
+        <a href="{{ route('addtocart') }}"><span class="btn"><i class="ri-shopping-cart-line">
+                    <div class="count">
+                        <span>1</span>
+                    </div>
+                </i></span></a>
         @if (Auth::check())
             <span class="btn" id="button"><img src="{{ asset('assets/img/product/download.jpeg') }}"
                     alt=""></span>

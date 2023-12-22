@@ -689,7 +689,7 @@
                 </div>
             </div>
             <div class="button">
-                <button type="submit" class="btn btn-warning" style="color: #fff; font-weight:600;">Checkout Order</button>
+                <button type="submit" class="btn btn-warning" style=" font-weight:600;">Checkout Order</button>
             </div>
         </div>
     </form>
