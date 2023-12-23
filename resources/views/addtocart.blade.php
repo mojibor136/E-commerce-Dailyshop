@@ -678,7 +678,7 @@
     </div>
 
     <!-- ORDER BUTTON SECTION -->
-    <form action="{{ route('shipping') }}" method="POST">
+    <form action="{{ route('shipping') }}">
         <div class="checkout-button-bar">
             <div class="total-bar">
                 <p class="name">Total:</p>

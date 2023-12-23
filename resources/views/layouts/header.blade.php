@@ -404,8 +404,8 @@
             <option value="lady">Lady</option>
             <option value="">Baby Items</option>
         </select>
-        <form action="">
-            <input type="text" placeholder="Search in dailyshop">
+        <form action="{{route('search.product')}}" method="GET">
+            <input type="text" name="search" placeholder="Search in dailyshop">
             <div>
                 <button type="submit" class="ri-search-line"></button>
             </div>
@@ -447,10 +447,10 @@
 </header>
 <!-- HEADER TOW -->
 <div class="header-tow-ul">
-    <form action="">
+    <form action="{{route('search.product')}}" method="GET">
         <div class="search-box">
             <i class="ri-search-line"></i>
-            <input type="text" placeholder="Enert search product">
+            <input type="text" name="search" placeholder="Enert search product">
         </div>
     </form>
 </div>

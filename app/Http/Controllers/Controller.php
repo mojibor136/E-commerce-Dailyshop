@@ -14,11 +14,8 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function Index(){
-        $products = Product::latest()->get();
+        $products = Product::latest()->paginate(0);
         return view('welcome' , compact('products'));
     }
 
-    public function Welcome(){
-        return view('wel');
-    }
 }

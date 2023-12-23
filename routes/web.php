@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProductInfoController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ShippingController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -37,6 +38,11 @@ Route::controller(Controller::class)->group(function(){
 Route::controller(ProductInfoController::class)->group(function(){
     Route::get('/product-details/{id}' , 'ProductDetails')->name('product.details');
 });
+
+Route::controller(SearchController::class)->group(function(){
+    Route::get('/search' , 'SearchProduct')->name('search.product');
+});
+
 Route::middleware('auth')->group(function () {
     Route::controller(Controller::class)->group(function(){
         Route::get('/welcome' , 'Welcome');

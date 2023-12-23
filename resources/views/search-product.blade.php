@@ -1,3 +1,4 @@
+@include('layouts.header')
 <!-- <!DOCTYPE html> -->
 <html lang="en">
 
@@ -6,7 +7,6 @@
     <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
     <!-- bootstrap start -->
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <title>Online Shopping in Bangladesh</title>
     <!-- bootstrap end -->
 </head>
@@ -348,10 +348,6 @@
         gap: 10px;
     }
 
-    .pagination-container {
-        margin: 15px 0;
-    }
-
     .product-card {
         background-color: #ffffff;
         cursor: pointer;
@@ -427,37 +423,6 @@
         font-size: 12px;
         font-family: monospace;
         color: #41464b;
-    }
-
-    /* pagination */
-
-    .pagination {
-        display: flex;
-        list-style: none;
-        padding: 0;
-    }
-
-    .page-item {
-        margin-right: 5px;
-    }
-
-    .page-link {
-        display: block;
-        padding: 5px 10px;
-        color: #333;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 3px;
-        text-decoration: none;
-    }
-
-    .page-link:hover {
-        background-color: #eee;
-    }
-
-    .page-item.active .page-link {
-        background-color: #007bff;
-        color: #fff;
     }
 
     .footer {
@@ -1524,11 +1489,8 @@
                     </a>
                 @endforeach
             </div>
-            <div class="pagination-container">
-                {{ $products->links() }}
-            </div>
+            {{ $products->links() }}
         </div>
-
         <!-- BOTTOM NAVBAR  -->
         <div class="bottom-navbar-button-ul">
             <div class="navbar-button-li">

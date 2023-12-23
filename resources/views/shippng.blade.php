@@ -324,77 +324,75 @@
                     <input type="address" class="form-control" placeholder="Enter your Address" name="c-address">
                 </div>
             </div>
-    </form>
-    <!-- ORDER TABLE CONTENT SECTION -->
+            <!-- ORDER TABLE CONTENT SECTION -->
 
-    <div class="order-content-container">
-        <div class="order-content">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th></th>
-                        <th> </th>
-                        <th></th>
-                        <th></th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                        $total = 0;
-                        $delivery = 80;
-                    @endphp
-                    @foreach ($cart_items as $items)
-                        <tr>
-                            <td class="align-middle" style="display: flex;">
-                                <img src="{{ asset('assets/img/product/images.jpeg') }}" alt="" width="40px"
-                                    height="40px">
-                                <p>smart shirt smart shirt smart shirt <span>x{{ $items->quantity }}</span></p>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="align-middle">{{ $items->quantity * $items->product_price }}Tk</td>
-                        </tr>
-                        @php
-                            $price = $items->quantity * $items->product_price;
-                            $total = $total + $price;
-                        @endphp
-                        <input type="hidden" name="cartitem" value="{{ json_encode($cart_items) }}">
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+            <div class="order-content-container">
+                <div class="order-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th></th>
+                                <th> </th>
+                                <th></th>
+                                <th></th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $total = 0;
+                                $delivery = 80;
+                            @endphp
+                            @foreach ($cart_items as $items)
+                                <tr>
+                                    <td class="align-middle" style="display: flex;">
+                                        <img src="{{ asset('assets/img/product/images.jpeg') }}" alt=""
+                                            width="40px" height="40px">
+                                        <p>smart shirt smart shirt smart shirt <span>x{{ $items->quantity }}</span></p>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="align-middle">{{ $items->quantity * $items->product_price }}Tk</td>
+                                </tr>
+                                @php
+                                    $price = $items->quantity * $items->product_price;
+                                    $total = $total + $price;
+                                @endphp
+                                <input type="hidden" name="cartitem" value="{{ json_encode($cart_items) }}">
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
-        <!-- TOTAL SUMMARY PRICE SECTION -->
+                <!-- TOTAL SUMMARY PRICE SECTION -->
 
-        <div class="summary-ul">
-            <h4>Total Summary</h4>
-            <div class="summary-li">
-                <p>Items Total</p>
-                <p>2</p>
+                <div class="summary-ul">
+                    <h4>Total Summary</h4>
+                    <div class="summary-li">
+                        <p>Items Total</p>
+                        <p>2</p>
+                    </div>
+                    <div class="summary-li">
+                        <p>Delivery Fee</p>
+                        <p style="text-transform: uppercase;">{{ $delivery }}tk</p>
+                    </div>
+                    <div class="summary-li">
+                        <p>Total Payment</p>
+                        <p style="text-transform: uppercase;">{{ $delivery + $total }}tk</p>
+                    </div>
+                    <div class="summary-li" id="total-div">
+                        <p>Total</p>
+                        <p style="text-transform: uppercase;">{{ $delivery + $total }}tk</p>
+                    </div>
+                    <button type="submit" class="btn btn-success">Place Order</button>
+                </div>
             </div>
-            <div class="summary-li">
-                <p>Delivery Fee</p>
-                <p style="text-transform: uppercase;">{{ $delivery }}tk</p>
-            </div>
-            <div class="summary-li">
-                <p>Total Payment</p>
-                <p style="text-transform: uppercase;">{{ $delivery + $total }}tk</p>
-            </div>
-            <div class="summary-li" id="total-div">
-                <p>Total</p>
-                <p style="text-transform: uppercase;">{{ $delivery + $total }}tk</p>
-            </div>
-            <button type="submit" class="btn btn-success">Place Order</button>
-        </div>
-    </div>
-    </main>
+        </main>
 
-    <!-- ORDER BUTTON SECTION -->
-    <form action="{{ route('shipping.product') }}" method="POST">
+        <!-- ORDER BUTTON SECTION -->
         <div class="place-button-bar">
             <div class="total-bar">
                 <p class="name">Total:</p>

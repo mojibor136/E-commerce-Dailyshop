@@ -439,7 +439,7 @@
     }
 
     /* <!-- BOTTOM ADD CART BUY BUTTON  --> */
-    .bottom-button-ul {
+    .bottom-bar {
         display: none;
     }
 
@@ -625,10 +625,6 @@
             display: none;
         }
 
-        .button {
-            display: none;
-        }
-
         .border {
             display: none;
         }
@@ -674,71 +670,6 @@
 
         }
 
-        /* <!-- BOTTOM ADD CART BUY BUTTON  --> */
-        .bottom-button-ul {
-            display: flex;
-            width: 100%;
-            bottom: 0;
-            position: fixed;
-            background-color: #e9ecef;
-        }
-
-        .bottom-icons-li {
-            display: flex;
-        }
-
-        .bottom-icons-li .icon {
-            text-align: center;
-            padding: 0 40px 0 20px;
-        }
-
-        .bottom-icons-li .icon .icons {
-            font-size: 17px;
-        }
-
-        .bottom-button-li {
-            width: 100%;
-            display: flex;
-            margin-left: 10px;
-        }
-
-
-        .button-buyNow {
-            text-decoration: none;
-            transform: skewX(-20deg);
-            background-color: #005bff;
-            align-items: center;
-            width: inherit;
-            height: 100%;
-            padding: 0 10px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .button-addcart {
-            text-decoration: none;
-            transform-origin: top;
-            -ms-transform: skew(-20deg, 0deg);
-            -webkit-transform: skew(-20deg, 0deg);
-            transform: skew(-20deg, 0deg);
-            background-color: #ff4400;
-            align-items: center;
-            padding: 0 10px;
-            width: inherit;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .button-inner {
-            -webkit-transform: skewX(20deg);
-            transform: skewX(20deg);
-            color: #ffffff;
-            font-size: 14px;
-            line-height: .4rem;
-            margin: 0 0.1rem;
-        }
-
     }
 
     @media (max-width: 475px) {
@@ -759,10 +690,6 @@
         }
 
         .product-details .quantity-info {
-            display: none;
-        }
-
-        .button {
             display: none;
         }
 
@@ -826,11 +753,68 @@
         }
 
         /* <!-- BOTTOM ADD CART BUY BUTTON  --> */
-        .bottom-icons-li .icon {
-            padding: 7px 15px;
-            line-height: normal;
+        .bottom-bar {
+            width: 100%;
+            background: #fff;
+            display: flex;
+            box-shadow: 1px 1px 2px 1px #6c757d;
+            justify-content: space-between;
+            padding: 5px 0;
+            padding-left: 10px;
+            position: fixed;
+            bottom: 1px;
         }
 
+        .bottom-bar form {
+            display: flex;
+            margin: 0 3px;
+        }
+
+        .button {
+            display: flex;
+        }
+
+        .button>div {
+            margin-right: 10px;
+        }
+
+        .button-buyNow {
+            display: flex;
+            align-items: center;
+        }
+
+        .button-addcart {
+            display: flex;
+            align-items: center;
+        }
+
+        .button-inner {
+            color: #ffffff;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            padding: 5px 10px;
+        }
+
+        .icon {
+            display: flex;
+        }
+
+        .icon-inner a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 10px;
+            text-decoration: none;
+            color: black;
+            line-height: normal;
+            padding: 0px 5px;
+        }
+
+        .bottom-bar .button .button-addcart .button-inner {
+            background-color: #ff4400;
+            color: #ffffff;
+        }
     }
 
     @media (max-width: 320px) {
@@ -933,7 +917,7 @@
                             @csrf
                             <input type="hidden" name="product_price" value="{{ $product->product_price }}">
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <input type="hidden" name="product_name" value="{{$product->product_name }}">
+                            <input type="hidden" name="product_name" value="{{ $product->product_name }}">
                             <input type="submit" class="btn btn-primary" value="Buy Now">
                             <input type="submit" class="btn btn-warning" value="Add To Cart">
                     </form>
@@ -1366,26 +1350,38 @@
         </div>
     </main>
     <!-- BOTTOM ADD CART BUY BUTTON  -->
-    <div class="bottom-button-ul">
-        <div class="bottom-icons-li">
-            <div class="icon">
-                <i class="ri-store-line icons"></i>
-                <span>Store</span>
+    <div class="bottom-bar">
+        <div class="icon">
+            <div class="icon-inner">
+                <a href="">
+                    <i class="ri-store-line"></i>
+                    <span>Store</span>
+                </a>
             </div>
 
-            <div class="icon">
-                <i class="ri-chat-4-line icons"></i>
-                <span>Chat</span>
+            <div class="icon-inner">
+                <a href="">
+                    <i class="ri-chat-4-line"></i>
+                    <span>Chat</span>
+                </a>
             </div>
-
         </div>
-        <div class="bottom-button-li">
-            <a href="#" class="button-buyNow">
-                <span class="button-inner">Buy Now</span>
-            </a>
-            <a href="#" class="button-addcart">
-                <span class="button-inner">Add to Cart</span>
-            </a>
+        <div class="button">
+            <form action="" method="post">
+                <div class="button-buyNow">
+                    <input type="submit" class="button-inner btn btn-primary" value="Buy Now">
+                </div>
+            </form>
+            <form action="{{ route('store.addtocart') }}" method="post">
+                <div class="button-addcart">
+                    @csrf
+                    <input type="hidden" class="form-control" value="1" min="1" name="quantity">
+                    <input type="hidden" name="product_price" value="{{ $product->product_price }}">
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <input type="hidden" name="product_name" value="{{ $product->product_name }}">
+                    <input type="submit" class="button-inner btn" value="Add To Cart">
+                </div>
+            </form>
         </div>
     </div>
     <script src="public/assets/js/app.js"></script>
