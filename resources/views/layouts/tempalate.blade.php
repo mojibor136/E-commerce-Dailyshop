@@ -69,7 +69,7 @@
         cursor: pointer;
         display: flex;
         align-items: center;
-        border-bottom: 1px solid #e9ecef;
+        border-bottom: 1px solid #f8f9fa;
         justify-content: space-between;
     }
 
@@ -429,37 +429,6 @@
         color: #41464b;
     }
 
-    /* pagination */
-
-    .pagination {
-        display: flex;
-        list-style: none;
-        padding: 0;
-    }
-
-    .page-item {
-        margin-right: 5px;
-    }
-
-    .page-link {
-        display: block;
-        padding: 5px 10px;
-        color: #333;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 3px;
-        text-decoration: none;
-    }
-
-    .page-link:hover {
-        background-color: #eee;
-    }
-
-    .page-item.active .page-link {
-        background-color: #007bff;
-        color: #fff;
-    }
-
     .footer {
         background-color: #24262b;
         padding: 20px 0;
@@ -726,8 +695,8 @@
 
         .category-tow-li .img {
             margin: 5px;
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
         }
 
         .category-tow-li .name {

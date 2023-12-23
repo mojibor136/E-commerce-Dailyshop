@@ -425,6 +425,10 @@
         color: #41464b;
     }
 
+    .pagination-container {
+        margin: 15px 0;
+    }
+
     .footer {
         background-color: #24262b;
         padding: 20px 0;
@@ -1489,7 +1493,9 @@
                     </a>
                 @endforeach
             </div>
-            {{ $products->links() }}
+            <div class="pagination-container">
+                {{ $products->links() }}
+            </div>
         </div>
         <!-- BOTTOM NAVBAR  -->
         <div class="bottom-navbar-button-ul">

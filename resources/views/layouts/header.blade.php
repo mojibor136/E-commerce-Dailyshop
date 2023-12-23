@@ -147,22 +147,20 @@
         position: absolute;
         width: 20px;
         height: 20px;
-        background: orchid;
+        background: red;
         color: #fff;
         display: flex;
         align-items: center;
         justify-content: center;
-        /* Keeping border-radius and making the border "clear" */
         border-radius: 50%;
-        border: 5px solid transparent;
-        /* or border: none; */
+        border: 10px solid transparent;
     }
 
     header .icon .btn i .count span {
         margin: 0;
         font-size: 16px;
-        font-family: monospace;
-        font-weight: 900;
+        font-weight: bolder;
+        color: ghostwhite;
     }
 
     header .icon .btn:hover {
@@ -186,14 +184,14 @@
         display: none;
     }
 
-    #menu {
+    .menu {
         position: absolute;
         right: 0;
         top: 100%;
         display: none;
     }
 
-    #menu ul {
+    .menu ul {
         background: #464646;
         padding: 0;
         border-bottom-right-radius: 5px;
@@ -201,7 +199,7 @@
         overflow: hidden;
     }
 
-    #menu ul li {
+    .menu ul li {
         list-style: none;
         background: #333335;
         padding: 7px 30px 7px 10px;
@@ -209,22 +207,22 @@
         cursor: pointer;
     }
 
-    #menu ul li:hover {
+    .menu ul li:hover {
         background: #555555;
     }
 
-    #menu ul li a {
+    .menu ul li a {
         text-decoration: none;
         color: white;
         text-transform: capitalize;
         font-size: 14.5px;
     }
 
-    #menu ul li a:hover {
+    .menu ul li a:hover {
         color: white;
     }
 
-    #menu ul li i {
+    .menu ul li i {
         color: rgb(255, 255, 255);
         font-size: 16px;
         margin-right: 2px;
@@ -404,7 +402,7 @@
             <option value="lady">Lady</option>
             <option value="">Baby Items</option>
         </select>
-        <form action="{{route('search.product')}}" method="GET">
+        <form action="{{ route('search.product') }}" method="GET">
             <input type="text" name="search" placeholder="Search in dailyshop">
             <div>
                 <button type="submit" class="ri-search-line"></button>
@@ -431,7 +429,7 @@
                     alt=""></span>
         @endif
     </div>
-    <div id="menu">
+    <div class="menu">
         <ul>
             <li> <i class="ri-user-line"></i><a href="">Profile</a></li>
             <li><i class="ri-shopping-cart-line"></i><a href="">mycart</a></li>
@@ -447,7 +445,7 @@
 </header>
 <!-- HEADER TOW -->
 <div class="header-tow-ul">
-    <form action="{{route('search.product')}}" method="GET">
+    <form action="{{ route('search.product') }}" method="GET">
         <div class="search-box">
             <i class="ri-search-line"></i>
             <input type="text" name="search" placeholder="Enert search product">

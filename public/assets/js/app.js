@@ -17,7 +17,7 @@ function showImg(pic) {
 
 
 const button = document.querySelector('#button');
-const menu = document.querySelectorAll('#menu');
+const menu = document.querySelectorAll('.menu');
 let btntrue = true;
 
 button.addEventListener('click', function () {
