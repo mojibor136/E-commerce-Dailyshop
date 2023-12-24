@@ -375,6 +375,12 @@
             }
         }
     }
+
+    @media (max-width: 320px) {
+        .header-tow-ul .search-box input {
+            width: 260px;
+        }
+    }
 </style>
 
 <!-- TOP HEADER  -->

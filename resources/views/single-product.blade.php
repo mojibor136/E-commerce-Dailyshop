@@ -1,3 +1,5 @@
+@include('layouts.header')
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,18 +22,10 @@
         text-decoration: none;
     }
 
-    body,
-    html {
-        font-family: Roboto-Regular;
-    }
 
     body {
-        background-color: #fafafa;
-        font-size: 12px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, sans-serif;
-        -webkit-text-size-adjust: none;
+        background: #e7e8ec;
         margin: 0;
-        font-family: Roboto-Regular, 'Helvetica Neue', Helvetica, Tahoma, Arial, Sans-serif;
     }
 
     .single-product-box {
@@ -625,6 +619,10 @@
             display: none;
         }
 
+        .button {
+            display: none;
+        }
+
         .border {
             display: none;
         }
@@ -668,6 +666,70 @@
         .related-product-li {
             grid-template-columns: 1fr 1fr 1fr;
 
+        }
+
+        /* <!-- BOTTOM ADD CART BUY BUTTON  --> */
+        .bottom-bar {
+            width: 100%;
+            background: #fff;
+            display: flex;
+            box-shadow: 1px 1px 2px 1px #6c757d;
+            justify-content: space-between;
+            padding: 5px 0;
+            padding-left: 10px;
+            position: fixed;
+            bottom: 1px;
+        }
+
+        .bottom-bar form {
+            display: flex;
+            margin: 0 3px;
+        }
+
+        .bottom-bar .button {
+            display: flex;
+        }
+
+        .button>div {
+            margin-right: 10px;
+        }
+
+        .button-buyNow {
+            display: flex;
+            align-items: center;
+        }
+
+        .button-addcart {
+            display: flex;
+            align-items: center;
+        }
+
+        .button-inner {
+            color: #ffffff;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            padding: 5px 10px;
+        }
+
+        .bottom-bar .icon {
+            display: flex;
+        }
+
+        .icon-inner a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 10px;
+            text-decoration: none;
+            color: black;
+            line-height: normal;
+            padding: 0px 5px;
+        }
+
+        .bottom-bar .button .button-addcart .button-inner {
+            background-color: #ff4400;
+            color: #ffffff;
         }
 
     }
@@ -751,74 +813,9 @@
             grid-template-columns: 1fr 1fr;
             gap: 10px;
         }
-
-        /* <!-- BOTTOM ADD CART BUY BUTTON  --> */
-        .bottom-bar {
-            width: 100%;
-            background: #fff;
-            display: flex;
-            box-shadow: 1px 1px 2px 1px #6c757d;
-            justify-content: space-between;
-            padding: 5px 0;
-            padding-left: 10px;
-            position: fixed;
-            bottom: 1px;
-        }
-
-        .bottom-bar form {
-            display: flex;
-            margin: 0 3px;
-        }
-
-        .button {
-            display: flex;
-        }
-
-        .button>div {
-            margin-right: 10px;
-        }
-
-        .button-buyNow {
-            display: flex;
-            align-items: center;
-        }
-
-        .button-addcart {
-            display: flex;
-            align-items: center;
-        }
-
-        .button-inner {
-            color: #ffffff;
-            font-size: 18px;
-            border: none;
-            outline: none;
-            padding: 5px 10px;
-        }
-
-        .icon {
-            display: flex;
-        }
-
-        .icon-inner a {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-right: 10px;
-            text-decoration: none;
-            color: black;
-            line-height: normal;
-            padding: 0px 5px;
-        }
-
-        .bottom-bar .button .button-addcart .button-inner {
-            background-color: #ff4400;
-            color: #ffffff;
-        }
     }
 
     @media (max-width: 320px) {
-
         .product-details {
             padding-right: 10px;
         }
@@ -827,14 +824,14 @@
             position: absolute;
             right: 20px;
         }
+
+        .icon-inner a {
+            margin: 0;
+        }
     }
 </style>
 
 <body>
-
-    <!-- MAIN HEADER -->
-    @include('layouts.header')
-
     <main>
         <!-- CONTAINER ALL -->
         <div class="single-product-box">

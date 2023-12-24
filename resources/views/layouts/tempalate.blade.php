@@ -22,12 +22,6 @@
         text-decoration: none;
     }
 
-    body,
-    html {
-        background-color: #f5f5f5;
-        font-family: Roboto-Regular;
-    }
-
     body {
         background: #e7e8ec;
         font-size: 12px;
@@ -811,6 +805,7 @@
         .header-container {
             margin: 0%;
         }
+
     }
 
     @media (max-width: 475px) {
@@ -887,10 +882,6 @@
     }
 
     @media (max-width: 320px) {
-
-        .header-tow-ul .search-box input {
-            width: 260px;
-        }
 
         .category-tow-li:first-child {
             display: none;
