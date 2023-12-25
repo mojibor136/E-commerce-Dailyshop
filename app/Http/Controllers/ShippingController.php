@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ShippingController extends Controller
 {
-    public function Shipping(){
+    public function Index(){
         $user_id = Auth::id();
         $cart_items = Cart::where('cart_type', 'user')->where('user_id' , $user_id)->get();
         return view('shippng', compact('cart_items'));

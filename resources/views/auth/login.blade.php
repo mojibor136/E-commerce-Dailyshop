@@ -178,7 +178,7 @@
                     <p>Remember me</p>
                 </div>
                 <div class="button">
-                    <input type="submit" value="LOGIN" class="btn btn-primary">
+                    <input type="submit" value="LOGIN" class="btn btn-success">
                 </div>
             </form>
             <div class="titel">

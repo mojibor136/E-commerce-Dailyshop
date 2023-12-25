@@ -8,7 +8,7 @@ use App\Models\Cart;
 
 class CartController extends Controller
 {
-    public function AddToCart(){
+    public function Index(){
         $user_id = Auth::id();
         $cart_items = Cart::where('cart_type', 'user')->where('user_id' , $user_id)->get();
         return view('addtocart' , compact('cart_items'));
