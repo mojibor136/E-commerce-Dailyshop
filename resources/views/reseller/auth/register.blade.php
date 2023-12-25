@@ -36,67 +36,62 @@
     }
 
     .login-bar h5 {
-        font-size: 20px;
-        margin: 25px 0;
+        font-size: 24px;
+        margin: 20px 0;
     }
 
     .login-bar form {
         width: 90%;
     }
 
-    .login-bar form .name input {
-        border-radius: 0;
-        width: 100%;
-        border: none;
-        outline: none;
-        margin-left: 2px;
+    .login-bar form .form-control {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
     }
 
-    .login-bar form .email input {
-        border-radius: 0;
-        width: 100%;
-        border: none;
-        outline: none;
-        margin-left: 2px;
-    }
-
+    .login-bar form .name input,
+    .login-bar form .email input,
     .login-bar form .password input {
-        border-radius: 0;
+        border-radius: 3px;
         width: 100%;
-        border: none;
+        padding: 5px;
+        border: 0;
         outline: none;
-        margin-left: 2px;
     }
 
-    .login-bar form .name {
-        width: 100%;
-        margin-bottom: 15px;
-        display: flex;
-    }
-
-    .login-bar form .email {
-        width: 100%;
-        margin-bottom: 15px;
-        display: flex;
-    }
-
-    .login-bar form .password {
-        width: 100%;
-        margin-top: 15px;
-        display: flex;
+    .login-bar form .name,
+    .login-bar form .email,
+    .login-bar form .password,
+    {
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
     }
 
     .login-bar form .remember {
         display: flex;
-        margin: 7px 0 12px 0;
+        align-items: center;
+        margin: 12px 0;
+    }
+
+    .login-bar form .remember input {
+        margin-right: 5px;
     }
 
     .login-bar form .remember p {
-        margin: 0 3px;
+        margin: 0
     }
 
     .login-bar form .button input {
         width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        background-color: #3000dd;
+        color: #fff;
+        cursor: pointer;
     }
 
     .login-bar .titel {
@@ -117,51 +112,39 @@
         padding: 10px 12px;
     }
 
-    .login-bar .login-with .facebook a {
-        color: rgb(47, 68, 255);
-    }
-
-    .login-bar .login-with .facebook {
-        border: 1px solid#dee2e6;
-        border-radius: 2px;
-        width: 100%;
-        margin: 0 3px;
-        padding: 2px 0;
-    }
-
+    .login-bar .login-with .facebook,
     .login-bar .login-with .google {
-        border: 1px solid#dee2e6;
-        border-radius: 2px;
-        width: 100%;
+        flex: 1;
+        border: 1px solid #dee2e6;
+        border-radius: 3px;
         margin: 0 3px;
-        padding: 2px 0;
-    }
-
-    .login-bar .login-with .facebook a {
+        padding: 8px;
         display: flex;
-        text-decoration: none;
-        color: #0d6efd;
-        padding: 0 5px;
+        align-items: center;
+        justify-content: center;
     }
 
+    .login-bar .login-with .facebook a,
     .login-bar .login-with .google a {
         display: flex;
         text-decoration: none;
-        color: black;
-        padding: 0 5px;
+        color: #333;
     }
 
-    .login-bar .login-with .facebook a p {
-        margin: 0;
+    .login-bar .login-with .facebook i,
+    .login-bar .login-with .google i {
+        margin-right: 8px;
     }
 
+    .login-bar .login-with .facebook a p,
     .login-bar .login-with .google a p {
         margin: 0;
     }
 
     .login-bar .signup-link {
-        margin-bottom: 25px;
-        margin-top: 30px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        text-align: center;
     }
 
     .login-bar .signup-link span {
@@ -169,7 +152,8 @@
     }
 
     .login-bar .signup-link span a {
-        color: black;
+        color: #333;
+        font-weight: 500;
     }
 </style>
 

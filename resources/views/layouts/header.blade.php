@@ -10,7 +10,7 @@
 </head>
 <style>
     body {
-        background: #e7e8ec;
+        background: #e9ecef;
     }
 
     /* TOP HEADER  */
@@ -132,6 +132,10 @@
         transition: 0.2s ease;
     }
 
+    header .icon a {
+        color: black;
+    }
+
     header .icon .btn {
         border: none;
     }
@@ -159,13 +163,7 @@
     header .icon .btn i .count span {
         margin: 0;
         font-size: 16px;
-        font-weight: bolder;
         color: ghostwhite;
-    }
-
-    header .icon .btn:hover {
-        color: rgb(126, 126, 126);
-        transition: 0.2s ease;
     }
 
     header .icon .btn img {

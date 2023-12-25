@@ -11,7 +11,7 @@
     }
 
     body {
-        background: #e7e8ec;
+        background: #e9ecef;
     }
 
     .footer {

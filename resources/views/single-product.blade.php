@@ -24,7 +24,7 @@
 
 
     body {
-        background: #e7e8ec;
+        background: #e9ecef;
         margin: 0;
     }
 
@@ -1386,3 +1386,4 @@
 </body>
 
 </html>
+@include('layouts.footer')

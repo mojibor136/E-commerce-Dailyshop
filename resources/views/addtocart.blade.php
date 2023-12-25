@@ -12,7 +12,7 @@
     }
 
     body {
-        background: #e7e8ec;
+        background: #e9ecef;
     }
 
     /* HEADER TOW*/
@@ -380,9 +380,11 @@
         .checkout {
             display: none;
         }
+
         .checkout-button-bar {
             visibility: visible;
         }
+
         .product-ul {
             margin: 0 2%;
             margin-bottom: 100px;
