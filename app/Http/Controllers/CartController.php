@@ -16,6 +16,11 @@ class CartController extends Controller
   
   
      public function StoreAddToCart(Request $request){
+
+      $request->validate([
+         'quantity' => 'required',
+      ]);
+      
         Cart::create([
            'user_id' => Auth::id(),
            'product_name' => $request->product_name,

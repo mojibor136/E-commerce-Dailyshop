@@ -13,10 +13,15 @@ class LoginController extends Controller
    }
 
    public function Login(Request $request){
+
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
     $user_login = $request->only('email', 'password');
 
     if (!Auth::attempt($user_login)) {
-        return redirect()->route('home');
+        return redirect()->route('login');
     }
     return redirect('/');
    }

@@ -14,12 +14,17 @@ class ResellerLoginController extends Controller
 
    public function Login(Request $request){
       
+      $request->validate([
+         'email' => 'required|email',
+         'password' => 'required',
+      ]);
+
       $reseller = $request->only('email' , 'password');
 
       if(!Auth::guard('reseller')->attempt($reseller)){
          return redirect()->route('reseller.login.form');
       }
 
-      return redirect()->route('reseller');
+      return redirect()->route('home');
    }
 }

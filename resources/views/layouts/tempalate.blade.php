@@ -1,6 +1,6 @@
 <!-- <!DOCTYPE html> -->
+@extends('layouts.header')
 <html lang="en">
-
 <head>
     <!-- remixicon -->
     <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
@@ -640,7 +640,6 @@
     </main>
     <!-- FOOTER  -->
     @include('layouts.footer')
-    <script src="{{ asset('assets/js/app.js') }}"></script>
 </body>
 
 </html>

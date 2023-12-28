@@ -13,6 +13,12 @@ class AdminLoginController extends Controller
     }
 
     public function Login(Request $request){
+
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        
         $credentials = $request->only('email', 'password');
 
         if (!Auth::guard('admin')->attempt($credentials)) {

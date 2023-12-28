@@ -43,8 +43,11 @@
     .login-bar form {
         width: 90%;
     }
-
     .login-bar form .form-control {
+        display: flex;
+        align-items: center;
+    }
+    .login-bar form .form-group {
         margin-bottom: 15px;
     }
 
@@ -55,14 +58,6 @@
         padding: 5px;
         border: 0;
         outline: none;
-    }
-
-    .login-bar form .email,
-    .login-bar form .password {
-        width: 100%;
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
     }
 
     .login-bar form .remember {
@@ -150,6 +145,11 @@
         color: #333;
         font-weight: 500;
     }
+    @media (max-width: 640px){
+        .login-bar {
+        margin-top: 80px;
+    }
+    }
 </style>
 
 <body>
@@ -158,13 +158,23 @@
             <h5>RESELLER LOGIN</h5>
             <form action="{{ route('reseller.login') }}" method="POST">
                 @csrf
-                <div class="email form-control">
-                    <i class="ri-mail-line"></i>
-                    <input type="text" name="email" placeholder="Email">
+                <div class="form-group">
+                    <div class="email form-control">
+                        <i class="ri-mail-line"></i>
+                        <input type="text" name="email" placeholder="Email">
+                    </div>
+                    @error('email')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="password form-control">
-                    <i class="ri-lock-line"></i>
-                    <input type="password" name="password" placeholder="Password">
+                <div class="form-group">
+                    <div class="password form-control">
+                        <i class="ri-lock-line"></i>
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+                    @error('password')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="remember">
                     <input type="checkbox">

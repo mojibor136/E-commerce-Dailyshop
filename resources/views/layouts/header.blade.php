@@ -16,6 +16,8 @@
     /* TOP HEADER  */
     .top-header {
         width: 100%;
+        position: absolute;
+        top: 0;
         background-color: #dee2e6;
         padding: 3px 0 1px 0;
     }
@@ -24,6 +26,7 @@
         display: flex;
         margin: 0;
         justify-content: center;
+        align-items: center;
     }
 
     .top-header ul li {
@@ -48,6 +51,8 @@
         padding: 10px 15px;
         z-index: 10;
         position: relative;
+        position: absolute;
+        top: 25px;
     }
 
     .sticky_header {
@@ -281,7 +286,7 @@
         .top-header {
             display: none;
         }
-
+        
         .header-container {
             margin: 0%;
         }
@@ -294,6 +299,8 @@
             background-color: #f85606;
             width: 100%;
             display: flex;
+            position: absolute;
+            top: 0;
             justify-content: space-evenly;
             padding: 10px 15px;
         }
@@ -456,4 +463,4 @@
         </div>
     </form>
 </div>
-<script src="{{ asset('assets/js/app.js') }}"></script>
+<script src="{{ asset('assets/js/header.js') }}"></script>

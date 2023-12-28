@@ -23,6 +23,7 @@
     main {
         width: 100%;
         display: flex;
+        margin-top: 100px;
     }
 
     .cart-container {
@@ -355,6 +356,7 @@
             flex-direction: column;
             height: fit-content;
             padding: 6.5px;
+            margin: 0;
         }
 
         .cart-container {

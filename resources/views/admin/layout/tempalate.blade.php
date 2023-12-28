@@ -56,7 +56,7 @@
                     <i class="ri-settings-3-fill"></i>
                     <li>Settings</li>
                 </a>
-                <a href="">
+                <a href="{{ route('admin.logout') }}">
                     <i class="ri-logout-box-r-line"></i>
                     <li>Admin Logout</li>
                 </a>

@@ -33,10 +33,11 @@
         grid-template-columns: 1fr 2fr;
         background-color: #ffffff;
         cursor: pointer;
+        margin-top: 120px;
     }
 
     /*SINGLE  PRODUCT IMG BOX */
-    .single-product {
+    .product-img {
         width: 100%;
         padding: 15px;
     }
@@ -54,21 +55,20 @@
     .small-box {
         margin-top: 10px;
         display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .small-img {
-        width: 100%;
-        margin: 0 5px;
-        border: 1px solid #eeeeee;
-        text-align: center;
+        height: 55px;
+        width: 55px;
     }
 
     .small-img img {
-        width: 55px;
-        height: 55px;
+        height: 100%;
+        width: 100%;
         object-fit: cover;
         cursor: pointer;
-        border-radius: 5px;
     }
 
     /* PRODUCT WRAP */
@@ -571,10 +571,15 @@
             grid-template-columns: 1fr;
             background-color: #ffffff;
             cursor: pointer;
+            margin-top: 55px;
         }
 
         .single-product {
             padding: 0;
+        }
+
+        .product-img {
+            padding: 0px;
         }
 
         .big-img {
@@ -837,23 +842,23 @@
         <div class="single-product-box">
             <!-- PRODUCT IMG -->
             @foreach ($products as $product)
-                <div class="single-product">
+                <div class="product-img">
                     <div class="big-img">
-                        <img src="public/assets/img/product/product.jpg">
+                        <img id="img" src="{{ asset('assets/img/product/download.jpeg') }}">
                     </div>
 
                     <div class="small-box">
                         <div class="small-img">
-                            <img src="public/assets/img/product/sstr.jpg" onclick="showImg(this.src)">
+                            <img src="{{ asset('assets/img/product/beg.webp') }}" onclick="showImg(this.src)">
                         </div>
                         <div class="small-img">
-                            <img src="public/assets/img/product/sstr.jpg" onclick="showImg(this.src)">
+                            <img src="{{ asset('assets/img/product/uujjjj.jpg') }}" onclick="showImg(this.src)">
                         </div>
                         <div class="small-img">
-                            <img src="public/assets/img/product/sstr.jpg" onclick="showImg(this.src)">
+                            <img src="{{ asset('assets/img/product/sstr.jpg') }}" onclick="showImg(this.src)">
                         </div>
                         <div class="small-img">
-                            <img src="public/assets/img/product/omor.jpg" onclick="showImg(this.src)">
+                            <img src="{{ asset('assets/img/product/sssrit.webp') }}" onclick="showImg(this.src)">
                         </div>
                     </div>
 
@@ -1381,8 +1386,13 @@
             </form>
         </div>
     </div>
-    <script src="public/assets/js/app.js"></script>
 
+    <script>
+        function showImg(fileName) {
+            let Img = document.querySelector('#img');
+            Img.setAttribute('src', fileName);
+        }
+    </script>
 </body>
 
 </html>

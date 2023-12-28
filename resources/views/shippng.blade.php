@@ -193,12 +193,14 @@
     @media (max-width: 1280px) {
         main {
             margin: 2% 5%;
+            margin-top: 120px;
         }
     }
 
     @media (max-width: 1024px) {
         main {
             margin: 2% 4%;
+            margin-top: 120px;
         }
     }
 
@@ -407,12 +409,4 @@
             </div>
         </div>
     </form>
-    <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-
-    <script>
-        $(".click").click(function() {
-            alert('hello click');
-        });
-    </script>
     @include('layouts.footer')

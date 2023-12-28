@@ -19,7 +19,7 @@ class ResellerRegisterController extends Controller
 
       $request->validate([
         'name' => 'required',
-        'email' => 'required',
+        'email' => 'required|email|unique:resellers,email,',
         'password' => 'required',
     ]);
 

@@ -17,6 +17,10 @@ body {
     font-family: Roboto-Regular, 'Helvetica Neue', Helvetica, Tahoma, Arial, Sans-serif;
 }
 
+main {
+    margin-top: 120px;
+}
+
 /* CATEGORY BANNER */
 .category-banner {
     display: grid;
@@ -174,9 +178,11 @@ body {
     background: coral;
     color: #ffffff;
 }
-.product-flash-li a{
+
+.product-flash-li a {
     text-decoration: none;
 }
+
 .product-flash-li {
     border-top: 1px solid #e9ecef;
     display: grid;
@@ -281,9 +287,11 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.card-categories-ul  a{
+
+.card-categories-ul a {
     text-decoration: none;
 }
+
 .card-categories-ul {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -327,9 +335,10 @@ body {
 }
 
 /* PRODUCT SECTION START */
-.product-li a{
+.product-li a {
     text-decoration: none;
 }
+
 .product-li {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -660,6 +669,10 @@ ul {
 
     .top-header {
         display: none;
+    }
+
+    main {
+        margin-top: 55px;
     }
 
     .category-banner {

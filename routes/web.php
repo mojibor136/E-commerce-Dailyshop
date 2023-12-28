@@ -119,11 +119,13 @@ Route::middleware('reseller')->group(function () {
     });
 
     Route::prefix('Reseller')->group(function () {
-        Route::get('/test', function () {
-            return 'hello reseller';
+        Route::controller(ResellerController::class)->group(function(){
+            Route::get('/profile' , 'Profile')->name('reseller.profile');
+         });
+         
         });
     });
-});
+
 
 Route::prefix('Reseller')->group(function () {
     Route::controller(ResellerLoginController::class)->group(function () {

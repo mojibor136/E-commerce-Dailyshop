@@ -640,7 +640,6 @@
     </main>
     <!-- FOOTER  -->
     @include('layouts.footer')
-    <script src="{{ asset('assets/js/app.js') }}"></script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 @include('layouts.header')
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
 </head>
 <style>
- * {
+    * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -19,12 +20,12 @@
         background-color: #eeeeee;
     }
 
-    .login-form {
+    .register-form {
         display: flex;
         justify-content: center;
     }
 
-    .login-bar {
+    .register-bar {
         background-color: #fff;
         width: 320px;
         display: flex;
@@ -32,55 +33,52 @@
         align-items: center;
         margin: 50px 0;
         border-radius: 5px;
+        margin-top: 120px;
     }
 
-    .login-bar h5 {
+    .register-bar h5 {
         font-size: 24px;
         margin: 20px 0;
     }
 
-    .login-bar form {
+    .register-bar form {
         width: 90%;
     }
 
-    .login-bar form .form-control {
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
+    .register-bar form .form-group {
+        margin-bottom: 10px;
     }
-    .login-bar form .name input,
-    .login-bar form .email input,
-    .login-bar form .password input{
-        border-radius: 3px;
-        width: 100%;
-        padding: 5px;
-        border: 0;
-        outline: none;
-    }
-    .login-bar form .name,
-    .login-bar form .email,
-    .login-bar form .password, {
-        width: 100%;
-        margin-bottom: 15px;
+
+    .register-bar form .form-control {
         display: flex;
         align-items: center;
     }
 
-    .login-bar form .remember {
+    .register-bar form .name input,
+    .register-bar form .email input,
+    .register-bar form .password input {
+        border-radius: 3px;
+        width: 100%;
+        padding: 2px 5px;
+        border: 0;
+        outline: none;
+    }
+
+    .register-bar form .remember {
         display: flex;
         align-items: center;
         margin: 12px 0;
     }
 
-    .login-bar form .remember input {
+    .register-bar form .remember input {
         margin-right: 5px;
     }
 
-    .login-bar form .remember p {
+    .register-bar form .remember p {
         margin: 0
     }
 
-    .login-bar form .button input {
+    .register-bar form .button input {
         width: 100%;
         padding: 10px;
         border: none;
@@ -90,26 +88,26 @@
         cursor: pointer;
     }
 
-    .login-bar .titel {
+    .register-bar .titel {
         margin: 25px 0 0 0;
     }
 
-    .login-bar .titel p {
+    .register-bar .titel p {
         margin: 0;
         font-size: 11px;
         text-transform: uppercase;
         font-weight: 500;
     }
 
-    .login-bar .login-with {
+    .register-bar .register-with {
         margin: 10px 0;
         display: flex;
         width: 100%;
         padding: 10px 12px;
     }
 
-    .login-bar .login-with .facebook,
-    .login-bar .login-with .google {
+    .register-bar .register-with .facebook,
+    .register-bar .register-with .google {
         flex: 1;
         border: 1px solid #dee2e6;
         border-radius: 3px;
@@ -120,69 +118,89 @@
         justify-content: center;
     }
 
-    .login-bar .login-with .facebook a,
-    .login-bar .login-with .google a {
+    .register-bar .register-with .facebook a,
+    .register-bar .register-with .google a {
         display: flex;
         text-decoration: none;
         color: #333;
     }
 
-    .login-bar .login-with .facebook i,
-    .login-bar .login-with .google i {
+    .register-bar .register-with .facebook i,
+    .register-bar .register-with .google i {
         margin-right: 8px;
     }
 
-    .login-bar .login-with .facebook a p,
-    .login-bar .login-with .google a p {
+    .register-bar .register-with .facebook a p,
+    .register-bar .register-with .google a p {
         margin: 0;
     }
 
-    .login-bar .signup-link {
+    .register-bar .signup-link {
         margin-bottom: 20px;
-        margin-top: 20px;
+        margin-top: 10px;
         text-align: center;
     }
 
-    .login-bar .signup-link span {
+    .register-bar .signup-link span {
         font-weight: 400;
     }
 
-    .login-bar .signup-link span a {
+    .register-bar .signup-link span a {
         color: #333;
         font-weight: 500;
+    }
+    @media (max-width: 640px){
+        .register-bar {
+        margin-top: 80px;
+    }
     }
 </style>
 
 <body>
-    <div class="login-form">
-        <div class="login-bar">
+    <div class="register-form">
+        <div class="register-bar">
             <h5>REGISTER</h5>
             <form action="{{ route('register') }}" method="POST">
                 @csrf
-                <div class="name form-control">
-                    <i class="ri-user-fill"></i>
-                    <input type="text" name="name" placeholder="Name">
+                <div class="form-group">
+                    <div class="name form-control">
+                        <i class="ri-user-fill"></i>
+                        <input type="text" name="name" placeholder="Name" value="{{ old('name') }}">
+                    </div>
+                    @error('name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="email form-control">
-                    <i class="ri-mail-line"></i>
-                    <input type="text" name="email" placeholder="Email">
+                <div class="form-group">
+                    <div class="email form-control">
+                        <i class="ri-mail-line"></i>
+                        <input type="text" name="email" placeholder="Email" value="{{ old('email') }}">
+                    </div>
+                    @error('email')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="password form-control">
-                    <i class="ri-lock-line"></i>
-                    <input type="password" name="password" placeholder="Password">
+                <div class="form-danger">
+                    <div class="password form-control">
+                        <i class="ri-lock-line"></i>
+                        <input type="password" name="password" placeholder="Password" value="{{ old('password') }}">
+                    </div>
+                    @error('password')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="remember">
                     <input type="checkbox">
                     <p>Remember me</p>
                 </div>
                 <div class="button">
-                    <input type="submit" value="REGISTER" class="btn btn-primary">
+                    <input id="btn" type="submit" value="REGISTER" class="btn btn-primary">
                 </div>
             </form>
             <div class="titel">
                 <p>Or Singin Using</p>
             </div>
-            <div class="login-with">
+            <div class="register-with">
                 <div class="facebook">
                     <a href="">
                         <i class="ri-facebook-box-fill"></i>
@@ -204,4 +222,5 @@
 </body>
 
 </html>
+<script src="{{ asset('assets/js/app.js') }}"></script>
 @include('layouts.footer')
