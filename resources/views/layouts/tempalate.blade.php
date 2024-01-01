@@ -1,15 +1,17 @@
 <!-- <!DOCTYPE html> -->
-@extends('layouts.header')
+@include('layouts.header')
 <html lang="en">
+
 <head>
     <!-- remixicon -->
     <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
     <!-- bootstrap start -->
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{asset('assets/css/tempalate.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/tempalate.css') }}">
     <title>Online Shopping in Bangladesh</title>
     <!-- bootstrap end -->
 </head>
+
 <body>
     <main>
         <!-- CATEGORY BANNER -->
@@ -70,7 +72,13 @@
 
                 <div class="slideshow-container">
                     <div class="banner">
-                        <img src="{{ asset('assets/img/product/download.jpeg') }}">
+                        <img class="slides-img" src="{{ asset('assets/img/product/beg.webp') }}" alt="">
+                        <img class="slides-img" src="{{ asset('assets/img/product/daraz.jpg') }}" alt="">
+                        <img class="slides-img" src="{{ asset('assets/img/product/sssrit.webp') }}" alt="">
+                        <div class="slider-btn">
+                            <div class="prev"></div>
+                            <div class="next"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -609,37 +617,11 @@
                 {{ $products->links() }}
             </div>
         </div>
-
-        <!-- BOTTOM NAVBAR  -->
-        <div class="bottom-navbar-button-ul">
-            <div class="navbar-button-li">
-                <div>
-                    <i class="ri-home-2-line"></i>
-                </div>
-                <span>Home</span>
-            </div>
-            <div class="navbar-button-li">
-                <div>
-                    <i class="ri-layout-grid-fill"></i>
-                </div>
-                <span>Category</span>
-            </div>
-            <div class="navbar-button-li">
-                <div>
-                    <i class="ri-shopping-cart-line"></i>
-                </div>
-                <span>Cart</span>
-            </div>
-            <div class="navbar-button-li">
-                <div>
-                    <i class="ri-user-line"></i>
-                </div>
-                <span>Profle</span>
-            </div>
-        </div>
     </main>
     <!-- FOOTER  -->
     @include('layouts.footer')
+    @include('layouts.bottom-button')
+    <script src="{{ asset('assets/js/tempalate.js') }}"></script>
 </body>
 
 </html>

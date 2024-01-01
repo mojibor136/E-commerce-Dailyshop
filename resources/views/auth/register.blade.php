@@ -1,4 +1,8 @@
 @include('layouts.header')
+@extends('layouts.navbar')
+@section('name')
+    Register
+@endsection
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +24,11 @@
         background-color: #eeeeee;
     }
 
+    /* HEADER TOW*/
+    .header-tow-ul {
+        display: none;
+    }
+
     .register-form {
         display: flex;
         justify-content: center;
@@ -33,7 +42,6 @@
         align-items: center;
         margin: 50px 0;
         border-radius: 5px;
-        margin-top: 120px;
     }
 
     .register-bar h5 {
@@ -149,10 +157,23 @@
         color: #333;
         font-weight: 500;
     }
-    @media (max-width: 640px){
+
+    @media (max-width: 640px) {
         .register-bar {
-        margin-top: 80px;
-    }
+            margin-top: 80px;
+            margin-bottom: 50px;
+        }
+
+        .register-bar h5 {
+            margin: 15px 0;
+        }
+        .register-bar .titel {
+            margin: 15px 0 0 0;
+        }
+
+        .register-bar .signup-link {
+            margin: 5px 0 15px 0;
+        }
     }
 </style>
 

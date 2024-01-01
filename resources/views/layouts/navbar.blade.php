@@ -1,4 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
 </head>
@@ -33,6 +39,8 @@
     @media (max-width: 640px) {
         nav {
             display: inline-flex;
+            position: absolute;
+            top: 0;
         }
     }
 
@@ -47,7 +55,7 @@
     <nav>
         <div class="button">
             <i class="ri-arrow-left-s-line" id="back-buttton" onclick="history.back()" style="font-size: 32px;"></i>
-            <p style="margin:0;">Page</p>
+            <p style="margin:0;">@yield('name')</p>
         </div>
         <div class="button">
             <i class="ri-more-2-fill" style="font-size: 24px;"></i>

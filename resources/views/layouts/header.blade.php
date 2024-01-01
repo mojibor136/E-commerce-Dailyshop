@@ -1,7 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- remixicon -->
     <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
     <!-- bootstrap start -->
@@ -16,8 +19,6 @@
     /* TOP HEADER  */
     .top-header {
         width: 100%;
-        position: absolute;
-        top: 0;
         background-color: #dee2e6;
         padding: 3px 0 1px 0;
     }
@@ -51,8 +52,6 @@
         padding: 10px 15px;
         z-index: 10;
         position: relative;
-        position: absolute;
-        top: 25px;
     }
 
     .sticky_header {
@@ -154,21 +153,21 @@
         top: -12px;
         right: -12px;
         position: absolute;
-        width: 20px;
-        height: 20px;
-        background: red;
+        width: 18px;
+        height: 18px;
+        background: #dc3545;
         color: #fff;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
-        border: 10px solid transparent;
     }
 
     header .icon .btn i .count span {
         margin: 0;
         font-size: 16px;
-        color: ghostwhite;
+        font-weight: bolder;
+        color: #fff;
     }
 
     header .icon .btn img {
@@ -191,44 +190,24 @@
         position: absolute;
         right: 0;
         top: 100%;
-        display: none;
+        visibility: hidden;
+        display: flex;
+        flex-direction: column;
     }
 
-    .menu ul {
-        background: #464646;
-        padding: 0;
-        border-bottom-right-radius: 5px;
-        border-bottom-left-radius: 5px;
-        overflow: hidden;
-    }
-
-    .menu ul li {
-        list-style: none;
-        background: #333335;
-        padding: 7px 30px 7px 10px;
-        margin-bottom: 2px;
-        cursor: pointer;
-    }
-
-    .menu ul li:hover {
-        background: #555555;
-    }
-
-    .menu ul li a {
+    .menu a {
+        background: #333;
         text-decoration: none;
-        color: white;
+        padding: 7px 0;
+        padding-left: 10px;
+        padding-right: 70px;
+        color: #fff;
         text-transform: capitalize;
-        font-size: 14.5px;
     }
 
-    .menu ul li a:hover {
-        color: white;
-    }
-
-    .menu ul li i {
-        color: rgb(255, 255, 255);
-        font-size: 16px;
-        margin-right: 2px;
+    .menu a:hover {
+        color: #fff;
+        background: #464646;
     }
 
     @media (max-width: 1280px) {
@@ -286,7 +265,7 @@
         .top-header {
             display: none;
         }
-        
+
         .header-container {
             margin: 0%;
         }
@@ -313,13 +292,15 @@
             background-color: #f85606;
             top: 0;
             position: fixed;
-            z-index: 10;
+            z-index: 9999;
         }
 
         .header-tow-ul .search-box {
             display: flex;
             line-height: 35px;
             height: 35px;
+            border-radius: 5px;
+            overflow: hidden;
             margin: auto 0;
             cursor: pointer;
             background-color: #ffffff;
@@ -328,7 +309,7 @@
 
         .header-tow-ul .search-box i {
             font-size: 22px;
-            color: #292929;
+            color: #636464;
             height: 100%;
             padding: 0 5px;
         }
@@ -343,9 +324,8 @@
         }
 
         .header-tow-ul .search-box input::placeholder {
-            color: rgb(20, 20, 20);
+            color: #636464;
             font-size: 16px;
-            text-transform: capitalize;
         }
 
         @media (max-width: 475px) {
@@ -388,79 +368,95 @@
     }
 </style>
 
-<!-- TOP HEADER  -->
-<div class="top-header">
-    <ul>
-        <li><a href="">save more on app</a></li>
-        <li><a href="">online donates</a></li>
-        <li><a href="">sell on online</a></li>
-        <li><a href="">customer care</a></li>
-        <li><a href="">track my order</a></li>
-        <li><a href="">daraz affiliate program</a></li>
-    </ul>
-</div>
-
-<!-- MAIN HEADER -->
-<header>
-    <div class="logo">
-        <a href="{{ route('home') }}">
-            <h4>dailyshop</h4>
-        </a>
+<body>
+    <div class="top-header">
+        <ul>
+            <li><a href="">save more on app</a></li>
+            <li><a href="">online donates</a></li>
+            <li><a href="">sell on online</a></li>
+            <li><a href="">customer care</a></li>
+            <li><a href="">track my order</a></li>
+            <li><a href="">daraz affiliate program</a></li>
+        </ul>
     </div>
-    <div class="search-box">
-        <select name="" id="myDropdown">
-            <option value="" disabled selected style="display:none;">All-Category</option>
-            <option value="lady">Lady</option>
-            <option value="">Baby Items</option>
-        </select>
+
+    <!-- MAIN HEADER -->
+    <header>
+        <div class="logo">
+            <a href="{{ route('home') }}">
+                <h4>dailyshop</h4>
+            </a>
+        </div>
+        <div class="search-box">
+            <select name="" id="myDropdown">
+                <option value="" disabled selected style="display:none;">All-Category</option>
+                <option value="lady">Lady</option>
+                <option value="">Baby Items</option>
+            </select>
+            <form action="{{ route('search.product') }}" method="GET">
+                <input type="text" name="search" placeholder="Search in dailyshop">
+                <div>
+                    <button type="submit" class="ri-search-line"></button>
+                </div>
+            </form>
+        </div>
+        <div class="icon">
+            @if (Auth::check())
+            @else
+                <a href="{{ route('login.form') }}"><span class="btn">Login</span></a>
+            @endif
+            <a href=""> <span class="btn"><i class="ri-heart-line">
+                        <div class="count">
+                            <span>0</span>
+                        </div>
+                    </i></span></a>
+            <a href="{{ route('addtocart') }}"><span class="btn"><i class="ri-shopping-cart-line">
+                        <div class="count">
+                            <span>1</span>
+                        </div>
+                    </i></span></a>
+            @if (Auth::check())
+                <span class="btn" id="button"><img src="{{ asset('assets/img/product/download.jpeg') }}"
+                        alt=""></span>
+            @endif
+        </div>
+        <div class="menu">
+            <a href="#">
+                <i class="ri-user-line"></i>
+                <span>profile</span>
+            </a>
+            <a href="#">
+                <i class="ri-shopping-cart-line"></i>
+                <span>mycart</span>
+            </a>
+            <a href="">
+                <i class="ri-order-play-line"></i>
+                <span>order tracking</span>
+            </a>
+            <a href="">
+                <i class="ri-settings-3-fill"></i>
+                <span>setting</span>
+            </a>
+            @if (Auth::check())
+                <a href="{{ route('logout') }}">
+                    <i class="ri-logout-box-r-line"></i>
+                    <span>logout</span>
+                </a>
+            @else
+            @endif
+        </div>
+    </header>
+    <!-- HEADER TOW -->
+    <div class="header-tow-ul">
         <form action="{{ route('search.product') }}" method="GET">
-            <input type="text" name="search" placeholder="Search in dailyshop">
-            <div>
-                <button type="submit" class="ri-search-line"></button>
+            <div class="search-box">
+                <i class="ri-search-line"></i>
+                <input type="text" name="search" placeholder="Search here..">
             </div>
         </form>
     </div>
-    <div class="icon">
-        @if (Auth::check())
-        @else
-            <a href="{{ route('login.form') }}"><span class="btn">Login</span></a>
-        @endif
-        <a href=""> <span class="btn"><i class="ri-heart-line">
-                    <div class="count">
-                        <span>0</span>
-                    </div>
-                </i></span></a>
-        <a href="{{ route('addtocart') }}"><span class="btn"><i class="ri-shopping-cart-line">
-                    <div class="count">
-                        <span>1</span>
-                    </div>
-                </i></span></a>
-        @if (Auth::check())
-            <span class="btn" id="button"><img src="{{ asset('assets/img/product/download.jpeg') }}"
-                    alt=""></span>
-        @endif
-    </div>
-    <div class="menu">
-        <ul>
-            <li> <i class="ri-user-line"></i><a href="">Profile</a></li>
-            <li><i class="ri-shopping-cart-line"></i><a href="">mycart</a></li>
-            <li><i class="ri-order-play-line"></i><a href="">order tracking</a></li>
-            <li><i class="ri-settings-3-fill"></i><a href="">setting</a></li>
-            @if (Auth::check())
-                <li><i class="ri-logout-box-r-line"></i><a href="{{ route('logout') }}">Logout</a></li>
-            @else
-                <li><a href="{{ route('login.form') }}">Login</a></li>
-            @endif
-        </ul>
-    </div>
-</header>
-<!-- HEADER TOW -->
-<div class="header-tow-ul">
-    <form action="{{ route('search.product') }}" method="GET">
-        <div class="search-box">
-            <i class="ri-search-line"></i>
-            <input type="text" name="search" placeholder="Enert search product">
-        </div>
-    </form>
-</div>
-<script src="{{ asset('assets/js/header.js') }}"></script>
+    <script src="{{ asset('assets/js/header.js') }}"></script>
+
+</body>
+
+</html>

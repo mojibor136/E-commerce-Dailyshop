@@ -1,4 +1,8 @@
 @include('layouts.header')
+@extends('layouts.navbar')
+@section('name')
+    Login..
+@endsection
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +24,11 @@
         background-color: #eeeeee;
     }
 
+    /* HEADER TOW*/
+    .header-tow-ul {
+        display: none;
+    }
+
     .login-form {
         display: flex;
         justify-content: center;
@@ -33,7 +42,6 @@
         align-items: center;
         margin: 50px 0;
         border-radius: 5px;
-        margin-top: 120px;
     }
 
     .login-bar h5 {
@@ -148,10 +156,24 @@
         color: #333;
         font-weight: 500;
     }
-    @media (max-width: 640px){
+
+    @media (max-width: 640px) {
         .login-bar {
-        margin-top: 80px;
-    }
+            margin-top: 80px;
+            margin-bottom: 50px;
+        }
+
+        .login-bar h5 {
+            margin: 15px 0;
+        }
+
+        .login-bar .titel {
+            margin: 15px 0 0 0;
+        }
+
+        .login-bar .signup-link {
+            margin: 10px 0 15px 0;
+        }
     }
 </style>
 

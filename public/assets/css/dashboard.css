@@ -230,8 +230,8 @@ header .menu ul a:hover {
 }
 
 .content nav ul li .dropdownButton {
-    padding: 7px 18px;
-    font-size: 15px;
+    padding: 10px 18px;
+    font-size: 16px;
     color: #d9dee3;
     text-transform: capitalize;
     cursor: pointer;
@@ -250,16 +250,18 @@ header .menu ul a:hover {
     font-size: 15px;
     margin-right: 1px;
 }
-.content nav ul li .dropdownButton .nav-arr{
+
+.content nav ul li .dropdownButton .nav-arr {
     width: 10px;
     height: 10px;
     border-top: 2px solid;
-    border-left:2px solid;
-    position: absolute; 
+    border-left: 2px solid;
+    position: absolute;
     right: 5px;
     transform: rotate(-45deg);
     /* color: #bec2c7; */
 }
+
 .content nav ul li ul li {
     padding: 10px 38px;
     list-style: none;
@@ -289,7 +291,6 @@ header .menu ul a:hover {
     padding: 50px 20px;
     overflow: scroll;
 }
-
 @media (max-width: 1024px) {
     header .icon-bar {
         margin-left: 350px;

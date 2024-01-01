@@ -1,5 +1,8 @@
 @include('layouts.header')
-@include('layouts.navbar')
+@extends('layouts.navbar')
+@section('name')
+    Checkout
+@endsection
 <!-- remixicon -->
 <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
 <!-- bootstrap start -->
@@ -193,14 +196,12 @@
     @media (max-width: 1280px) {
         main {
             margin: 2% 5%;
-            margin-top: 120px;
         }
     }
 
     @media (max-width: 1024px) {
         main {
             margin: 2% 4%;
-            margin-top: 120px;
         }
     }
 
@@ -244,7 +245,7 @@
         main {
             display: flex;
             flex-direction: column;
-            margin: 10px 10px 90px 10px;
+            margin: 70px 10px 90px 10px;
         }
 
         main .order-content table thead tr th {

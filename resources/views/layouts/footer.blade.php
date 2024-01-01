@@ -1,8 +1,16 @@
-<!-- remixicon -->
-<link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
-<!-- bootstrap start -->
-<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
-<!-- bootstrap end -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- remixicon -->
+    <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
+    <!-- bootstrap start -->
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+    <!-- bootstrap end -->
+</head>
 <style>
     * {
         margin: 0;
@@ -102,6 +110,9 @@
             grid-template-columns: 1fr 1fr;
             margin: 0 5%;
         }
+        .footer {
+            margin-bottom: 40px;
+        }
     }
 
     @media (max-width: 475px) {
@@ -118,7 +129,6 @@
         }
     }
 </style>
-</head>
 
 <body>
     <!-- FOOTER  -->
@@ -171,3 +181,6 @@
 
         </div>
     </footer>
+</body>
+
+</html>

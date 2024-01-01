@@ -1,5 +1,8 @@
 @include('layouts.header')
-@include('layouts.navbar')
+@extends('layouts.navbar')
+@section('name')
+    AddToCart
+@endsection
 <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
 <!-- bootstrap start -->
 <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
@@ -23,7 +26,6 @@
     main {
         width: 100%;
         display: flex;
-        margin-top: 100px;
     }
 
     .cart-container {
@@ -342,7 +344,6 @@
             grid-template-columns: 1fr 1fr 1fr 1fr;
         }
 
-
     }
 
     @media (max-width: 640px) {
@@ -357,6 +358,7 @@
             height: fit-content;
             padding: 6.5px;
             margin: 0;
+            margin-top: 60px;
         }
 
         .cart-container {

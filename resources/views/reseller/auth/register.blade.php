@@ -1,4 +1,8 @@
 @include('layouts.header')
+@extends('layouts.navbar')
+@section('name')
+    Reseller Register
+@endsection
 <!DOCTYPE html>
 <html lang="en">
 
@@ -152,6 +156,19 @@
     @media (max-width: 640px) {
         .register-bar {
             margin-top: 80px;
+            margin-bottom: 50px;
+        }
+
+        .register-bar h5 {
+            margin: 15px 0;
+        }
+
+        .register-bar .titel {
+            margin: 15px 0 0 0;
+        }
+
+        .register-bar .signup-link {
+            margin: 5px 0 15px 0;
         }
     }
 </style>
@@ -191,7 +208,7 @@
                 </div>
                 <div class="form-group">
                     <div class="phone form-control">
-                        <i class="ri-lock-line"></i>
+                        <i class="ri-phone-line"></i>
                         <input type="phone" name="phone" placeholder="Phone Number">
                     </div>
                     @error('phone')

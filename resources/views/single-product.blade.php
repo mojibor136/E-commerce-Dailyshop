@@ -33,7 +33,6 @@
         grid-template-columns: 1fr 2fr;
         background-color: #ffffff;
         cursor: pointer;
-        margin-top: 120px;
     }
 
     /*SINGLE  PRODUCT IMG BOX */
@@ -175,6 +174,7 @@
     .product-details .quantity-info {
         margin: 20px 0;
         display: flex;
+        align-items: center;
     }
 
     .product-details .quantity-info .quantity {
@@ -736,7 +736,6 @@
             background-color: #ff4400;
             color: #ffffff;
         }
-
     }
 
     @media (max-width: 475px) {
