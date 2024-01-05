@@ -102,16 +102,15 @@
 
     .footer-container .copyright span {
         color: #eeeeee;
+        font-size: 14px
     }
+
 
     @media (max-width: 640px) {
         .footer-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             margin: 0 5%;
-        }
-        .footer {
-            margin-bottom: 40px;
         }
     }
 
@@ -122,7 +121,6 @@
             grid-template-columns: 1fr;
             margin: 0 5%;
         }
-
 
         .footer-col {
             padding: 10px 15px;

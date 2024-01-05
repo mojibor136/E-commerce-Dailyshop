@@ -1,29 +1,27 @@
 @include('layouts.header')
 @extends('layouts.navbar')
+
 @section('name')
     Checkout
 @endsection
-<!-- remixicon -->
+
 <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
-<!-- bootstrap start -->
 <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
-<!-- bootstrap end -->
+
 <style>
+    /* Reset styles */
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
 
-    /* HEADER TOW*/
-    .header-tow-ul {
-        display: none;
-    }
-
+    /* Body styles */
     body {
         background: #e7e8ec;
     }
 
+    /* Navigation styles */
     nav {
         background-color: #dc3545;
         width: 100%;
@@ -41,15 +39,17 @@
         cursor: pointer;
     }
 
+    /* Form styles */
     form {
-
         padding: 0;
     }
 
+    /* Main container styles */
     main {
         display: flex;
     }
 
+    /* Order form styles */
     main .order-form {
         width: 60%;
         background-color: #fff;
@@ -59,7 +59,7 @@
     }
 
     .form-control {
-        margin-top: 5px;
+        margin-top: 2px;
     }
 
     main .order-form h4 {
@@ -67,14 +67,16 @@
     }
 
     main .order-form .form-group {
-        margin: 15px 0;
+        margin: 5px 0;
     }
 
+    /* Order content container styles */
     .order-content-container {
         margin: 0 10px;
         width: 40%;
     }
 
+    /* Order content styles */
     main .order-content {
         width: 100%;
         height: fit-content;
@@ -83,8 +85,12 @@
         border-radius: 5px;
     }
 
-    main .order-content .table> :not(caption)>*>* {
+    main .order-content table> :not(caption)>*>* {
         padding: 10px 5px;
+    }
+
+    main .order-content table thead tr th {
+        font-size: 12px;
     }
 
     main .order-content table tbody tr td {
@@ -101,6 +107,7 @@
         font-weight: bold;
     }
 
+    /* Summary styles */
     main .summary-ul {
         width: 100%;
         height: fit-content;
@@ -135,8 +142,10 @@
 
     .btn-success {
         width: 100%;
+        font-weight: bolder;
     }
 
+    /* Place button bar styles */
     .place-button-bar {
         padding: 10px;
         padding-top: 5px;
@@ -193,6 +202,7 @@
         font-weight: 600;
     }
 
+    /* Media queries for responsiveness */
     @media (max-width: 1280px) {
         main {
             margin: 2% 5%;
@@ -232,7 +242,6 @@
     }
 
     @media (max-width: 640px) {
-
         nav {
             display: inline-flex;
         }
@@ -279,7 +288,9 @@
         }
     }
 
-    @media (max-width: 475px) {}
+    @media (max-width: 475px) {
+        /* Adjustments for smaller screens if needed */
+    }
 
     @media (max-width: 320px) {
         main {
@@ -290,7 +301,6 @@
             width: 100%;
             margin-bottom: 30px;
         }
-
     }
 </style>
 
@@ -303,43 +313,72 @@
                 <h4>Add New Address</h4>
                 <div class="form-group">
                     <label for="Name">Full Name</label>
-                    <input type="text" class="form-control" placeholder="Enter your Name" name="c-name">
+                    <input type="text" class="form-control" placeholder="Enter your Name" name="name"
+                        value="{{ old('name') }}">
                 </div>
+                @error('name')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
                 <div class="form-group">
-                    <label for="email">Email Address
-                    </label>
-                    <input type="email" class="form-control" placeholder="Enter your email" name="c-email">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" placeholder="Enter your email" name="email"
+                        value="{{ old('email') }}">
                 </div>
+                @error('email')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
                 <div class="form-group">
                     <label for="phone">Mobile Number</label>
-                    <input type="phone" class="form-control" placeholder="Enter your phone number" name="c-nuumber">
+                    <input type="phone" class="form-control" placeholder="Enter your phone number" name="number"
+                        value="{{ old('number') }}">
                 </div>
+                @error('number')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
                 <div class="form-group">
                     <label for="">Division</label>
                     <select name="division" id="myDropdown" class="form-control">
-                        <option value="" disabled selected style="display:none;">Enter your Division</option>
+                        <option disabled selected style="display:none;">Enter your Division</option>
                         <option value="Dhaka">Dhaka</option>
                         <option value="Rangpur">Rangpur</option>
                     </select>
                 </div>
+                @error('division')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+                <div class="form-group">
+                    <label for="">City</label>
+                    <select name="city" id="myDropdown" class="form-control">
+                        <option value="" disabled selected style="display:none;">Enter your City</option>
+                        <option value="Dhaka">Dhaka</option>
+                        <option value="Rangpur">Rangpur</option>
+                    </select>
+                </div>
+                @error('city')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
                 <div class="form-group">
                     <label for="Address">Address</label>
-                    <input type="address" class="form-control" placeholder="Enter your Address" name="c-address">
+                    <input type="address" class="form-control" placeholder="Enter your Address" name="address"
+                        value="{{ old('address') }}">
                 </div>
+                @error('address')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
-            <!-- ORDER TABLE CONTENT SECTION -->
 
+            <!-- ORDER TABLE CONTENT SECTION -->
             <div class="order-content-container">
                 <div class="order-content">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Product</th>
-                                <th></th>
-                                <th> </th>
+                                <th>PRODUCT</th>
                                 <th></th>
                                 <th></th>
-                                <th>Total</th>
+                                <th></th>
+                                <th></th>
+                                <th>TOTAL</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -347,7 +386,7 @@
                                 $total = 0;
                                 $delivery = 80;
                             @endphp
-                            @foreach ($cart_items as $items)
+                            @foreach ($cartItems as $items)
                                 <tr>
                                     <td class="align-middle" style="display: flex;">
                                         <img src="{{ asset('assets/img/product/images.jpeg') }}" alt=""
@@ -364,14 +403,12 @@
                                     $price = $items->quantity * $items->product_price;
                                     $total = $total + $price;
                                 @endphp
-                                <input type="hidden" name="cartitem" value="{{ json_encode($cart_items) }}">
                             @endforeach
                         </tbody>
                     </table>
                 </div>
 
                 <!-- TOTAL SUMMARY PRICE SECTION -->
-
                 <div class="summary-ul">
                     <h4>Total Summary</h4>
                     <div class="summary-li">
@@ -390,7 +427,7 @@
                         <p>Total</p>
                         <p style="text-transform: uppercase;">{{ $delivery + $total }}tk</p>
                     </div>
-                    <button type="submit" class="btn btn-success">Place Order</button>
+                    <button type="submit" class="btn btn-success">PLACE ORDER</button>
                 </div>
             </div>
         </main>
@@ -406,8 +443,9 @@
                 </div>
             </div>
             <div class="button">
-                <button type="submit" class="btn btn-success">Place Order</button>
+                <button type="submit" class="btn btn-success">PLACE ORDER</button>
             </div>
         </div>
     </form>
     @include('layouts.footer')
+</body>

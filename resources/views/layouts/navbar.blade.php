@@ -28,7 +28,7 @@
         display: none;
     }
 
-    nav .button {
+    nav .bottom-button {
         display: flex;
         align-items: center;
         color: #fff;
@@ -53,11 +53,11 @@
 
 <body>
     <nav>
-        <div class="button">
+        <div class="bottom-button">
             <i class="ri-arrow-left-s-line" id="back-buttton" onclick="history.back()" style="font-size: 32px;"></i>
             <p style="margin:0;">@yield('name')</p>
         </div>
-        <div class="button">
+        <div class="bottom-button">
             <i class="ri-more-2-fill" style="font-size: 24px;"></i>
         </div>
     </nav>

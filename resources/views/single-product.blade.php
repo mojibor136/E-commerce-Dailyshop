@@ -736,6 +736,10 @@
             background-color: #ff4400;
             color: #ffffff;
         }
+
+        .footer {
+            margin-bottom: 40px;
+        }
     }
 
     @media (max-width: 475px) {
@@ -916,9 +920,7 @@
 
                         <div class="button">
                             @csrf
-                            <input type="hidden" name="product_price" value="{{ $product->product_price }}">
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <input type="hidden" name="product_name" value="{{ $product->product_name }}">
+                            <input type="hidden" name="id" value="{{ $product->id }}">
                             <input type="submit" class="btn btn-primary" value="Buy Now">
                             <input type="submit" class="btn btn-warning" value="Add To Cart">
                     </form>

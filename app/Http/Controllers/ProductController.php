@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin\Product;
 use Illuminate\Http\Request;
 
-class ProductInfoController extends Controller
+class ProductController extends Controller
 {
     public function ProductDetails($id){
         $products = Product::where('id' , $id)->get();

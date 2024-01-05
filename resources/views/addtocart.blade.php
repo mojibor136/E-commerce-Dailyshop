@@ -18,11 +18,6 @@
         background: #e9ecef;
     }
 
-    /* HEADER TOW*/
-    .header-tow-ul {
-        display: none;
-    }
-
     main {
         width: 100%;
         display: flex;
@@ -455,9 +450,9 @@
                             $total = 0;
                         @endphp
                         @foreach ($cart_items as $items)
-                            @if (session()->has('massage'))
+                            @if (session()->has('message'))
                                 <div class="alert alert-success">
-                                    <li>{{ session()->get('massage') }}</li>
+                                    <li>{{ session()->get('message') }}</li>
                                 </div>
                             @endif
                             <tr>
@@ -504,7 +499,7 @@
                 <button class="btn btn-primary">APPLY</button>
             </div>
             <form action="{{ route('shipping') }}" class="checkout">
-                <input type="submit" class="btn btn-success mt-3" style="width: 100%;" value="Checkout">
+                <input type="submit" class="btn btn-success mt-3" style="width: 100%;" value="CHECKOUT">
             </form>
         </div>
     </main>
@@ -695,7 +690,7 @@
                 </div>
             </div>
             <div class="button">
-                <button type="submit" class="btn btn-warning" style=" font-weight:600;">Checkout Order</button>
+                <button type="submit" class="btn btn-warning" style=" font-weight:600;">CHECKOUT</button>
             </div>
         </div>
     </form>

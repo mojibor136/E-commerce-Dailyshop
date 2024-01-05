@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\ProductInfoController;
+use App\Http\Controllers\ProductController as Product;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\SearchController;
@@ -35,35 +35,32 @@ Route::controller(Controller::class)->group(function () {
     Route::get('/', 'Index')->name('home');
 });
 
-Route::controller(ProductInfoController::class)->group(function () {
-    Route::get('/product-details/{id}', 'ProductDetails')->name('product.details');
+Route::controller(Product::class)->group(function () {
+    Route::get('/Product-Details/{id}', 'ProductDetails')->name('product.details');
 });
 
 Route::controller(SearchController::class)->group(function () {
-    Route::get('/search', 'SearchProduct')->name('search.product');
+    Route::get('/Search', 'SearchProduct')->name('search.product');
 });
 
 Route::middleware('auth')->group(function () {
     Route::controller(CartController::class)->group(function () {
-        Route::get('/add-to-cart', 'Index')->name('addtocart');
-        Route::post('/add-to-cart', 'StoreAddToCart')->name('store.addtocart');
+        Route::get('/AddToCart', 'Index')->name('addtocart');
+        Route::post('/AddToCart', 'StoreAddToCart')->name('store.addtocart');
         Route::get('/delete-cart-item/{id}', 'DeleteCartItem')->name('delete.cart.item');
     });
 
-    Route::controller(ShippingController::class)->group(function () {
-        Route::get('/shipping-product', 'Index')->name('shipping');
-        Route::post('/shipping-add-product', 'StoreShipping')->name('shipping.product');
-        Route::get('/delete.shipping.item/{id}', 'DeleteShippingItem')->name('delete.shipping.item');
-    });
-
     Route::controller(CheckoutController::class)->group(function () {
-        Route::get('/checkout-product', 'Index')->name('checkout');
-        Route::post('/checkout-product', 'StoreCheckOut')->name('checkout.product');
+        Route::get('/Checkout', 'Shipping')->name('shipping');
+        Route::post('/Shipping', 'StoreShipping')->name('shipping.product');
+        Route::get('/Payment' , 'Payment')->name('payment');
+        Route::post('/Order-Place' , 'OrderPlace')->name('order.place');
+
     });
 });
 
 // Admin Routes
-Route::middleware('admin')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::controller(AdminController::class)->group(function () {
         Route::get('/Admin', 'Admin')->name('admin');
     });
@@ -120,7 +117,7 @@ Route::middleware('reseller')->group(function () {
 
     Route::prefix('Reseller')->group(function () {
         Route::controller(ResellerController::class)->group(function(){
-            Route::get('/profile' , 'Profile')->name('reseller.profile');
+            Route::get('/Profile' , 'Profile')->name('reseller.profile');
          });
          
         });
@@ -129,15 +126,15 @@ Route::middleware('reseller')->group(function () {
 
 Route::prefix('Reseller')->group(function () {
     Route::controller(ResellerLoginController::class)->group(function () {
-        Route::get('login', 'LoginForm')->name('reseller.login.form');
-        Route::post('login', 'Login')->name('reseller.login');
+        Route::get('Login', 'LoginForm')->name('reseller.login.form');
+        Route::post('Login', 'Login')->name('reseller.login');
     });
     Route::controller(ResellerLogoutController::class)->group(function () {
-        Route::get('/logout', 'Logout')->name('reseller.logout');
+        Route::get('/Logout', 'Logout')->name('reseller.logout');
     });
     Route::controller(ResellerRegisterController::class)->group(function () {
-        Route::get('/register', 'RegisterForm')->name('reseller.register.form');
-        Route::post('/store', 'Store')->name('reseller.register');
+        Route::get('/Register', 'RegisterForm')->name('reseller.register.form');
+        Route::post('/Store', 'Store')->name('reseller.register');
     });
 });
 
