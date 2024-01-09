@@ -56,13 +56,10 @@
         align-items: center;
     }
 
-    main .order-content table tbody tr td p {
-        margin: 0;
-        margin-left: 10px;
-    }
-
-    main .order-content table tbody tr td p span {
-        font-weight: bold;
+    main .order-content table tbody tr td img {
+        width: 40px;
+        height: 40px;
+        cursor: pointer
     }
 
     main .payment-bar {
@@ -70,6 +67,7 @@
         height: fit-content;
         padding: 20px;
         margin: 10px 0;
+        margin-bottom: 90px;
         background-color: #fff;
         border-radius: 5px;
     }
@@ -92,6 +90,68 @@
         border: 1px solid #333;
     }
 
+    main .payment-bar .form-group .btn-primary {
+        display: none;
+    }
+
+    /* Place button bar styles */
+    .button-container {
+        padding: 10px;
+        padding-top: 5px;
+        background-color: #fff;
+        visibility: hidden;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .button-container .total-bar {
+        display: flex;
+        align-items: center;
+    }
+
+    .button-container .total-bar p {
+        margin: 0;
+    }
+
+    .button-container .total-bar .name {
+        padding: 5px 0;
+        text-transform: uppercase;
+    }
+
+    .button-container .total-bar .price {
+        color: rgb(255, 0, 149);
+        padding: 5px;
+        font-weight: 600;
+    }
+
+    .button-container .total-bar .details-bar {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right: 15px;
+    }
+
+    .button-container .total-bar .details-bar .arr {
+        width: 9px;
+        height: 9px;
+        border-top: 2px solid;
+        border-left: 2px solid;
+        transform: rotate(-135deg);
+        margin: 5px;
+        margin-top: 0;
+    }
+
+    .button-container .button {
+        width: 100%;
+    }
+
+    .button-container .button button {
+        width: 100%;
+        font-weight: 600;
+    }
+
+
     @media (max-width: 640px) {
 
         main {
@@ -103,11 +163,48 @@
             width: 100%;
         }
 
-        .footer {
-            margin: 0;
+        main .payment-bar .form-group button {
+            margin-left: 520px;
+            width: auto;
         }
 
+        main .payment-bar .form-group .confirm {
+            display: none;
+        }
 
+        main .payment-bar .form-group .btn-primary {
+            display: block;
+        }
+
+        footer {
+            display: none;
+        }
+
+        .button-container {
+            visibility: visible;
+        }
+
+    }
+
+    @media (max-width: 475px) {
+        main .payment-bar .form-group button {
+            margin-left: 350px;
+            width: auto;
+        }
+    }
+
+    @media (max-width: 375px) {
+        main .payment-bar .form-group button {
+            margin-left: 250px;
+            width: auto;
+        }
+    }
+
+    @media (max-width: 320px) {
+        main .payment-bar .form-group button {
+            margin-left: 200px;
+            width: auto;
+        }
     }
 </style>
 
@@ -134,16 +231,14 @@
                         @endphp
                         @foreach ($cartItems as $items)
                             <tr>
-                                <td class="align-middle" style="display: flex;">
-                                    <img src="{{ asset('assets/img/product/images.jpeg') }}" alt=""
-                                        width="40px" height="40px">
-                                    <p>smart shirt smart shirt smart shirt <span>x{{ $items->quantity }}</span></p>
+                                <td class="align-middle">
+                                    <img src="{{ asset('assets/img/product/images.jpeg') }}" alt="">
                                 </td>
+                                <td class="align-middle">shirt smart shirt smart shirt x{{ $items->quantity }}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
-                                <td class="align-middle">{{ $items->product_price }}Tk</td>
+                                <td class="align-middle">{{ $items->quantity * $items->product_price }}Tk</td>
                             </tr>
                             @php
                                 $price = $items->quantity * $items->product_price;
@@ -163,7 +258,7 @@
                     </thead>
                 </table>
             </div>
-            <form action="{{route('order.place')}}" method="post">
+            <form action="{{ route('order.place') }}" method="post">
                 @csrf
                 <input type="hidden" value="{{ $total + $delivery }}" name="total">
                 <div class="payment-bar">
@@ -183,12 +278,27 @@
                         <input type="text" class="form-control" name="sand-number" value="Enter your sand number">
                     </div>
                     <div class="form-group mt-3">
-                        <button type="submit" class="btn btn-success">CONFRIM ORDER</button>
+                        <button type="submit" class="btn btn-primary">SAND</button>
+                        <button type="submit" class="btn btn-success confirm">CONFIRM ORDER</button>
                     </div>
                 </div>
-            </form>
         </div>
     </main>
+    <!-- ORDER BUTTON SECTION -->
+    <div class="button-container">
+        <div class="total-bar">
+            <p class="name">Total:</p>
+            <p class="price">{{ $delivery + $total }}Tk</p>
+            <div class="details-bar">
+                <p>Details</p>
+                <div class="arr"></div>
+            </div>
+        </div>
+        <div class="button">
+            <button type="submit" class="btn btn-success">CONFIRM ORDER</button>
+        </div>
+    </div>
+    </form>
     @include('layouts.footer')
 </body>
 

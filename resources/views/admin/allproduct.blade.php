@@ -1,18 +1,5 @@
 @extends('admin.layout.tempalate')
 @section('content')
-    <style>
-        main .container {
-            padding: 0;
-        }
-
-        main .container .card .table-responsive table {
-            font-size: 15px;
-        }
-
-        main .container .card .table-responsive table tbody tr td .btn {
-            padding: 5px 7px;
-        }
-    </style>
     <div class="container">
         <div class="card">
             <h5 class="card-header">All Product</h5>

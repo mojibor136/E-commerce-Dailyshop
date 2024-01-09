@@ -98,13 +98,10 @@
         font-size: 14px;
     }
 
-    main .order-content table tbody tr td p {
-        margin: 0;
-        margin-left: 10px;
-    }
-
-    main .order-content table tbody tr td p span {
-        font-weight: bold;
+    main .order-content table tbody tr td img {
+        width: 40px;
+        height: 40px;
+        cursor: pointer
     }
 
     /* Summary styles */
@@ -146,7 +143,7 @@
     }
 
     /* Place button bar styles */
-    .place-button-bar {
+    .button-container {
         padding: 10px;
         padding-top: 5px;
         background-color: #fff;
@@ -156,34 +153,34 @@
         width: 100%;
     }
 
-    .place-button-bar .total-bar {
+    .button-container .total-bar {
         display: flex;
         align-items: center;
     }
 
-    .place-button-bar .total-bar p {
+    .button-container .total-bar p {
         margin: 0;
     }
 
-    .place-button-bar .total-bar .name {
+    .button-container .total-bar .name {
         padding: 5px 0;
         text-transform: uppercase;
     }
 
-    .place-button-bar .total-bar .price {
+    .button-container .total-bar .price {
         color: rgb(255, 0, 149);
         padding: 5px;
         font-weight: 600;
     }
 
-    .place-button-bar .total-bar .details-bar {
+    .button-container .total-bar .details-bar {
         display: flex;
         align-items: center;
         position: absolute;
         right: 15px;
     }
 
-    .place-button-bar .total-bar .details-bar .arr {
+    .button-container .total-bar .details-bar .arr {
         width: 9px;
         height: 9px;
         border-top: 2px solid;
@@ -193,11 +190,11 @@
         margin-top: 0;
     }
 
-    .place-button-bar .button {
+    .button-container .button {
         width: 100%;
     }
 
-    .place-button-bar .button button {
+    .button-container .button button {
         width: 100%;
         font-weight: 600;
     }
@@ -279,7 +276,7 @@
             display: none;
         }
 
-        .place-button-bar {
+        .button-container {
             visibility: visible;
         }
 
@@ -388,12 +385,10 @@
                             @endphp
                             @foreach ($cartItems as $items)
                                 <tr>
-                                    <td class="align-middle" style="display: flex;">
-                                        <img src="{{ asset('assets/img/product/images.jpeg') }}" alt=""
-                                            width="40px" height="40px">
-                                        <p>smart shirt smart shirt smart shirt <span>x{{ $items->quantity }}</span></p>
+                                    <td class="align-middle">
+                                        <img src="{{ asset('assets/img/product/images.jpeg') }}" alt="">
                                     </td>
-                                    <td></td>
+                                    <td class="align-middle">shirt smart shirt smart shirt x{{ $items->quantity }}</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -405,6 +400,16 @@
                                 @endphp
                             @endforeach
                         </tbody>
+                        <thead>
+                            <tr>
+                                <th>TOTAL</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>{{ $total + $delivery }}Tk</th>
+                            </tr>
+                        </thead>
                     </table>
                 </div>
 
@@ -433,7 +438,7 @@
         </main>
 
         <!-- ORDER BUTTON SECTION -->
-        <div class="place-button-bar">
+        <div class="button-container">
             <div class="total-bar">
                 <p class="name">Total:</p>
                 <p class="price">{{ $delivery + $total }}Tk</p>

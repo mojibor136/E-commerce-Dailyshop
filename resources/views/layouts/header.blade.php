@@ -95,8 +95,13 @@
         border: none;
         background-color: #dee2e6;
         width: fit-content;
-        font-size: 14px;
         text-transform: capitalize;
+    }
+
+    header .search-box select option {
+        order: 0;
+        outline: 0;
+        color: rgb(0, 0, 0);
     }
 
     header .search-box form {
@@ -153,8 +158,9 @@
         top: -12px;
         right: -12px;
         position: absolute;
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
+        padding-top: 2px;
         background: #dc3545;
         color: #fff;
         display: flex;
@@ -165,7 +171,7 @@
 
     header .icon .btn i .count span {
         margin: 0;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bolder;
         color: #fff;
     }
@@ -188,26 +194,40 @@
 
     .menu {
         position: absolute;
-        right: 0;
         top: 100%;
+        right: 0;
         visibility: hidden;
-        display: flex;
-        flex-direction: column;
     }
 
-    .menu a {
-        background: #333;
+    .menu ul {
+        margin: 0;
+        padding: 0;
+        background-color: #333;
+    }
+
+    .menu ul a {
         text-decoration: none;
-        padding: 7px 0;
-        padding-left: 10px;
-        padding-right: 70px;
-        color: #fff;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
         text-transform: capitalize;
     }
 
-    .menu a:hover {
-        color: #fff;
-        background: #464646;
+    .menu ul a i {
+        padding-left: 5px;
+        font-size: 16px;
+    }
+
+    .menu ul a li {
+        list-style: none;
+        font-size: 15px;
+        padding: 5px 2px;
+        padding-right: 40px;
+        font-family: sans-serif;
+    }
+
+    .menu ul a:hover {
+        background-color: #586b80;
     }
 
     @media (max-width: 1280px) {
@@ -421,29 +441,31 @@
             @endif
         </div>
         <div class="menu">
-            <a href="#">
-                <i class="ri-user-line"></i>
-                <span>profile</span>
-            </a>
-            <a href="#">
-                <i class="ri-shopping-cart-line"></i>
-                <span>mycart</span>
-            </a>
-            <a href="">
-                <i class="ri-order-play-line"></i>
-                <span>order tracking</span>
-            </a>
-            <a href="">
-                <i class="ri-settings-3-fill"></i>
-                <span>setting</span>
-            </a>
-            @if (Auth::check())
-                <a href="{{ route('logout') }}">
-                    <i class="ri-logout-box-r-line"></i>
-                    <span>logout</span>
+            <ul>
+                <a href="#">
+                    <i class="ri-user-line"></i>
+                    <li>profile</li>
                 </a>
-            @else
-            @endif
+                <a href="#">
+                    <i class="ri-shopping-cart-line"></i>
+                    <li>mycart</li>
+                </a>
+                <a href="">
+                    <i class="ri-order-play-line"></i>
+                    <li>order tracking</li>
+                </a>
+                <a href="">
+                    <i class="ri-settings-3-fill"></i>
+                    <li>setting</li>
+                </a>
+                @if (Auth::check())
+                    <a href="{{ route('logout') }}">
+                        <i class="ri-logout-box-r-line"></i>
+                        <li>logout</li>
+                    </a>
+                @else
+                @endif
+            </ul>
         </div>
     </header>
     <!-- HEADER TOW -->

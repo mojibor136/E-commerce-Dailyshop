@@ -1370,18 +1370,19 @@
             </div>
         </div>
         <div class="button">
-            <form action="" method="post">
+            <form action="{{ route('store.addtocart') }}" method="post">
+                @csrf
                 <div class="button-buyNow">
+                    <input type="hidden" class="form-control" value="1" min="1" name="quantity">
+                    <input type="hidden" name="id" value="{{ $product->id }}">
                     <input type="submit" class="button-inner btn btn-primary" value="Buy Now">
                 </div>
             </form>
             <form action="{{ route('store.addtocart') }}" method="post">
+                @csrf
                 <div class="button-addcart">
-                    @csrf
                     <input type="hidden" class="form-control" value="1" min="1" name="quantity">
-                    <input type="hidden" name="product_price" value="{{ $product->product_price }}">
-                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                    <input type="hidden" name="product_name" value="{{ $product->product_name }}">
+                    <input type="hidden" name="id" value="{{ $product->id }}">
                     <input type="submit" class="button-inner btn" value="Add To Cart">
                 </div>
             </form>

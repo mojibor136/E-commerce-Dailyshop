@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/Shipping', 'StoreShipping')->name('shipping.product');
         Route::get('/Payment' , 'Payment')->name('payment');
         Route::post('/Order-Place' , 'OrderPlace')->name('order.place');
+        Route::get('/Order-Confirmation' , 'OrderConfirmation')->name('order.confirmation');
 
     });
 });
@@ -93,6 +94,7 @@ Route::middleware('auth')->group(function () {
 
         Route::controller(OrderController::class)->group(function () {
             Route::get('/all-order', 'Index')->name('allorder');
+            Route::get('/delete-order/{id}', 'DeleteOrder')->name('delete.order');
             Route::get('/panding-order', 'PandingOrder')->name('pandingorder');
             Route::get('/confrim-order', 'ConfrimOrder')->name('confrimorder');
         });

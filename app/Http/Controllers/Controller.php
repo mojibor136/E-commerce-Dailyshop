@@ -6,8 +6,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use App\Models\Admin\Category;
-use App\Models\Admin\Product;
+use App\Models\Category;
+use App\Models\Product;
 
 class Controller extends BaseController
 {

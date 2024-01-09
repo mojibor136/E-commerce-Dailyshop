@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Admin\SubCategory;
-use App\Models\Admin\Category;
-use App\Models\Admin\Product;
+use App\Models\SubCategory;
+use App\Models\Category;
+use App\Models\Product;
 
 class ProductController extends Controller
 {

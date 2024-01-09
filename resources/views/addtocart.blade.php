@@ -77,14 +77,6 @@
         padding: 0;
     }
 
-
-    main .cart-content table thead tr th {
-        color: #666666;
-        font-size: 16px;
-        text-transform: capitalize;
-    }
-
-
     main .cart-content table tbody tr td {
         text-transform: capitalize;
         font-size: 14px;
@@ -372,10 +364,6 @@
             padding: 10px 0;
         }
 
-        main .cart-content table thead tr th {
-            font-size: 14px;
-        }
-
         .checkout {
             display: none;
         }
@@ -408,12 +396,7 @@
         }
     }
 
-    @media (max-width: 320px) {
-        main {
-            margin-top: 5px;
-            padding: 5px;
-        }
-    }
+    @media (max-width: 320px) {}
 </style>
 
 <body>
@@ -436,15 +419,6 @@
 
             <div class="cart-content">
                 <table class="table">
-                    <thead>
-                        <tr>
-                            <th>image</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         @php
                             $total = 0;

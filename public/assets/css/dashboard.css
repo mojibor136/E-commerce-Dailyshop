@@ -291,6 +291,15 @@ header .menu ul a:hover {
     padding: 50px 20px;
     overflow: scroll;
 }
+
+.content main table tbody tr td {
+    text-transform: capitalize;
+}
+
+main .container .card .table-responsive table tbody tr td .btn {
+    padding: 2px 7px;
+}
+
 @media (max-width: 1024px) {
     header .icon-bar {
         margin-left: 350px;
