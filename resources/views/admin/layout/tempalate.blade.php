@@ -114,7 +114,7 @@
                 <li>
                     <div class="dropdownButton">
                         <i class="ri-product-hunt-line"></i>
-                        <span>product</span>
+                        <span>manage product</span>
                         <div class="nav-arr"></div>
                     </div>
                     <ul class="dropdownContent" style="display: none;">
@@ -130,7 +130,7 @@
                 <li>
                     <div class="dropdownButton">
                         <i class="ri-order-play-line"></i>
-                        <span>order</span>
+                        <span>manage order</span>
                         <div class="nav-arr"></div>
                     </div>
                     <ul class="dropdownContent" style="display: none;">
@@ -148,7 +148,7 @@
                 <li>
                     <div class="dropdownButton">
                         <i class="ri-group-fill"></i>
-                        <span>customer</span>
+                        <span>manage customer</span>
                         <div class="nav-arr"></div>
                     </div>
                     <ul class="dropdownContent" style="display: none;">

@@ -1,18 +1,14 @@
 @extends('admin.layout.tempalate')
 @section('content')
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
-    <!-- bootstrap start -->
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
-    <!-- bootstrap end -->
-    {{-- CSS --}}
-    <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
-    <!-- Core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/dist/remixicon.css">
     <link rel="stylesheet" href="{{ asset('assets/css/core.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/theme-default.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.6/dist/flatpickr.min.css">
     <style>
         .card-header {
             text-transform: uppercase;
+            padding: 30px 10px;
         }
 
         .order-details-popup {
@@ -76,38 +72,46 @@
         .btn-outline-success {
             margin-left: 5px;
         }
+
+        .pagination-container {
+            margin-left: 25px;
+        }
     </style>
     <div class="container">
         <div class="card">
-            <h5 class="card-header">All Order</h5>
+            <div style="display: flex; align-items:center;">
+                <h5 class="card-header">All Order</h5>
+                <form action="">
+                    <input type="text" class="form-control" placeholder="Search Order">
+                </form>
+                <form action="" style="margin-left: 220px">
+                    <input type="text" name="datefilter" value="{{ old('datefilter') }}10/1/2024" class="form-control" />
+                </form>
+            </div>
             <div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead class="table-light">
                         <tr>
-                            <th><input type="checkbox"></th>
-                            <th style="width: 50px;">order id</th>
-                            <th style="width: 150px;">customer name</th>
-                            <th style="width: 100px;">total price</th>
-                            <th style="width: 80px;">type</th>
-                            <th style="width: 120px;">order date</th>
+                            <th>order id</th>
+                            <th>customer name</th>
+                            <th>customer email</th>
+                            <th>total price</th>
+                            <th>type</th>
+                            <th>order date</th>
                             <th>status</th>
-                            <th style="width: 50px;">action</th>
-                            <th style="width: 50px;">view</th>
+                            <th>view</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                         @foreach ($orders as $order)
                             <tr>
-                                <td><input type="checkbox" name="" id=""></td>
-                                <td>{{ $order->id }}</td>
+                                <td style="padding-left: 15px;">{{ $order->id }}</td>
                                 <td>{{ $order->user->name }}</td>
+                                <td>{{ $order->user->email }}</td>
                                 <td>{{ $order->total }}</td>
                                 <td>{{ $order->order_type }}</td>
                                 <td>12-01-2023</td>
-                                <td><a href="" class="text-success">delivery</a></td>
-                                <td><a href="{{ route('delete.order', $order->id) }}"
-                                        class="btn btn-outline-warning border-warning">delete</a>
-                                </td>
+                                <td><a href="" class="text-success">Delivered</a></td>
                                 <td><a href="{{ $order->id }}" class="btn btn-outline-danger border-danger">View</a>
                                 </td>
                             </tr>
@@ -234,4 +238,24 @@
             </div>
         </div>
     </div>
+    <div class="pagination-container mt-3 mb-3">
+        {{ $orders->links() }}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/js/core.js') }}"></script>
+    <script src="{{ asset('assets/js/theme-default.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.6/dist/flatpickr.min.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr('input[name="datefilter"]', {
+                mode: 'range',
+                dateFormat: 'm/d/Y',
+                onClose: function(selectedDates, dateStr, instance) {
+                    if (dateStr === "") {
+                        instance.clear();
+                    }
+                }
+            });
+        });
+    </script>
 @endsection

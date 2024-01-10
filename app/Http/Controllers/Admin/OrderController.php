@@ -9,7 +9,7 @@ use App\Models\Order;
 class OrderController extends Controller
 {
     public function Index(){
-        $orders = Order::all();
+        $orders = Order::oldest('updated_at')->paginate(5);
         return view('admin.allorder',compact('orders'));
     }
     public function DeleteOrder($id){
@@ -20,15 +20,17 @@ class OrderController extends Controller
             $order->shipping()->delete();
             $order->delete();
         }
-        $orders = Order::all();
+        $orders = Order::latest()->paginate(1);
         return view('admin.allorder',compact('orders'));
         
     }
     public function PandingOrder(){
-        return view('admin.pandingorder');
-    }
+        $orders = Order::where('status', 'pending')->orderBy('updated_at')->paginate(5);
+        return view('admin.pandingorder', compact('orders'));
+    }    
 
     public function ConfrimOrder(){
-        return view('admin.confrimorder');
+        $orders = Order::where('status', 'cencel')->orderBy('updated_at')->paginate(5);
+        return view('admin.confrimorder' , compact('orders'));
     }
 }
