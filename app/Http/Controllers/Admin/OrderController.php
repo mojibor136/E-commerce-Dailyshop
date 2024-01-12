@@ -30,7 +30,11 @@ class OrderController extends Controller
     }    
 
     public function ConfrimOrder(){
-        $orders = Order::where('status', 'cencel')->orderBy('updated_at')->paginate(5);
+        $orders = Order::where('status', 'delivered')->orderBy('updated_at')->paginate(1);
         return view('admin.confrimorder' , compact('orders'));
+    }
+    public function ManageOrder(){
+        $orders = Order::oldest('updated_at')->paginate(5);
+        return view('admin.manageorder',compact('orders'));
     }
 }

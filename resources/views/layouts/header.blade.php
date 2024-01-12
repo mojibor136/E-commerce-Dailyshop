@@ -20,7 +20,7 @@
     .top-header {
         width: 100%;
         background-color: #dee2e6;
-        padding: 3px 0 1px 0;
+        padding: 0;
     }
 
     .top-header ul {
@@ -155,8 +155,8 @@
     }
 
     header .icon .btn i .count {
-        top: -12px;
-        right: -12px;
+        top: -7px;
+        right: -10px;
         position: absolute;
         width: 16px;
         height: 16px;
@@ -282,6 +282,10 @@
     }
 
     @media (max-width: 640px) {
+        body {
+            background: #f8f9fa;
+        }
+
         .top-header {
             display: none;
         }

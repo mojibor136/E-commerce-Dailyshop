@@ -1,10 +1,5 @@
 @extends('admin.layout.tempalate')
 @section('content')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/dist/remixicon.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/core.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/theme-default.css') }}" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.6/dist/flatpickr.min.css">
     <style>
         .card-header {
             text-transform: uppercase;
@@ -111,13 +106,16 @@
                                 <td>{{ $order->total }}</td>
                                 <td>{{ $order->order_type }}</td>
                                 <td>12-01-2023</td>
-                                <td><a href="" class="text-success">Delivered</a></td>
+                                <td><a href="" class="text-success">{{$order->status}}</a></td>
                                 <td><a href="{{ $order->id }}" class="btn btn-outline-danger border-danger">View</a>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                <div class="pagination-container mt-3 mb-3">
+                    {{ $orders->links() }}
+                </div>
             </div>
             <div class="card order-details-popup">
                 <div class="popup-content">
@@ -237,9 +235,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="pagination-container mt-3 mb-3">
-        {{ $orders->links() }}
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('assets/js/core.js') }}"></script>

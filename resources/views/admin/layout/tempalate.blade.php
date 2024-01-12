@@ -4,16 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- remixicon -->
     <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
-    <!-- bootstrap start -->
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
-    <!-- bootstrap end -->
-    {{-- CSS --}}
     <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
-    <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/core.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/theme-default.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/theme-default.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.6/dist/flatpickr.min.css">
 </head>
 
 <body>
@@ -63,8 +59,8 @@
             </ul>
         </div>
     </header>
-    <div class="content">
-        <nav>
+    <div class="content-bar">
+        <div class="nav">
             <ul>
                 <li>
                     <div class="dropdownButton">
@@ -137,11 +133,14 @@
                         <a href="{{ route('allorder') }}">
                             <li>All Order</li>
                         </a>
-                        <a href="{{ route('pandingorder') }}">
+                        <a href="{{ route('panding.order') }}">
                             <li>Panding Order</li>
                         </a>
-                        <a href="{{ route('confrimorder') }}">
+                        <a href="{{ route('confirm.order') }}">
                             <li> Confrim Order</li>
+                        </a>
+                        <a href="{{ route('manage.order') }}">
+                            <li> Manage Order</li>
                         </a>
                     </ul>
                 </li>
@@ -178,7 +177,7 @@
                 </li>
 
             </ul>
-        </nav>
+        </div>
         <main>
             @yield('content')
         </main>

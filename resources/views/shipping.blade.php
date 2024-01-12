@@ -124,16 +124,18 @@
     main .summary-ul h4 {
         font-size: 16px;
         color: #555666;
+        text-transform: uppercase;
     }
 
     main .summary-ul .summary-li {
         display: flex;
         justify-content: space-between;
+        text-transform: uppercase;
     }
 
     main .summary-ul .summary-li p {
         margin: 5px 0;
-        font-size: 14px;
+        font-size: 13px;
         color: #666666;
     }
 
@@ -156,6 +158,7 @@
     .button-container .total-bar {
         display: flex;
         align-items: center;
+        font-size: 14px;
     }
 
     .button-container .total-bar p {
@@ -178,6 +181,11 @@
         align-items: center;
         position: absolute;
         right: 15px;
+        text-transform: uppercase;
+    }
+
+    .button-container .total-bar .details-bar p {
+        font-size: 13px;
     }
 
     .button-container .total-bar .details-bar .arr {
@@ -239,6 +247,10 @@
     }
 
     @media (max-width: 640px) {
+        .header-tow-ul {
+            display: none;
+        }
+
         nav {
             display: inline-flex;
         }
@@ -335,7 +347,7 @@
                 <div class="form-group">
                     <label for="">Division</label>
                     <select name="division" id="myDropdown" class="form-control">
-                        <option disabled selected style="display:none;">Enter your Division</option>
+                        <option disabled selected style="display:none;">Select your Division</option>
                         <option value="Dhaka">Dhaka</option>
                         <option value="Rangpur">Rangpur</option>
                     </select>
@@ -346,7 +358,7 @@
                 <div class="form-group">
                     <label for="">City</label>
                     <select name="city" id="myDropdown" class="form-control">
-                        <option value="" disabled selected style="display:none;">Enter your City</option>
+                        <option value="" disabled selected style="display:none;">Select your City</option>
                         <option value="Dhaka">Dhaka</option>
                         <option value="Rangpur">Rangpur</option>
                     </select>

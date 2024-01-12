@@ -99,6 +99,7 @@
 
     main .list-content h4 {
         font-size: 16px;
+        text-transform: uppercase;
         color: #555666;
     }
 
@@ -106,11 +107,12 @@
         display: flex;
         justify-content: space-between;
         align-items: baseline;
+        text-transform: uppercase;
     }
 
     main .list-content .summary-li p {
         margin: 5px 0;
-        font-size: 14px;
+        font-size: 13px;
         color: #666666;
     }
 
@@ -133,6 +135,7 @@
     .checkout-button-bar .total-bar {
         display: flex;
         align-items: center;
+        font-size: 14px;
     }
 
     .checkout-button-bar .total-bar p {
@@ -155,8 +158,11 @@
         align-items: center;
         position: absolute;
         right: 15px;
+        text-transform: uppercase;
     }
-
+    .button-container .total-bar .details-bar p{
+        font-size: 13px;
+    }
     .checkout-button-bar .total-bar .details-bar .arr {
         width: 9px;
         height: 9px;
@@ -436,7 +442,7 @@
                                 <td class="align-middle">{{ $items->product_name }}</td>
                                 <td class="align-middle"><input type="text" style="text-align: center;"
                                         class="form-control" value="{{ $items->quantity }}"></td>
-                                <td class="align-middle">TK-{{ $items->quantity * $items->product_price }}</td>
+                                <td class="align-middle">{{ $items->quantity * $items->product_price }}TK</td>
                                 <td class="align-middle">
                                     <a href="{{ route('delete.cart.item', $items->id) }}"
                                         class="btn btn-warning">Delete</a>

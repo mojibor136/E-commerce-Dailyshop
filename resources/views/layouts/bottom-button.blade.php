@@ -66,7 +66,7 @@
 </style>
 
 <body>
-    <div class="button-container rounded-top">
+    <div class="button-container">
         <a href="" class="button"><i class="ri-home-4-line"></i></a>
         <a href="" class="button"><i class="ri-layout-grid-fill"></i></a>
         <a href="{{ route('addtocart') }}" class="button"><i class="ri-shopping-cart-line">
@@ -74,7 +74,14 @@
                     <div>0</div>
                 </div>
             </i></a>
-        <a href="" class="button"><i class="ri-user-line"></i></a>
+        @if (Auth::check())
+            <a href="" class="button"><i class="ri-user-line"></i></a>
+        @else
+            <a href="{{ route('login') }}" class="button">
+                <i class="ri-logout-box-r-line"></i>
+            </a>
+        @endif
+
     </div>
 
     <script>

@@ -9,8 +9,13 @@
                         <h5 class="mb-0">Add-Category</h5>
                         <small class="text-muted float-end">Default label</small>
                     </div>
+                    @if (session()->has('massage'))
+                        <div class="alert alert-success">
+                            <li>{{ session()->get('massage') }}</li>
+                        </div>
+                    @endif
                     <div class="card-body">
-                        <form action="{{route('storecategory')}}" method="POST">
+                        <form action="{{ route('storecategory') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label" for="basic-default-fullname">ADD CATEGORY</label>

@@ -108,6 +108,7 @@ main {
     font-size: 15px;
     text-decoration: none;
     display: flex;
+    text-transform: capitalize;
 }
 
 .category ul a:hover li {
@@ -149,7 +150,7 @@ main {
 }
 
 .category-tow-ul a:hover {
-    background-color: lightgray;
+    background-color: #f8f9fa;
 }
 
 .category-tow-li {
@@ -232,10 +233,11 @@ main {
     cursor: pointer;
     width: 100%;
     margin: 10px 0;
+    box-shadow: 1px 0px 2px 0px #e9ecef;
 }
 
 .product-flash-card:hover {
-    box-shadow: 1px 1px 6px 1px #41464b;
+    box-shadow: 1px 1px 5px 0px #41464b;
 }
 
 .product-flash-card .img img {
@@ -604,6 +606,9 @@ main {
 }
 
 @media (max-width: 640px) {
+    body {
+        background: #f8f9fa;
+    }
     .top-header {
         display: none;
     }

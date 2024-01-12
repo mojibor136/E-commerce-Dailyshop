@@ -95,8 +95,9 @@ Route::middleware('auth')->group(function () {
         Route::controller(OrderController::class)->group(function () {
             Route::get('/all-order', 'Index')->name('allorder');
             Route::get('/delete-order/{id}', 'DeleteOrder')->name('delete.order');
-            Route::get('/panding-order', 'PandingOrder')->name('pandingorder');
-            Route::get('/confrim-order', 'ConfrimOrder')->name('confrimorder');
+            Route::get('/panding-order', 'PandingOrder')->name('panding.order');
+            Route::get('/confrim-order', 'ConfrimOrder')->name('confirm.order');
+            Route::get('/manage-order', 'ManageOrder')->name('manage.order');
         });
     });
 });

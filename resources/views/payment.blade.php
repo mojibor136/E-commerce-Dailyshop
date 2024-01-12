@@ -108,6 +108,7 @@
     .button-container .total-bar {
         display: flex;
         align-items: center;
+        font-size: 14px;
     }
 
     .button-container .total-bar p {
@@ -130,6 +131,11 @@
         align-items: center;
         position: absolute;
         right: 15px;
+        text-transform: uppercase;
+    }
+
+    .button-container .total-bar .details-bar p {
+        font-size: 13px;
     }
 
     .button-container .total-bar .details-bar .arr {
@@ -153,6 +159,9 @@
 
 
     @media (max-width: 640px) {
+        .header-tow-ul {
+            display: none;
+        }
 
         main {
             margin-top: 60px;
