@@ -366,11 +366,12 @@
     .related-product-card .img {
         text-align: center;
         margin-bottom: 5px;
+        height: 200px;
     }
 
     .related-product-card .img img {
         width: 100%;
-        height: 200px;
+        height: 100%;
     }
 
     .related-product-card .title {
@@ -451,6 +452,22 @@
             margin: 2% 4%;
         }
 
+        .big-img {
+            height: 250px;
+        }
+
+        .product-details .rating-icons {
+            padding: 5px 0;
+        }
+
+        .product-details .brand {
+            padding-bottom: 2px;
+        }
+
+        .product-details .promotions-info {
+            margin: 0;
+        }
+
         .product-details .rating-icons {
             display: flex;
             align-items: center;
@@ -468,6 +485,12 @@
         .related-product-li {
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
             margin-bottom: 50px;
+        }
+
+        .related-product-card .img {
+            text-align: center;
+            margin-bottom: 5px;
+            height: 160px;
         }
     }
 
@@ -558,6 +581,7 @@
         .related-product-li {
             grid-template-columns: 1fr 1fr 1fr 1fr;
         }
+
     }
 
     @media (max-width: 640px) {
@@ -844,7 +868,7 @@
         <!-- CONTAINER ALL -->
         <div class="single-product-box">
             <!-- PRODUCT IMG -->
-            @foreach ($products as $product)
+            @foreach ($singleProducts as $product)
                 <div class="product-img">
                     <div class="big-img">
                         <img id="img" src="{{ asset('assets/img/product/download.jpeg') }}">
@@ -1021,334 +1045,35 @@
             <div class="card-titel">
                 <p>Related Product</p>
             </div>
-
             <div class="related-product-li">
-                <a href="">
-                    <div class="related-product-card">
-                        <div class="img">
-                            <img src="public/assets/img/product/download.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
+                @foreach ($products as $product)
+                    <a href="{{ route('product.details', $product->id) }}">
+                        <div class="related-product-card">
+                            <div class="img">
+                                <img src="{{ asset('assets/img/product/download.jpeg') }}" alt="">
                             </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="">
-                    <div class="related-product-card">
-                        <div class="img">
-                            <img src="public/assets/img/product/3pis.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
+                            <div class="title">
+                                <span>{{ $product->product_name }}</span>
                             </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="">
-                    <div class="related-product-card">
-                        <div class="img">
-                            <img src="public/assets/img/product/omor.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
+                            <div class="price"><span>Tk{{ $product->product_price }}</span></div>
+                            <div class="price-details">
+                                <span>Tk270</span>
+                                <span>32%</span>
+                                <span>2k-Sold</span>
                             </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="">
-                    <div class="related-product-card">
-                        <div class="img">
-                            <img src="public/assets/img/product/sstr.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
+                            <div class="sell-details">
+                                <div class="rating-icon">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <div class="sell">(32)</div>
                             </div>
-                            <div class="sell">(32)</div>
                         </div>
-                    </div>
-                </a>
-
-                <a href="">
-                    <div class="related-product-card">
-                        <div class="img">
-                            <img src="public/assets/img/product/uujjjj.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="">
-                    <div class="related-product-card">
-                        <div class="img">
-                            <img src="public/assets/img/product/mog.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
-
-                <a href="">
-                    <div class="related-product-card">
-                        <div class="img">
-                            <img src="public/assets/img/product/product.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="">
-                    <div class="related-product-card">
-                        <div class="img">
-                            <img src="public/assets/img/product/3pis.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="">
-                    <div class="related-product-card">
-                        <div class="img">
-                            <img src="public/assets/img/product/images.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="">
-                    <div class="related-product-card">
-                        <div class="img">
-                            <img src="public/assets/img/product/3pis.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="">
-                    <div class="related-product-card">
-                        <div class="img">
-                            <img src="public/assets/img/product/3pis.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="">
-                    <div class="related-product-card">
-                        <div class="img">
-                            <img src="public/assets/img/product/3pis.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <span>i will data entry data mining copy paste typing china</span>
-                        </div>
-                        <div class="price"><span>Tk:530</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-
-
+                    </a>
+                @endforeach
             </div>
         </div>
     </main>

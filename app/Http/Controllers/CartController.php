@@ -12,9 +12,10 @@ class CartController extends Controller
 {
     public function index()
     {
+        $products = Product::latest()->paginate(6);
         $user_id = Auth::id();
         $cart_items = Cart::where('cart_type', 'user')->where('user_id', $user_id)->get();
-        return view('addtocart', compact('cart_items'));
+        return view('addtocart', compact('cart_items' , 'products'));
     }
 
     public function storeAddToCart(Request $request)

@@ -20,10 +20,10 @@
                 <div class="category">
                     <ul>
                         @foreach ($categorys as $category)
-                        <a href="{{$category->id}}">
-                            <li>{{$category->category_name}}</li>
-                            <div class="arr"></div>
-                        </a>
+                            <a href="{{ $category->id }}">
+                                <li>{{ $category->category_name }}</li>
+                                <div class="arr"></div>
+                            </a>
                         @endforeach
                     </ul>
                 </div>
@@ -156,14 +156,11 @@
             </div>
         </div>
 
-
-
         <!-- CATEGORY -->
         <div class="category-container">
             <div class="card-titel">
                 <p>Categories</p>
             </div>
-
             <div class="card-categories-ul">
                 <a href="single-product.html">
                     <div class="card-categories-li">
@@ -195,7 +192,7 @@
                     <div class="card-categories-li">
                         <div class="card-categories-li-content">
                             <div class="card-categories-image-container">
-                                <img src="public/assets/img/product/images.jpg" alt="">
+                                <img src="{{ asset('assets/img/product/beg.webp') }}" alt="">
                             </div>
                             <div class=" card-categories-name">
                                 <span class="titel">Category</span>
@@ -208,7 +205,7 @@
                     <div class="card-categories-li">
                         <div class="card-categories-li-content">
                             <div class="card-categories-image-container">
-                                <img src="public/assets/img/product/images.jpg" alt="">
+                                <img src="{{ asset('assets/img/product/uujjjj.jpg') }}" alt="">
                             </div>
                             <div class=" card-categories-name">
                                 <span class="titel">Category</span>
@@ -221,7 +218,7 @@
                     <div class="card-categories-li">
                         <div class="card-categories-li-content">
                             <div class="card-categories-image-container">
-                                <img src="public/assets/img/product/images.jpg" alt="">
+                                <img src="{{ asset('assets/img/product/uujjjj.jpg') }}" alt="">
                             </div>
                             <div class=" card-categories-name">
                                 <span class="titel">Category</span>
@@ -233,7 +230,7 @@
                     <div class="card-categories-li">
                         <div class="card-categories-li-content">
                             <div class="card-categories-image-container">
-                                <img src="public/assets/img/product/images.jpg" alt="">
+                                <img src="{{ asset('assets/img/product/download.jpeg') }}" alt="">
                             </div>
                             <div class=" card-categories-name">
                                 <span class="titel">Category</span>
@@ -246,7 +243,7 @@
                     <div class="card-categories-li">
                         <div class="card-categories-li-content">
                             <div class="card-categories-image-container">
-                                <img src="public/assets/img/product/images.jpg" alt="">
+                                <img src="{{ asset('assets/img/product/images.jpeg') }}" alt="">
                             </div>
                             <div class=" card-categories-name">
                                 <span class="titel">Category</span>
@@ -258,7 +255,7 @@
                     <div class="card-categories-li">
                         <div class="card-categories-li-content">
                             <div class="card-categories-image-container">
-                                <img src="public/assets/img/product/images.jpg" alt="">
+                                <img src="{{ asset('assets/img/product/images.jpeg') }}" alt="">
                             </div>
                             <div class=" card-categories-name">
                                 <span class="titel">Category</span>
@@ -271,7 +268,7 @@
                     <div class="card-categories-li">
                         <div class="card-categories-li-content">
                             <div class="card-categories-image-container">
-                                <img src="public/assets/img/product/images.jpg" alt="">
+                                <img src="{{ asset('assets/img/product/images.jpeg') }}" alt="">
                             </div>
                             <div class=" card-categories-name">
                                 <span class="titel">Category</span>
@@ -284,7 +281,7 @@
                     <div class="card-categories-li">
                         <div class="card-categories-li-content">
                             <div class="card-categories-image-container">
-                                <img src="public/assets/img/product/images.jpg" alt="">
+                                <img src="{{ asset('assets/img/product/images.jpeg') }}" alt="">
                             </div>
                             <div class=" card-categories-name">
                                 <span class="titel">Category</span>
@@ -297,43 +294,7 @@
                     <div class="card-categories-li">
                         <div class="card-categories-li-content">
                             <div class="card-categories-image-container">
-                                <img src="public/assets/img/product/images.jpg" alt="">
-                            </div>
-                            <div class=" card-categories-name">
-                                <span class="titel">Category</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="single-product.html">
-                    <div class="card-categories-li">
-                        <div class="card-categories-li-content">
-                            <div class="card-categories-image-container">
-                                <img src="public/assets/img/product/images.jpg" alt="">
-                            </div>
-                            <div class=" card-categories-name">
-                                <span class="titel">Category</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="single-product.html">
-                    <div class="card-categories-li">
-                        <div class="card-categories-li-content">
-                            <div class="card-categories-image-container">
-                                <img src="public/assets/img/product/images.jpg" alt="">
-                            </div>
-                            <div class=" card-categories-name">
-                                <span class="titel">Category</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="single-product.html">
-                    <div class="card-categories-li">
-                        <div class="card-categories-li-content">
-                            <div class="card-categories-image-container">
-                                <img src="public/assets/img/product/images.jpg" alt="">
+                                <img src="{{ asset('assets/img/product/download.jpeg') }}" alt="">
                             </div>
                             <div class=" card-categories-name">
                                 <span class="titel">Category</span>
@@ -346,7 +307,7 @@
                     <div class="card-categories-li">
                         <div class="card-categories-li-content">
                             <div class="card-categories-image-container">
-                                <img src="public/assets/img/product/images.jpg" alt="">
+                                <img src="{{ asset('assets/img/product/images.jpeg') }}" alt="">
                             </div>
                             <div class=" card-categories-name">
                                 <span class="titel">Category</span>
@@ -354,43 +315,6 @@
                         </div>
                     </div>
                 </a>
-                <a href="single-product.html">
-                    <div class="card-categories-li">
-                        <div class="card-categories-li-content">
-                            <div class="card-categories-image-container">
-                                <img src="public/assets/img/product/images.jpg" alt="">
-                            </div>
-                            <div class=" card-categories-name">
-                                <span class="titel">Category</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="single-product.html">
-                    <div class="card-categories-li">
-                        <div class="card-categories-li-content">
-                            <div class="card-categories-image-container">
-                                <img src="public/assets/img/product/images.jpg" alt="">
-                            </div>
-                            <div class=" card-categories-name">
-                                <span class="titel">Category</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="single-product.html">
-                    <div class="card-categories-li">
-                        <div class="card-categories-li-content">
-                            <div class="card-categories-image-container">
-                                <img src="public/assets/img/product/images.jpg" alt="">
-                            </div>
-                            <div class=" card-categories-name">
-                                <span class="titel">Category</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
             </div>
 
         </div>

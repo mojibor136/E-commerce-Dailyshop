@@ -160,9 +160,11 @@
         right: 15px;
         text-transform: uppercase;
     }
-    .button-container .total-bar .details-bar p{
+
+    .button-container .total-bar .details-bar p {
         font-size: 13px;
     }
+
     .checkout-button-bar .total-bar .details-bar .arr {
         width: 9px;
         height: 9px;
@@ -429,12 +431,12 @@
                         @php
                             $total = 0;
                         @endphp
+                        @if (session()->has('message'))
+                            <div class="alert alert-success">
+                                <li>{{ session()->get('message') }}</li>
+                            </div>
+                        @endif
                         @foreach ($cart_items as $items)
-                            @if (session()->has('message'))
-                                <div class="alert alert-success">
-                                    <li>{{ session()->get('message') }}</li>
-                                </div>
-                            @endif
                             <tr>
                                 <td class="align-middle">
                                     <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
@@ -491,170 +493,34 @@
         </div>
 
         <div class="product-li">
-            <a href="">
-                <div class="product-card">
-                    <div class="img">
-                        <img src="{{ asset('assets/img/product/uujjjj.jpg') }}" alt="">
-                    </div>
-                    <div class="title">
-                        <span>i will data entry data mining copy paste typing china</span>
-                    </div>
-                    <div class="price"><span>Tk:530</span></div>
-                    <div class="price-details">
-                        <span>Tk270</span>
-                        <span>32%</span>
-                        <span>2k-Sold</span>
-                    </div>
-                    <div class="sell-details">
-                        <div class="rating-icon">
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
+            @foreach ($products as $product)
+                <a href="{{ route('product.details', $product->id) }}">
+                    <div class="product-card">
+                        <div class="img">
+                            <img src="{{ asset('assets/img/product/download.jpeg') }}" alt="">
                         </div>
-                        <div class="sell">(32)</div>
-                    </div>
-                </div>
-            </a>
-
-
-            <a href="single-product.html">
-                <div class="product-card">
-                    <div class="img">
-                        <img src="{{ asset('assets/img/product/images.jpeg') }}" alt="">
-                    </div>
-                    <div class="title">
-                        <span>i will data entry data mining copy paste typing china</span>
-                    </div>
-                    <div class="price"><span>Tk:530</span></div>
-                    <div class="price-details">
-                        <span>Tk270</span>
-                        <span>32%</span>
-                        <span>2k-Sold</span>
-                    </div>
-                    <div class="sell-details">
-                        <div class="rating-icon">
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
+                        <div class="title">
+                            <span>{{ $product->product_name }}</span>
                         </div>
-                        <div class="sell">(32)</div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="single-product.html">
-                <div class="product-card">
-                    <div class="img">
-                        <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
-                    </div>
-                    <div class="title">
-                        <span>i will data entry data mining copy paste typing china</span>
-                    </div>
-                    <div class="price"><span>Tk:530</span></div>
-                    <div class="price-details">
-                        <span>Tk270</span>
-                        <span>32%</span>
-                        <span>2k-Sold</span>
-                    </div>
-                    <div class="sell-details">
-                        <div class="rating-icon">
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
+                        <div class="price"><span>Tk{{ $product->product_price }}</span></div>
+                        <div class="price-details">
+                            <span>Tk270</span>
+                            <span>32%</span>
+                            <span>2k-Sold</span>
                         </div>
-                        <div class="sell">(32)</div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="">
-                <div class="product-card">
-                    <div class="img">
-                        <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
-                    </div>
-                    <div class="title">
-                        <span>i will data entry data mining copy paste typing china</span>
-                    </div>
-                    <div class="price"><span>Tk:530</span></div>
-                    <div class="price-details">
-                        <span>Tk270</span>
-                        <span>32%</span>
-                        <span>2k-Sold</span>
-                    </div>
-                    <div class="sell-details">
-                        <div class="rating-icon">
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
+                        <div class="sell-details">
+                            <div class="rating-icon">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                            </div>
+                            <div class="sell">(32)</div>
                         </div>
-                        <div class="sell">(32)</div>
                     </div>
-                </div>
-            </a>
-
-
-            <a href="single-product.html">
-                <div class="product-card">
-                    <div class="img">
-                        <img src="{{ asset('assets/img/product/omor.png') }}" alt="">
-                    </div>
-                    <div class="title">
-                        <span>i will data entry data mining copy paste typing china</span>
-                    </div>
-                    <div class="price"><span>Tk:530</span></div>
-                    <div class="price-details">
-                        <span>Tk270</span>
-                        <span>32%</span>
-                        <span>2k-Sold</span>
-                    </div>
-                    <div class="sell-details">
-                        <div class="rating-icon">
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                        </div>
-                        <div class="sell">(32)</div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="single-product.html">
-                <div class="product-card">
-                    <div class="img">
-                        <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
-                    </div>
-                    <div class="title">
-                        <span>i will data entry data mining copy paste typing china</span>
-                    </div>
-                    <div class="price"><span>Tk:530</span></div>
-                    <div class="price-details">
-                        <span>Tk270</span>
-                        <span>32%</span>
-                        <span>2k-Sold</span>
-                    </div>
-                    <div class="sell-details">
-                        <div class="rating-icon">
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                        </div>
-                        <div class="sell">(32)</div>
-                    </div>
-                </div>
-            </a>
-
+                </a>
+            @endforeach
         </div>
     </div>
 
