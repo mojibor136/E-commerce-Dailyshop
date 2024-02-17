@@ -420,7 +420,7 @@
                                     <li>{{ session()->get('message') }}</li>
                                 </div>
                             @endif
-                            @foreach ($CartItems as $items)
+                            @foreach ($cartItems as $items)
                                 <tr>
                                     <td class="align-middle">
                                         <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
@@ -469,7 +469,7 @@
                     </form>
                 </div>
                 <form action="{{ route('checkout') }}" class="checkout">
-                    @foreach ($CartItems as $index => $items)
+                    @foreach ($cartItems as $index => $items)
                         <input type="hidden" name="ProductItems[{{ $index }}][id]"
                             value="{{ $items['id'] }}">
                         <input type="hidden" name="ProductItems[{{ $index }}][name]"

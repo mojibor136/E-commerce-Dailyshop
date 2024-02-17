@@ -6,6 +6,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CommonController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
@@ -31,6 +32,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 // User Routes
+// Route::controller(CommonController::class)->group(function () {
+//     Route::get('/receive-data', 'receiveData')->name('receive.data');
+// });
+Route::get('/receive-data', [CommonController::class, 'receiveData'])->name('receive.data');
+
 Route::controller(ProductsController::class)->group(function () {
     Route::get('/', 'Index')->name('home');
     Route::get('/Product/Details/{id}/{productName}', 'ProductDetails')->name('product.details');

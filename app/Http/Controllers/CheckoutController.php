@@ -14,65 +14,78 @@ use Session;
 
 class CheckoutController extends Controller
 {
+    // Process data for multiple products
     public function Checkout(Request $request)
-    {             
-        $ProductItems  = $request->input('ProductItems');
-        $processData = $this->ProcessData($ProductItems);
-    }
-    private function ProcessData($ProductItems){
-        $processData = array_merge($ProductItems);
-        return $processData;
-    }
-    public function StoreShipping(Request $request)
     {
-            $request->validate([
-                'name' => 'required',
-                'email' => 'required',
-                'number' => 'required',
-                'division' => 'required',
-                'city' => 'required',
-                'address' => 'required',
-            ]);
-            $userId = Auth::id();
-            $shippingType = 'user';
-            $data = [
-                'user_id' => $userId,
-                'shipping_type' => $shippingType,
-                'name' => $request->name,
-                'email' => $request->email,
-                'number' => $request->number,
-                'division' => $request->division,
-                'city' => $request->city,
-                'address' => $request->address,
-            ];
-    
-            $shipping = Shipping::create($data);
-            Session::put('shippingId', $shipping->id);
-            Session::put('Id', $shipping->id);
-    
-            return redirect()->route('payment');
+        $productItems = $request->input('ProductItems');
+        $processedData = $this->processData($productItems);
+        $multipleItem = $processedData;
+        return redirect()->route('receive.data', ['multipleItem' => $multipleItem]);
     }
 
+    // Private method to process data for multiple products
+    private function processData($productItems)
+    {
+        $processedData = array_merge($productItems);
+        return $processedData;
+    }
+
+    // Store shipping information
+    public function StoreShipping(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'number' => 'required',
+            'division' => 'required',
+            'city' => 'required',
+            'address' => 'required',
+        ]);
+
+        $userId = Auth::id();
+        $shippingType = 'user';
+
+        $data = [
+            'user_id' => $userId,
+            'shipping_type' => $shippingType,
+            'name' => $request->name,
+            'email' => $request->email,
+            'number' => $request->number,
+            'division' => $request->division,
+            'city' => $request->city,
+            'address' => $request->address,
+        ];
+
+        $shipping = Shipping::create($data);
+        Session::put('shippingId', $shipping->id);
+        Session::put('orderId', $shipping->id); // Changed to orderId
+
+        return redirect()->route('payment');
+    }
+
+    // Display payment view
     public function payment()
     {
-        $id =  Session::get('Id');
-        Session()->forget('Id');
-        if($id){
+        $orderId =  Session::get('orderId'); // Changed to orderId
+        Session()->forget('orderId'); // Changed to orderId
+
+        if ($orderId) {
             $userId = Auth::id();
             $cartItems = Cart::where('user_id', $userId)->where('cart_type', 'user')->get();
-            return view('payment', compact('cartItems',));
-        }
-        else{
+            return view('payment', compact('cartItems'));
+        } else {
             return back();
         }
     }
 
+    // Place an order
     public function orderPlace(Request $request)
     {
         $paymentData = [
             'payment_method' => 'bkash',
             'status' => 'pending',
         ];
+
         $payment = Payment::create($paymentData);
 
         $customerId = Auth::id();
@@ -84,29 +97,36 @@ class CheckoutController extends Controller
             'status' => 'pending',
             'total' => $request->total,
         ];
-        $order = Order::create($orderData); // Changed variable name to $order
+
+        $order = Order::create($orderData);
 
         $userId = Auth::id();
         $cartItems = Cart::where('cart_type', 'user')->where('user_id', $userId)->get();
+
         foreach ($cartItems as $cartItem) {
-            $orderDetailData = [ // Corrected variable name
-                'order_id' => $order->id, // Changed variable name to $order
-                'product_id' => $cartItem->id,
+            $orderDetailData = [
+                'order_id' => $order->id,
+                'product_id' => $cartItem->product_id, // Assuming this is the correct column
                 'product_name' => $cartItem->product_name,
                 'product_price' => $cartItem->product_price,
                 'quantity' => $cartItem->quantity,
                 'product_img' => $cartItem->product_img,
             ];
-            OrderDetail::create($orderDetailData); // Corrected model name
+
+            OrderDetail::create($orderDetailData);
         }
+
         if (!isset($request->total)) {
             Session::forget('shippingId');
         }
+
         // Redirect to a confirmation page or any other relevant page
         return redirect()->route('order.confirmation');
     }
 
-    public function OrderConfirmation(){
-        return 'Successfully OrderConfirmation';
+    // Display order confirmation
+    public function OrderConfirmation()
+    {
+        return 'Successfully Order Confirmation';
     }
 }
