@@ -7,54 +7,64 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\Shipping;
 use App\Models\Payment;
+use App\Models\Product;
 use App\Models\Order;
-use App\Models\OrderDetail; // Corrected model name
-use Illuminate\Support\Facades\Session;
+use App\Models\OrderDetail;
+use Session;
 
 class CheckoutController extends Controller
 {
-    public function shipping()
-    {
-        $user_id = Auth::id();
-        $cartItems = Cart::where('cart_type', 'user')->where('user_id', $user_id)->get();
-        return view('shipping', compact('cartItems'));
+    public function Checkout(Request $request)
+    {             
+        $ProductItems  = $request->input('ProductItems');
+        $processData = $this->ProcessData($ProductItems);
     }
-
-    public function storeShipping(Request $request)
+    private function ProcessData($ProductItems){
+        $processData = array_merge($ProductItems);
+        return $processData;
+    }
+    public function StoreShipping(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'number' => 'required',
-            'division' => 'required',
-            'city' => 'required',
-            'address' => 'required',
-        ]);
-
-        $userId = Auth::id();
-        $shippingType = 'user';
-        $data = [
-            'user_id' => $userId,
-            'shipping_type' => $shippingType,
-            'name' => $request->name,
-            'email' => $request->email,
-            'number' => $request->number,
-            'division' => $request->division,
-            'city' => $request->city,
-            'address' => $request->address,
-        ];
-
-        $shipping = Shipping::create($data);
-        Session::put('shippingId', $shipping->id);
-
-        return redirect()->route('payment');
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required',
+                'number' => 'required',
+                'division' => 'required',
+                'city' => 'required',
+                'address' => 'required',
+            ]);
+            $userId = Auth::id();
+            $shippingType = 'user';
+            $data = [
+                'user_id' => $userId,
+                'shipping_type' => $shippingType,
+                'name' => $request->name,
+                'email' => $request->email,
+                'number' => $request->number,
+                'division' => $request->division,
+                'city' => $request->city,
+                'address' => $request->address,
+            ];
+    
+            $shipping = Shipping::create($data);
+            Session::put('shippingId', $shipping->id);
+            Session::put('Id', $shipping->id);
+    
+            return redirect()->route('payment');
     }
 
     public function payment()
     {
-        $userId = Auth::id();
-        $cartItems = Cart::where('user_id', $userId)->where('cart_type', 'user')->get();
-        return view('payment', compact('cartItems'));
+        $id =  Session::get('Id');
+        Session()->forget('Id');
+        if($id){
+            $userId = Auth::id();
+            $cartItems = Cart::where('user_id', $userId)->where('cart_type', 'user')->get();
+            return view('payment', compact('cartItems',));
+        }
+        else{
+            return back();
+        }
     }
 
     public function orderPlace(Request $request)

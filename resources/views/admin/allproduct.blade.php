@@ -3,6 +3,11 @@
     <div class="container">
         <div class="card">
             <h5 class="card-header">All Product</h5>
+            @if (session()->has('massage'))
+                <div class="alert alert-success">
+                    <li>{{ session()->get('massage') }}</li>
+                </div>
+            @endif
             <div class="table-responsive sm text-nowrap">
                 <table class="table">
                     <thead class="table-light">
@@ -22,7 +27,8 @@
                                 <td><input type="checkbox"></td>
                                 <td>{{ $product->id }}</td>
                                 <td>
-                                    <img src="{{ asset('upload/1783679396005652.jpg') }}" alt="Product Image" width="50">
+                                    <img src="{{ asset('upload/1783679396005652.jpg') }}" alt="Product Image"
+                                        width="50">
                                 </td>
                                 <td>{{ $product->product_name }}</td>
                                 <td>{{ $product->product_price }}</td>

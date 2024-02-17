@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\ProductController as Product;
+use App\Http\Controllers\ProductController as ProductsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\SearchController;
@@ -31,31 +31,32 @@ use Illuminate\Support\Facades\Route;
 */
 
 // User Routes
-Route::controller(Controller::class)->group(function () {
+Route::controller(ProductsController::class)->group(function () {
     Route::get('/', 'Index')->name('home');
-});
-
-Route::controller(Product::class)->group(function () {
-    Route::get('/Product-Details/{id}', 'ProductDetails')->name('product.details');
+    Route::get('/Product/Details/{id}/{productName}', 'ProductDetails')->name('product.details');
+    Route::get('/Product/Category/{id}/{slug}' , 'ProductFilter')->name('category.product');
 });
 
 Route::controller(SearchController::class)->group(function () {
     Route::get('/Search', 'SearchProduct')->name('search.product');
 });
-
+Route::controller(Controller::class)->group(function () {
+    Route::get('/Test', 'Test')->name('Test');
+});
 Route::middleware('auth')->group(function () {
     Route::controller(CartController::class)->group(function () {
-        Route::get('/AddToCart', 'Index')->name('addtocart');
-        Route::post('/AddToCart', 'StoreAddToCart')->name('store.addtocart');
+        Route::get('/AddToCart', 'Cart')->name('addtocart');
+        Route::post('/AddToCart', 'AddToCart')->name('addtocart.products');
+        Route::post('/BuyNow' , 'BuyNow')->name('buynow.products');
         Route::get('/delete-cart-item/{id}', 'DeleteCartItem')->name('delete.cart.item');
     });
 
     Route::controller(CheckoutController::class)->group(function () {
-        Route::get('/Checkout', 'Shipping')->name('shipping');
+        Route::get('/Checkout', 'Checkout')->name('checkout');
         Route::post('/Shipping', 'StoreShipping')->name('shipping.product');
         Route::get('/Payment' , 'Payment')->name('payment');
         Route::post('/Order-Place' , 'OrderPlace')->name('order.place');
-        Route::get('/Order-Confirmation' , 'OrderConfirmation')->name('order.confirmation');
+        Route::get('/Order/Confirmation' , 'OrderConfirmation')->name('order.confirmation');
 
     });
 });

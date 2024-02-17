@@ -20,14 +20,21 @@ class CategoryController extends Controller
 
    public function StoreCategory(Request $request){
       $request->validate([
-      'category_name'=>'required|unique:categories'
-      ]);
-      
-      Category::insert([
-          'category_name' =>$request->category_name,   
-          'slug' =>strtolower(str_replace('','-', $request->category_name)), 
-      ]);
-            return back()->with('massage', 'Add Category Successful');
+         'category_name'=>'required|unique:categories',
+         'category_img' =>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+         ]);
+         
+         $img = $request->file('category_img');
+         $img_name = hexdec(uniqid()).'.'. $img->getClientOriginalExtension();
+         $img->move(public_path('assets/img/CategoryImg'), $img_name);
+         $img_url = '/' . $img_name;
+         $data = [
+            'category_name' =>$request->category_name,
+            'slug' => strtolower(str_replace('','-', $request->category_name)), 
+            'category_img' => $img_url,
+        ];
+        Category::insert($data);
+        return redirect()->route('allcategory')->with('massage', 'Added Category Successful');
   }
 
 

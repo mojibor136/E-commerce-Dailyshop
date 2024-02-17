@@ -135,7 +135,8 @@
 
     main .summary-ul .summary-li p {
         margin: 5px 0;
-        font-size: 13px;
+        font-size: 12.5px;
+        font-weight: 600;
         color: #666666;
     }
 
@@ -344,28 +345,30 @@
                 @error('number')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
-                <div class="form-group">
-                    <label for="">Division</label>
-                    <select name="division" id="myDropdown" class="form-control">
-                        <option disabled selected style="display:none;">Select your Division</option>
-                        <option value="Dhaka">Dhaka</option>
-                        <option value="Rangpur">Rangpur</option>
-                    </select>
+                <div>
+                    <div class="form-group">
+                        <label for="">Division</label>
+                        <select name="division" id="myDropdown" class="form-control">
+                            <option disabled selected style="display:none;">Select your Division</option>
+                            <option value="Dhaka">Dhaka</option>
+                            <option value="Rangpur">Rangpur</option>
+                        </select>
+                    </div>
+                    @error('division')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <div class="form-group">
+                        <label for="">City</label>
+                        <select name="city" id="myDropdown" class="form-control">
+                            <option value="" disabled selected style="display:none;">Select your City</option>
+                            <option value="Dhaka">Dhaka</option>
+                            <option value="Rangpur">Rangpur</option>
+                        </select>
+                    </div>
+                    @error('city')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
-                @error('division')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-                <div class="form-group">
-                    <label for="">City</label>
-                    <select name="city" id="myDropdown" class="form-control">
-                        <option value="" disabled selected style="display:none;">Select your City</option>
-                        <option value="Dhaka">Dhaka</option>
-                        <option value="Rangpur">Rangpur</option>
-                    </select>
-                </div>
-                @error('city')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
                 <div class="form-group">
                     <label for="Address">Address</label>
                     <input type="address" class="form-control" placeholder="Enter your Address" name="address"
@@ -390,15 +393,16 @@
                                 <th>TOTAL</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @php
-                                $total = 0;
-                                $delivery = 80;
-                            @endphp
-                            @foreach ($cartItems as $items)
+                        @foreach ($CartItems as $items)
+                            <tbody>
+                                @php
+                                    $total = 0;
+                                    $delivery = 80;
+                                @endphp
+
                                 <tr>
                                     <td class="align-middle">
-                                        <img src="{{ asset('assets/img/product/images.jpeg') }}" alt="">
+                                        <img src="{{ asset('assets/img/product/uujjjj.jpg') }}" alt="">
                                     </td>
                                     <td class="align-middle">shirt smart shirt smart shirt x{{ $items->quantity }}</td>
                                     <td></td>
@@ -410,7 +414,7 @@
                                     $price = $items->quantity * $items->product_price;
                                     $total = $total + $price;
                                 @endphp
-                            @endforeach
+                        @endforeach
                         </tbody>
                         <thead>
                             <tr>
@@ -444,7 +448,7 @@
                         <p>Total</p>
                         <p style="text-transform: uppercase;">{{ $delivery + $total }}tk</p>
                     </div>
-                    <button type="submit" class="btn btn-success">PLACE ORDER</button>
+                   <input type="submit" class="btn btn-success" value="PLACE ORDER">
                 </div>
             </div>
         </main>
@@ -460,7 +464,7 @@
                 </div>
             </div>
             <div class="button">
-                <button type="submit" class="btn btn-success">PLACE ORDER</button>
+               <input type="submit" class="btn btn-success" value="PLACE ORDER">
             </div>
         </div>
     </form>

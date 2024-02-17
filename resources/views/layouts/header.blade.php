@@ -40,6 +40,7 @@
         text-decoration: none;
         text-transform: uppercase;
         font-size: 11px;
+        font-weight: 600;
         color: #636464;
     }
 
@@ -50,7 +51,7 @@
         display: flex;
         justify-content: space-evenly;
         padding: 10px 15px;
-        z-index: 10;
+        z-index: 9999;
         position: relative;
     }
 
@@ -82,84 +83,139 @@
         color: coral;
     }
 
-    header .search-box {
+    header .search-bar {
         display: flex;
-        line-height: 40px;
+        align-items: center;
         height: 40px;
         margin: auto 0;
         cursor: pointer;
     }
 
-    header .search-box select {
-        outline: none;
-        border: none;
-        background-color: #dee2e6;
-        width: fit-content;
-        text-transform: capitalize;
-    }
-
-    header .search-box select option {
-        order: 0;
-        outline: 0;
-        color: rgb(0, 0, 0);
-    }
-
-    header .search-box form {
+    header .search-bar form {
         display: flex;
+        align-items: center;
         height: 100%;
     }
 
-    header .search-box input {
-        width: 320px;
-        height: 100%;
-        outline: none;
-        border: none;
-        padding: 0 10px;
-        font-size: 16px;
-        background-color: #e9ecef;
+    header .search-bar form .search-box {
+        padding: 0;
+        overflow: hidden;
+        width: 450px;
+        display: flex;
+        align-items: center;
     }
 
-    header .search-box input::placeholder {
-        font-size: 16px;
+    header .search-bar form .border {
+        border-bottom-left-radius: 0;
+    }
+
+    header .search-bar form .search-box .dropdown-bar {
+        box-sizing: border-box;
+        background: #f8f9fa;
+        border-right: 1px solid #e9ecef;
+    }
+
+    header .search-bar form .search-box.dropdown-bar:hover {
+        background: #e9ecef;
+    }
+
+    header .search-bar form .search-box .dropdown-bar .select-bar {
+        display: flex;
+        align-items: center;
+        color: #41464b;
+        background-color: transparent;
+        padding: 7px 10px;
+        text-transform: capitalize;
+        font-weight: 500;
+    }
+
+    header .search-bar form .search-box .dropdown-bar .caret {
+        border-right: 5px solid transparent;
+        border-left: 5px solid transparent;
+        border-top: 6px solid #333;
+        margin-left: 7px;
+        margin-top: 2px;
+    }
+
+    .menu-bar {
+        display: none;
+        position: absolute;
+        top: 77%;
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .menu-bar-block {
+        display: block;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .menu-bar a {
+        display: block;
+        padding: 5px 10px;
+        text-decoration: none;
+        color: #41464b;
+        font-size: 15px;
+        font-weight: 500;
         text-transform: capitalize;
     }
 
-    header .search-box button {
-        font-size: 22px;
-        color: #000000;
-        background-color: #ffc107;
-        height: 100%;
-        border: none;
-        border-top-right-radius: 2px;
-        border-bottom-right-radius: 2px;
-        width: 40px;
+    .menu-bar a:hover {
+        color: #f8f9fa;
+        background: #41464b;
     }
 
-    header .search-box button:hover {
-        color: #222222;
-        background-color: #dfa805;
-        transition: 0.2s ease;
+    header .search-bar form .search-box input {
+        padding: 7px 10px;
+        border: none;
+        outline: none;
+        width: 100%;
+    }
+
+    header .search-bar form .search-box button {
+        border: none;
+        outline: none;
+        background: #f1b500;
+        padding: 7px 12px;
+    }
+
+    header .icon {
+        display: flex;
+        align-items: center;
     }
 
     header .icon a {
-        color: black;
+        text-decoration: none;
+        color: #41464b;
     }
 
-    header .icon .btn {
-        border: none;
-    }
-
-    header .icon .btn i {
+    header .icon a i {
         font-size: 22px;
         position: relative;
+        font-weight: 500;
+        cursor: pointer;
+        padding: 0 10px;
     }
 
-    header .icon .btn i .count {
-        top: -7px;
-        right: -10px;
+    header .account {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        font-weight: 400;
+    }
+
+    header .icon i .count {
         position: absolute;
-        width: 16px;
-        height: 16px;
+        width: 15px;
+        height: 15px;
+        top: -2px;
+        right: -2px;
         padding-top: 2px;
         background: #dc3545;
         color: #fff;
@@ -169,29 +225,19 @@
         border-radius: 50%;
     }
 
-    header .icon .btn i .count span {
+    header .icon i .count span {
         margin: 0;
-        font-size: 14px;
-        font-weight: bolder;
+        font-size: 12px;
+        font-weight: 900;
         color: #fff;
     }
 
-    header .icon .btn img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-    }
-
-    /* HEADER TOW*/
+    /* Header tow ul all css */
     .header-tow-ul {
         display: none;
     }
 
-    /* HEADER TOW*/
-    .header-tow-ul {
-        display: none;
-    }
-
+    /* Menu all css */
     .menu {
         position: absolute;
         top: 100%;
@@ -202,13 +248,15 @@
     .menu ul {
         margin: 0;
         padding: 0;
-        background-color: #333;
+        background: #f8f9fa;
     }
 
     .menu ul a {
         text-decoration: none;
-        color: #ffffff;
+        color: #41464b;
+        font-weight: 500;
         display: flex;
+        padding: 3px 0;
         align-items: center;
         text-transform: capitalize;
     }
@@ -220,26 +268,16 @@
 
     .menu ul a li {
         list-style: none;
-        font-size: 15px;
-        padding: 5px 2px;
+        font-size: 13.5px;
+        padding: 5px 1px;
+        margin-top: 5px;
         padding-right: 40px;
         font-family: sans-serif;
     }
 
     .menu ul a:hover {
-        background-color: #586b80;
-    }
-
-    @media (max-width: 1280px) {
-        .header-container {
-            margin: 1% 4%;
-        }
-    }
-
-    @media (max-width: 1024px) {
-        .header-container {
-            margin: 1% 3%;
-        }
+        color: #e4e4e4;
+        background: #41464b;
     }
 
     @media (max-width: 768px) {
@@ -253,15 +291,14 @@
             padding: 5px 15px;
         }
 
-        .header-container {
-            margin: 1% 2%;
-        }
-
-
         header .logo {
             display: flex;
             align-items: center;
 
+        }
+
+        header .search-bar form .search-box {
+            width: 400px;
         }
 
         header .logo h4 {
@@ -270,14 +307,6 @@
             color: #000000;
             letter-spacing: 1;
             margin: 0;
-        }
-
-        header .search-box input {
-            width: 250px;
-        }
-
-        header .icon .btn {
-            padding: 10px;
         }
     }
 
@@ -288,10 +317,6 @@
 
         .top-header {
             display: none;
-        }
-
-        .header-container {
-            margin: 0%;
         }
 
         header {
@@ -330,7 +355,6 @@
             background-color: #ffffff;
         }
 
-
         .header-tow-ul .search-box i {
             font-size: 22px;
             color: #636464;
@@ -353,11 +377,6 @@
         }
 
         @media (max-width: 475px) {
-            .header-container {
-                margin: 0%;
-            }
-
-
             header {
                 display: none;
             }
@@ -400,7 +419,7 @@
             <li><a href="">sell on online</a></li>
             <li><a href="">customer care</a></li>
             <li><a href="">track my order</a></li>
-            <li><a href="">daraz affiliate program</a></li>
+            <li><a href="{{ route('reseller') }}">daily shop affiliate program</a></li>
         </ul>
     </div>
 
@@ -411,56 +430,77 @@
                 <h4>dailyshop</h4>
             </a>
         </div>
-        <div class="search-box">
-            <select name="" id="myDropdown">
-                <option value="" disabled selected style="display:none;">All-Category</option>
-                <option value="lady">Lady</option>
-                <option value="">Baby Items</option>
-            </select>
+        <div class="search-bar">
             <form action="{{ route('search.product') }}" method="GET">
-                <input type="text" name="search" placeholder="Search in dailyshop">
-                <div>
-                    <button type="submit" class="ri-search-line"></button>
+                <div class="form-control search-box">
+                    <div class="dropdown-bar">
+                        <div class="select-bar">
+                            <span class="selected">Facebook</span>
+                            <div class="caret"></div>
+                        </div>
+                    </div>
+                    <input type="text" name="search" placeholder="Search in dailyshop">
+                    <button type="submit"><i class="ri-search-line"></i></button>
                 </div>
             </form>
+            <ul class="menu-bar">
+                @php
+                    $categories = getCategoryData();
+                @endphp
+                @foreach ($categories as $category)
+                    <a
+                        href="{{ route('category.product', ['id' => $category->id, 'slug' => $category->slug]) }}">{{ $category->category_name }}</a>
+                @endforeach
+            </ul>
         </div>
         <div class="icon">
-            @if (Auth::check())
-            @else
-                <a href="{{ route('login.form') }}"><span class="btn">Login</span></a>
-            @endif
-            <a href=""> <span class="btn"><i class="ri-heart-line">
-                        <div class="count">
-                            <span>0</span>
-                        </div>
-                    </i></span></a>
-            <a href="{{ route('addtocart') }}"><span class="btn"><i class="ri-shopping-cart-line">
-                        <div class="count">
-                            <span>1</span>
-                        </div>
-                    </i></span></a>
-            @if (Auth::check())
-                <span class="btn" id="button"><img src="{{ asset('assets/img/product/download.jpeg') }}"
-                        alt=""></span>
-            @endif
+            <a href="">
+                <i class="ri-heart-line">
+                    <div class="count">
+                        <span>0</span>
+                    </div>
+                </i>
+            </a>
+            <a href="{{ route('addtocart') }}">
+                <i class="ri-shopping-cart-line">
+                    <div class="count">
+                        @php
+                            $totalItem = getTotalItems();
+                        @endphp
+                        <span>{{ $totalItem }}</span>
+                    </div>
+                </i>
+            </a>
+        </div>
+        <div class="account">
+            <i class="ri-user-line"></i>
+            <span>Account</span>
         </div>
         <div class="menu">
             <ul>
                 <a href="#">
-                    <i class="ri-user-line"></i>
-                    <li>profile</li>
+                    <i class="ri-home-4-line"></i>
+                    <li>home</li>
                 </a>
                 <a href="#">
                     <i class="ri-shopping-cart-line"></i>
-                    <li>mycart</li>
+                    <li>addToCart</li>
                 </a>
                 <a href="">
                     <i class="ri-order-play-line"></i>
                     <li>order tracking</li>
                 </a>
+                <a href="#">
+                    <i class="ri-user-line"></i>
+                    <li>profile</li>
+                </a>
                 <a href="">
                     <i class="ri-settings-3-fill"></i>
                     <li>setting</li>
+                </a>
+                <a href="{{ route('login') }}">
+                    <i class="ri-logout-box-r-line"></i>
+                    <li>login</li>
                 </a>
                 @if (Auth::check())
                     <a href="{{ route('logout') }}">
@@ -477,7 +517,7 @@
         <form action="{{ route('search.product') }}" method="GET">
             <div class="search-box">
                 <i class="ri-search-line"></i>
-                <input type="text" name="search" placeholder="Search here..">
+                <input type="text" name="search" placeholder="Search in dailyshop">
             </div>
         </form>
     </div>

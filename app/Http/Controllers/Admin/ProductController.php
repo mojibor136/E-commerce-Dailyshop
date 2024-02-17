@@ -36,8 +36,8 @@ class ProductController extends Controller
 
         $img = $request->file('product_img');
         $img_name = hexdec(uniqid()).'.'. $img->getClientOriginalExtension();
-        $img->move(public_path('product'), $img_name);
-        $img_url = 'product/' . $img_name;
+        $img->move(public_path('assets/img/ProductImg'), $img_name);
+        $img_url = '/' . $img_name;
 
         $category_id = $request->product_category_id;
         $subcategory_id = $request->product_subcategory_id;
@@ -57,12 +57,17 @@ class ProductController extends Controller
             'kay_word' => $request->kay_word,
             'product_img' => $img_url,
         ]);
-
-        return redirect()->route('allproduct');
+        SubCategory::where('id' , $subcategory_id)->increment('product_count');
+        Category::where('id' , $category_id)->increment('product_count');
+        return redirect()->route('allproduct')->with('massage', 'Added Products Successful');
     }
 
     public function DeleteProduct($id){
+        $category_id = Product::where('id' , $id)->value('product_category_id');
+        $subcategory_id = Product::where('id' , $id)->value('product_subcategory_id');
         Product::findOrFail($id)->delete();
-        return redirect()->route('allproduct');
+        SubCategory::where('id' , $subcategory_id)->decrement('product_count' , 1);
+        Category::where('id' ,$category_id)->decrement('product_count' , 1);
+        return redirect()->route('allproduct')->with('massage', 'Deleted Products Successful');
     }
 }

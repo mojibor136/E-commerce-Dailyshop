@@ -18,7 +18,12 @@
         background: #e9ecef;
     }
 
-    main {
+    .main-container {
+        padding: 0 80px;
+    }
+
+    .card-container {
+        margin-top: 20px;
         width: 100%;
         display: flex;
     }
@@ -52,7 +57,7 @@
         padding: 0 5px;
     }
 
-    main .cart-content {
+    .card-container .cart-content {
         background-color: #fff;
         border-radius: 5px;
         padding: 20px;
@@ -61,28 +66,32 @@
         margin: 5px 0;
     }
 
-    main .cart-content .table> :not(caption)>*>* {
+    .card-container .cart-content .table> :not(caption)>*>* {
         padding: 10px 5px;
     }
 
-    main .cart-content table tbody tr td img {
+    .card-container .cart-content table tbody tr td img {
         width: 40px;
         height: 40px;
         cursor: pointer
     }
 
-    main .cart-content table tbody tr td input {
+    .card-container .cart-content table tbody tr td input {
         width: 40px;
         height: 34px;
         padding: 0;
     }
 
-    main .cart-content table tbody tr td {
+    .card-container .cart-content table tbody tr td {
         text-transform: capitalize;
         font-size: 14px;
     }
 
-    main .list-content {
+    .card-container .cart-content table tbody tr td .btn {
+        padding: 3px 7px;
+    }
+
+    .card-container .list-content {
         height: fit-content;
         padding: 20px;
         background-color: #fff;
@@ -90,35 +99,38 @@
         width: 40%;
     }
 
-    main .list-content button {
+    .card-container .list-content button {
         color: #fff;
         font-size: 16px;
         width: 100%;
         margin-top: 5px;
     }
 
-    main .list-content h4 {
+    .card-container .list-content h4 {
         font-size: 16px;
         text-transform: uppercase;
         color: #555666;
     }
 
-    main .list-content .summary-li {
+    .card-container .list-content .summary-li {
         display: flex;
         justify-content: space-between;
         align-items: baseline;
         text-transform: uppercase;
     }
 
-    main .list-content .summary-li p {
+    .card-container .list-content .summary-li p {
         margin: 5px 0;
         font-size: 13px;
         color: #666666;
     }
 
-    main .list-content .summary-li .btn-primary {
-        width: initial;
-        margin-left: 5px;
+    .card-container .list-content .summary-li form {
+        width: -webkit-fill-available;
+        display: flex;
+    }
+
+    .card-container .list-content .summary-li input {
         border-radius: 0;
     }
 
@@ -183,141 +195,110 @@
         width: 100%;
     }
 
-    /* PRODUCT SECTION START */
-
-    .card-titel {
-        margin: 2% 0 1% 0;
-        background: 0 0;
-        height: 38px;
-        line-height: 38px;
+    /* Products container all css */
+    .product-container {
+        margin: 10px 0;
     }
 
-    .card-titel p {
-        font-family: Roboto-Regular;
-        font-size: 22px;
-        color: #424242;
-        width: 220px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+    .product-container .type {
+        padding: 10px 5px;
+        background-color: #fff;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
     }
 
-    .product-li {
+
+    .product-container .type span {
+        text-transform: capitalize;
+        font-weight: 500;
+        font-size: 17px;
+        color: #41464b;
+    }
+
+    .product-container .product-card {
+        background-color: transparent;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        gap: 10px;
+        grid-gap: 10px;
+        border: none;
     }
 
-    .product-li a {
+    .card a {
         text-decoration: none;
-        color: black;
     }
 
-    .product-card {
-        background-color: #ffffff;
-        cursor: pointer;
-        width: 100%;
-        height: fit-content;
-    }
-
-    .product-card:hover {
-        box-shadow: 1px 2px 4px 1px #abababab;
-    }
-
-    .product-card .img img {
-        width: 100%;
-        height: 200px;
-    }
-
-    .product-card .title {
-        padding: 0 5px;
-        position: relative;
-        font-size: 14px;
-        height: 36px;
-        line-height: 18px;
-        color: #212121;
+    .card a .card {
         overflow: hidden;
-        white-space: normal;
+        border-radius: 3px;
+    }
+
+    .card a .card img {
+        max-width: 100%;
+        height: 160px;
+    }
+
+    .card a .card .text {
+        padding: 2px 5px;
+        line-height: 1.2;
+    }
+
+    .card a .card .text .titel {
+        text-transform: capitalize;
+        font-size: 13.5px;
+        color: #353535;
+        font-weight: 600;
+        font-family: system-ui;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
-    .product-card .price {
-        padding-left: 5px;
-        --tw-text-opacity: 1;
-        color: rgb(248 86 6/var(--tw-text-opacity));
+    .product-card a .card .text .tk span {
+        color: #084298;
+        font-weight: 600;
     }
 
-    .product-card .price span {
-        font-size: 16px;
-    }
-
-    .product-card .price-details {
-        padding: 0 5px;
-        font-size: 11.3px;
-    }
-
-    .product-card .price-details span:first-child {
-        text-decoration-line: line-through;
-        text-decoration-color: black;
-    }
-
-    .product-card .price-details span {
+    .product-card a .card .text .discount {
+        font-size: 11px;
+        padding: 1.5px 0;
+        font-weight: 700;
         color: #41464b;
     }
 
-    .product-card .price-details span:last-child {
+    .product-card a .card .text .discount span:first-child {
+        font-weight: 700;
         color: #41464b;
+        text-decoration: line-through;
     }
 
-    .product-card .sell-details {
-        padding: 0 5px;
-        display: flex;
+    .card a .card .text .star {
+        font-size: 13px;
+        position: relative;
+        padding-bottom: 2px;
     }
 
-    .product-card .sell-details .rating-icon {
-        font-size: 12px;
-        color: #ffca00;
+    .card a .card .text .star i {
+        color: orange;
     }
 
-    .product-card .sell-details .sell {
-        padding: 0 5px;
-        font-size: 12px;
-        font-family: monospace;
-        color: #41464b;
+    .card a .card .text .star span {
+        color: #676767;
     }
 
-    @media (max-width: 1280px) {
-        main {
-            padding: 2% 5%;
-        }
-
-        .product-ul {
-            margin: 3% 5%;
-        }
-
-        .product-li {
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        }
+    .card a .card .text .star .charge {
+        color: #676767;
+        text-transform: capitalize;
+        position: absolute;
+        top: 0;
+        right: 0;
     }
+
+    @media (max-width: 1280px) {}
 
     @media (max-width: 1024px) {
-        main {
-            padding: 2% 4%;
-        }
-
-        .product-ul {
-            margin: 3% 4%;
-        }
-
-        .product-li {
+        .product-container .product-card {
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        }
-
-        .product-card .img img {
-            width: 100%;
-            height: 160px;
         }
     }
 
@@ -326,19 +307,13 @@
             padding: 5px 10px;
         }
 
-        main {
-            padding: 2%;
+        .main-container {
+            padding: 0 30px;
         }
 
-        .product-ul {
-            margin: 0 2%;
-            margin-bottom: 20px;
-        }
-
-        .product-li {
+        .product-container .product-card {
             grid-template-columns: 1fr 1fr 1fr 1fr;
         }
-
     }
 
     @media (max-width: 640px) {
@@ -347,11 +322,16 @@
             display: inline-flex;
         }
 
-        main {
+        .main-container {
+            padding: 0;
+        }
+
+        .card-container {
             width: 100%;
             flex-direction: column;
             height: fit-content;
             padding: 6.5px;
+            padding-bottom: 0;
             margin: 0;
             margin-top: 60px;
         }
@@ -361,12 +341,12 @@
             width: 100%;
         }
 
-        main .list-content {
+        .card-container .list-content {
             width: initial;
             margin: 10px 0;
         }
 
-        main .cart-content {
+        .card-container .cart-content {
             width: initial;
             margin: 5px 0;
             padding: 10px 0;
@@ -380,13 +360,14 @@
             visibility: visible;
         }
 
-        .product-ul {
-            margin: 0 2%;
-            margin-bottom: 100px;
+        .product-container {
+            padding: 0 2px;
+            margin-bottom: 95px;
         }
 
-        .product-li {
+        .product-container .product-card {
             grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 5px;
         }
 
         footer {
@@ -395,12 +376,15 @@
     }
 
     @media (max-width: 475px) {
-        .product-ul {
-            margin-bottom: 90px;
+
+        .product-container .product-card {
+            grid-template-columns: 1fr 1fr;
         }
 
-        .product-li {
-            grid-template-columns: 1fr 1fr;
+        .card-container .cart-content table tbody tr td input {
+            width: 30px;
+            height: 30px;
+            padding: 0;
         }
     }
 
@@ -408,124 +392,140 @@
 </style>
 
 <body>
-
-    <main>
-        <div class="cart-container">
-            <div class="delete-content-btn">
-                <div class="select-box">
-                    <span>All Product Items</span>
+    <main class="main-container">
+        <div class="card-container">
+            <div class="cart-container">
+                <div class="delete-content-btn">
+                    <div class="select-box">
+                        <span>All Product Items</span>
+                    </div>
+                    <div>
+                        <a href="">
+                            <span class="ri-delete-bin-7-fill" style="color: #adb5bd;"></span>
+                            <span style="font-size: 14px;">All Delete</span>
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <a href="">
-                        <span class="ri-delete-bin-7-fill" style="color: #adb5bd;"></span>
-                        <span style="font-size: 14px;">All Delete</span>
-                    </a>
+
+                <!-- ORDER TABLE PRODUCT SECTION  -->
+
+                <div class="cart-content">
+                    <table class="table">
+                        <tbody>
+                            @php
+                                $total = 0;
+                            @endphp
+                            @if (session()->has('message'))
+                                <div class="alert alert-success">
+                                    <li>{{ session()->get('message') }}</li>
+                                </div>
+                            @endif
+                            @foreach ($CartItems as $items)
+                                <tr>
+                                    <td class="align-middle">
+                                        <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
+                                    </td>
+                                    <td class="align-middle">{{ $items->product_name }}</td>
+                                    <td class="align-middle"><input type="text" style="text-align: center;"
+                                            class="form-control" value="{{ $items->quantity }}"></td>
+                                    <td class="align-middle">{{ $items->quantity * $items->product_price }}TK</td>
+                                    <td class="align-middle">
+                                        <a href="{{ route('delete.cart.item', $items->id) }}"
+                                            class="btn btn-outline-warning border-warning">remove</a>
+                                    </td>
+                                </tr>
+                                @php
+                                    $price = $items->quantity * $items->product_price;
+                                    $total = $total + $price;
+                                @endphp
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-            <!-- ORDER TABLE PRODUCT SECTION  -->
-
-            <div class="cart-content">
-                <table class="table">
-                    <tbody>
-                        @php
-                            $total = 0;
-                        @endphp
-                        @if (session()->has('message'))
-                            <div class="alert alert-success">
-                                <li>{{ session()->get('message') }}</li>
-                            </div>
-                        @endif
-                        @foreach ($cart_items as $items)
-                            <tr>
-                                <td class="align-middle">
-                                    <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
-                                </td>
-                                <td class="align-middle">{{ $items->product_name }}</td>
-                                <td class="align-middle"><input type="text" style="text-align: center;"
-                                        class="form-control" value="{{ $items->quantity }}"></td>
-                                <td class="align-middle">{{ $items->quantity * $items->product_price }}TK</td>
-                                <td class="align-middle">
-                                    <a href="{{ route('delete.cart.item', $items->id) }}"
-                                        class="btn btn-warning">Delete</a>
-                                </td>
-                            </tr>
-                            @php
-                                $price = $items->quantity * $items->product_price;
-                                $total = $total + $price;
-                            @endphp
-                        @endforeach
-                    </tbody>
-                </table>
+            <!--ORDER PRODUCT LIST SECTION -->
+            <div class="list-content">
+                <h4>Order Summary</h4>
+                <div class="summary-li">
+                    @php
+                        $totalItem = getTotalItems();
+                    @endphp
+                    <p>Subtotal items({{ $totalItem }})</p>
+                    <p>{{ $totalItem }}</p>
+                </div>
+                <div class="summary-li">
+                    <p>Shopping Fee Discount</p>
+                    <p style="text-transform: uppercase;">0tk</p>
+                </div>
+                <div class="summary-li">
+                    <p>Total</p>
+                    <p style="text-transform: uppercase;">{{ $total }}tk</p>
+                </div>
+                <div class="summary-li">
+                    <form action="">
+                        <input type="text" class="form-control"style="border-radius: 0;"
+                            placeholder="Enter Voucher Code">
+                        <input type="submit" class="btn btn-success" value="APPLY">
+                    </form>
+                </div>
+                <form action="{{ route('checkout') }}" class="checkout">
+                    @foreach ($CartItems as $index => $items)
+                        <input type="hidden" name="ProductItems[{{ $index }}][id]"
+                            value="{{ $items['id'] }}">
+                        <input type="hidden" name="ProductItems[{{ $index }}][name]"
+                            value="{{ $items['product_name'] }}">
+                        <input type="hidden" name="ProductItems[{{ $index }}][price]"
+                            value="{{ $items['product_price'] }}">
+                        <input type="hidden" name="ProductItems[{{ $index }}][quantity]"
+                            value="{{ $items['quantity'] }}" class="hiddenQuantity">
+                    @endforeach
+                    <input type="submit" class="btn btn-success mt-3" style="width: 100%;" value="CHECKOUT">
+                </form>
             </div>
         </div>
-        <!--
-        ORDER PRODUCT LIST SECTION -->
-
-        <div class="list-content">
-            <h4>Order Summary</h4>
-            <div class="summary-li">
-                <p>Subtotal items(3)</p>
-                <p>2</p>
+        {{-- /* Products container all html*/ --}}
+        <div class="product-container">
+            <div class="type">
+                <span>latest products</span>
             </div>
-            <div class="summary-li">
-                <p>Shopping Fee Discount</p>
-                <p style="text-transform: uppercase;">0tk</p>
+            <div class="card product-card">
+                @foreach ($products as $Product)
+                    <a
+                        href="{{ route('product.details', ['id' => $Product->id, 'productName' => $Product->product_name]) }}">
+                        <li class="card">
+                            <img src="{{ asset('assets/img/product/sssrit.webp') }}" alt="">
+                            <div class="text">
+                                <span class="titel">{{ $Product->product_name }}</span>
+                                <div class="tk">
+                                    <span>${{ $Product->product_price }}</span>
+                                </div>
+                                <div class="discount">
+                                    <span>$620</span>
+                                    <span>32%</span>
+                                    <span>5k-Stock</span>
+                                </div>
+                                <div class="star">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-half-line"></i>
+                                    <span>(25)</span>
+                                    <div class="charge">
+                                        <span>free</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </a>
+                @endforeach
             </div>
-            <div class="summary-li" id="total-div">
-                <p>Total</p>
-                <p style="text-transform: uppercase;">{{ $total }}tk</p>
-            </div>
-            <div class="summary-li" id="total-div">
-                <input type="text" class="form-control" value="Enter Vaoucher Code" style="border-radius: 0;">
-                <button class="btn btn-primary">APPLY</button>
-            </div>
-            <form action="{{ route('shipping') }}" class="checkout">
-                <input type="submit" class="btn btn-success mt-3" style="width: 100%;" value="CHECKOUT">
-            </form>
+        </div>
         </div>
     </main>
-
-    <!-- PRODUCT -->
-    <div class="product-ul">
-        <div class="card-titel">
-            <p>Just For You</p>
-        </div>
-
-        <div class="product-li">
-            @foreach ($products as $product)
-                <a href="{{ route('product.details', $product->id) }}">
-                    <div class="product-card">
-                        <div class="img">
-                            <img src="{{ asset('assets/img/product/download.jpeg') }}" alt="">
-                        </div>
-                        <div class="title">
-                            <span>{{ $product->product_name }}</span>
-                        </div>
-                        <div class="price"><span>Tk{{ $product->product_price }}</span></div>
-                        <div class="price-details">
-                            <span>Tk270</span>
-                            <span>32%</span>
-                            <span>2k-Sold</span>
-                        </div>
-                        <div class="sell-details">
-                            <div class="rating-icon">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <div class="sell">(32)</div>
-                        </div>
-                    </div>
-                </a>
-            @endforeach
-        </div>
-    </div>
-
     <!-- ORDER BUTTON SECTION -->
-    <form action="{{ route('shipping') }}">
+    <form action="{{ route('checkout') }}">
+        <input type="hidden" value="id" name="cart">
         <div class="checkout-button-bar">
             <div class="total-bar">
                 <p class="name">Total:</p>

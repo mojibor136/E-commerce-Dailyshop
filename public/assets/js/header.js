@@ -11,16 +11,26 @@ window.addEventListener('scroll', function () {
     header_three.classList.remove('sticky_header_tow');
   }
 });
-document.getElementById("myDropdown").addEventListener("click", function () {
-  // Remove the disabled attribute from the first option when the dropdown is clicked
-  this.options[0].removeAttribute("disabled");
-});
 
-const button = document.querySelector('#button');
-const menu = document.querySelectorAll('.menu');
 let btntrue = true;
+const dropdownBar = document.querySelector('.dropdown-bar');
+const menuBar = document.querySelector('.menu-bar');
+const searchBox = document.querySelector('.search-box');
 
-button.addEventListener('click', function () {
+dropdownBar.addEventListener('click', function () {
+  if (btntrue) {
+    menuBar.classList.add('menu-bar-block');
+    searchBox.classList.add('border');
+  }
+  else {
+    menuBar.classList.remove('menu-bar-block');
+    searchBox.classList.remove('border');
+  }
+  btntrue = !btntrue;
+});
+const account = document.querySelector('.account');
+const menu = document.querySelectorAll('.menu');
+account.addEventListener('click', function () {
   menu.forEach(menuitem => {
     if (btntrue) {
       menuitem.style.visibility = 'visible';

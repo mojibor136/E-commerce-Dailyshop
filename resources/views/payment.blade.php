@@ -241,7 +241,7 @@
                         @foreach ($cartItems as $items)
                             <tr>
                                 <td class="align-middle">
-                                    <img src="{{ asset('assets/img/product/images.jpeg') }}" alt="">
+                                    <img src="{{ asset('assets/img/product/uujjjj.jpg') }}" alt="">
                                 </td>
                                 <td class="align-middle">shirt smart shirt smart shirt x{{ $items->quantity }}</td>
                                 <td></td>
