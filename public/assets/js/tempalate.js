@@ -16,7 +16,7 @@ next.addEventListener('click', () => {
 
 
 function changeSlide(moveTo) {
-    clearInterval(intervalId); 
+    clearInterval(intervalId);
     count = moveTo;
 
     if (count >= slides.length) {

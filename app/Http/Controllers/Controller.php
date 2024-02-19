@@ -14,7 +14,13 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function Test(){
+    public function getData()
+    {
+        $data = Category::all();
+        return response()->json($data);
+    }
+
+    public function test(){
         return view('test');
     }
 }

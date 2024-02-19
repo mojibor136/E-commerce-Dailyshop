@@ -45,7 +45,7 @@
                     <a href="{{ route('category.product', ['id' => $Category->id, 'slug' => $Category->slug]) }}"
                         class="card">
                         <img src="{{ asset('assets/img/product/omor.jpg') }}" alt="">
-                        <span>{{ $Category->category_name }}</span>
+                        <span class="CategoryNmae">{{ $Category->category_name }}</span>
                     </a>
                 @endforeach
             </div>

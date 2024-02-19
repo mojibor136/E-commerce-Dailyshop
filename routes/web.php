@@ -36,7 +36,8 @@ use Illuminate\Support\Facades\Route;
 //     Route::get('/receive-data', 'receiveData')->name('receive.data');
 // });
 Route::get('/receive-data', [CommonController::class, 'receiveData'])->name('receive.data');
-
+Route::get('/get-data', [Controller::class, 'getData']);
+Route::get('/test', [Controller::class, 'test']);
 Route::controller(ProductsController::class)->group(function () {
     Route::get('/', 'Index')->name('home');
     Route::get('/Product/Details/{id}/{productName}', 'ProductDetails')->name('product.details');
