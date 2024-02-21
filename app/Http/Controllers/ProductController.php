@@ -14,7 +14,10 @@ class ProductController extends Controller
         $Products = Product::orderByRaw('RAND()')->paginate(6);
         return view('welcome' , compact('Products' , 'Categories' ,'TopSelles'));
     }
-
+    public function GetCategoriesData(){
+        $Categories = Category::orderByRaw('RAND()')->get()->all();
+        return response()->json($Categories);
+    }
     public function ProductDetails($id){
         $SingleProducts = Product::where('id',$id)->get();
         foreach($SingleProducts as $category)
@@ -23,7 +26,7 @@ class ProductController extends Controller
         return view('single-product' , compact('SingleProducts','Products'));
     }
 
-    public function ProductFilter($id,$slug){
+    public function ProductFilter($id, $slug){
         $products = Product::where('product_category_id',$id)->latest()->paginate(6);
         $slug = Category::where('slug',$slug)->get();
         if($products->isEmpty()){
@@ -34,5 +37,5 @@ class ProductController extends Controller
             return view('filter-product' , compact('massage'));
         }
         return view('filter-product',compact('products','slug'));
-    }
+    }   
 }

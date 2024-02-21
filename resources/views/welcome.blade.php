@@ -41,14 +41,9 @@
         {{-- /* categories container all html*/ --}}
         <div class="categories-container">
             <div class="categories-card">
-                @foreach ($Categories as $Category)
-                    <a href="{{ route('category.product', ['id' => $Category->id, 'slug' => $Category->slug]) }}"
-                        class="card">
-                        <img src="{{ asset('assets/img/product/omor.jpg') }}" alt="">
-                        <span class="CategoryNmae">{{ $Category->category_name }}</span>
-                    </a>
-                @endforeach
+                <img src="{{ asset('assets/img/product/vivo v23.jfif') }}" alt="">
             </div>
+        </div>
         </div>
         {{-- /* top selles Products container all html*/ --}}
         <div class="top-product-container">
@@ -148,6 +143,30 @@
     @include('layouts.footer')
     @include('layouts.bottom-button')
     <script src="{{ asset('assets/js/tempalate.js') }}"></script>
+    <script>
+        let CategoryNames = '';
+        fetch('/GetCategoriesData')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(item => {
+                    let CategoryName = item.category_name.split(' ', 1);
+                    let CategoryId = item.id;
+                    let CategorySlug = item.slug;
+                    var url = '{{ route('category.product', ['id' => ':id', 'slug' => ':slug']) }}';
+                    url = url.replace(':id', item.id).replace(':slug', item.slug);
+                    CategoryNames +=
+                        `<a href="${url}" class="card">
+                            <img src="{{ asset('assets/img/product/vivo v23.jfif') }}" alt="">
+                            <span>${CategoryName.join(' ')}</span>
+                        </a>`;
+                });
+                let CategoryElement = document.querySelector('.categories-card');
+                CategoryElement.innerHTML = CategoryNames;
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+
+
 </body>
 
 </html>
