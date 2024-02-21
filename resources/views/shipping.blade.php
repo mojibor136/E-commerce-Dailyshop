@@ -393,7 +393,7 @@
                                 <th>TOTAL</th>
                             </tr>
                         </thead>
-                        @foreach ($CartItems as $items)
+                        @foreach ($multipleItem ?? [$singleItem] as $items)
                             <tbody>
                                 @php
                                     $total = 0;
@@ -404,14 +404,14 @@
                                     <td class="align-middle">
                                         <img src="{{ asset('assets/img/product/uujjjj.jpg') }}" alt="">
                                     </td>
-                                    <td class="align-middle">shirt smart shirt smart shirt x{{ $items->quantity }}</td>
+                                    <td class="align-middle">{{ $items['name'] }}X{{ $items['quantity'] }}</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td class="align-middle">{{ $items->quantity * $items->product_price }}Tk</td>
+                                    <td class="align-middle">{{ $items['quantity'] * $items['price'] }}Tk</td>
                                 </tr>
                                 @php
-                                    $price = $items->quantity * $items->product_price;
+                                    $price = $items['quantity'] * $items['price'];
                                     $total = $total + $price;
                                 @endphp
                         @endforeach
@@ -448,7 +448,7 @@
                         <p>Total</p>
                         <p style="text-transform: uppercase;">{{ $delivery + $total }}tk</p>
                     </div>
-                   <input type="submit" class="btn btn-success" value="PLACE ORDER">
+                    <input type="submit" class="btn btn-success" value="PLACE ORDER">
                 </div>
             </div>
         </main>
@@ -464,7 +464,7 @@
                 </div>
             </div>
             <div class="button">
-               <input type="submit" class="btn btn-success" value="PLACE ORDER">
+                <input type="submit" class="btn btn-success" value="PLACE ORDER">
             </div>
         </div>
     </form>

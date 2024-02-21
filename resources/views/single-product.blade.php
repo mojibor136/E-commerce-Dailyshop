@@ -694,7 +694,7 @@
                             <input type="hidden" name="SingleProducts[id]" value="{{ $Product['id'] }}">
                             <input type="hidden" name="SingleProducts[name]" value="{{ $Product['product_name'] }}">
                             <input type="hidden" name="SingleProducts[price]" value="{{ $Product['product_price'] }}">
-                            <input type="hidden" name="SingleProducts[quantity]" value="2" class="hiddenQuantity">
+                            <input type="hidden" name="SingleProducts[quantity]" value="1" class="hiddenQuantity">
                             <input type="submit" class="btn btn-primary" value="Buy Now">
                         </form>
                         <form action="{{ route('addtocart.products') }}" method="post">

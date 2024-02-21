@@ -15,7 +15,7 @@ use Session;
 class CheckoutController extends Controller
 {
     // Process data for multiple products
-    public function Checkout(Request $request)
+    public function SandData(Request $request)
     {
         $productItems = $request->input('ProductItems');
         $processedData = $this->processData($productItems);
@@ -56,9 +56,7 @@ class CheckoutController extends Controller
             'address' => $request->address,
         ];
 
-        $shipping = Shipping::create($data);
-        Session::put('shippingId', $shipping->id);
-        Session::put('orderId', $shipping->id); // Changed to orderId
+        Session::put('ShippingData' ,$data);
 
         return redirect()->route('payment');
     }
@@ -66,8 +64,7 @@ class CheckoutController extends Controller
     // Display payment view
     public function payment()
     {
-        $orderId =  Session::get('orderId'); // Changed to orderId
-        Session()->forget('orderId'); // Changed to orderId
+        $orderId = Session::get('ShippingData');
 
         if ($orderId) {
             $userId = Auth::id();

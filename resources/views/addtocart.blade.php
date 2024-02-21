@@ -468,7 +468,7 @@
                         <input type="submit" class="btn btn-success" value="APPLY">
                     </form>
                 </div>
-                <form action="{{ route('checkout') }}" class="checkout">
+                <form action="{{ route('Sand.Data') }}" class="checkout">
                     @foreach ($cartItems as $index => $items)
                         <input type="hidden" name="ProductItems[{{ $index }}][id]"
                             value="{{ $items['id'] }}">
@@ -524,7 +524,7 @@
         </div>
     </main>
     <!-- ORDER BUTTON SECTION -->
-    <form action="{{ route('checkout') }}">
+    <form action="{{ route('Sand.Data') }}">
         <input type="hidden" value="id" name="cart">
         <div class="checkout-button-bar">
             <div class="total-bar">

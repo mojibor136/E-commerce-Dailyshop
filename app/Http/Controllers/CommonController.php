@@ -12,9 +12,9 @@ class CommonController extends Controller
         $singleItem = $request->input('singleItem');
         
         if (!empty($multipleItem)) {
-            return $multipleItem;
+            return view('shipping')->with('multipleItem',$multipleItem);
         } elseif (!empty($singleItem)) {
-            return $singleItem;
+            return view('shipping')->with('singleItem',$singleItem);
         } else {
             return back();
         }

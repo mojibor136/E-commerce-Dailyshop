@@ -37,14 +37,15 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/get-data', [Controller::class, 'getData']);
 Route::get('/test/{id}', 'TestController@index')->name('test');
-Route::get('/receive-data', [CommonController::class, 'receiveData'])->name('receive.data');
 Route::controller(ProductsController::class)->group(function () {
     Route::get('/', 'Index')->name('home');
     Route::get('/Product/Details/{id}/{productName}', 'ProductDetails')->name('product.details');
     Route::get('/category/product/{id}/{slug}' , 'ProductFilter')->name('category.product');
     Route::get('/GetCategoriesData','GetCategoriesData')->name('GetCategoriesData');
 });
-
+Route::controller(CommonController::class)->group(function () {
+    Route::get('/Checkout', 'receiveData')->name('receive.data');
+});
 Route::controller(SearchController::class)->group(function () {
     Route::get('/Search', 'SearchProduct')->name('search.product');
 });
@@ -60,7 +61,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::controller(CheckoutController::class)->group(function () {
-        Route::get('/Checkout', 'Checkout')->name('checkout');
+        Route::get('/SandData', 'SandData')->name('Sand.Data');
         Route::post('/Shipping', 'StoreShipping')->name('shipping.product');
         Route::get('/Payment' , 'Payment')->name('payment');
         Route::post('/Order-Place' , 'OrderPlace')->name('order.place');
