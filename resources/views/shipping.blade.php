@@ -96,6 +96,7 @@
     main .order-content table tbody tr td {
         text-transform: capitalize;
         font-size: 14px;
+        vertical-align: middle;
     }
 
     main .order-content table tbody tr td img {
@@ -393,7 +394,7 @@
                                 <th>TOTAL</th>
                             </tr>
                         </thead>
-                        @foreach ($multipleItem ?? [$singleItem] as $items)
+                        @foreach ($multipleItem ?? [$singleItem] as $index => $items)
                             <tbody>
                                 @php
                                     $total = 0;
@@ -401,19 +402,23 @@
                                 @endphp
 
                                 <tr>
-                                    <td class="align-middle">
+                                    <td>
                                         <img src="{{ asset('assets/img/product/uujjjj.jpg') }}" alt="">
                                     </td>
-                                    <td class="align-middle">{{ $items['name'] }}X{{ $items['quantity'] }}</td>
+                                    <td>{{ $items['name'] }}X{{ $items['quantity'] }}</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td class="align-middle">{{ $items['quantity'] * $items['price'] }}Tk</td>
+                                    <td>{{ $items['quantity'] * $items['price'] }}Tk</td>
                                 </tr>
                                 @php
                                     $price = $items['quantity'] * $items['price'];
                                     $total = $total + $price;
                                 @endphp
+                                <input type="hidden" value="{{ $items['name'] }}" name="productsData[{{$index}}][name]">
+                                <input type="hidden" value="{{ $items['quantity'] }}"name="productsData[{{$index}}][quantity]">
+                                <input type="hidden" value="{{ $items['quantity'] * $items['price'] }}" name="productsData[{{$index}}][price]">
+
                         @endforeach
                         </tbody>
                         <thead>
@@ -424,6 +429,7 @@
                                 <th></th>
                                 <th></th>
                                 <th>{{ $total + $delivery }}Tk</th>
+                                <input type="hidden" value="{{ $total + $delivery }}" name="productsData[{{$index}}][total]">
                             </tr>
                         </thead>
                     </table>

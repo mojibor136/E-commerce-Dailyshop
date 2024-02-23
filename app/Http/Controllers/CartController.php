@@ -43,7 +43,7 @@ class CartController extends Controller
         $cartProductId = Cart::where('product_id', $productId)->value('product_id');
 
         if ($cartProductId) {
-            return back()->with('message', 'Product is already in the cart. Please try another product.');
+            return back()->with('message', 'Products is already added.');
         } else {
             $product = Product::findOrFail($productId);
 
@@ -60,7 +60,7 @@ class CartController extends Controller
             // Use the create method to insert data into the Cart model
             Cart::create($data);
 
-            return redirect()->route('addtocart')->with('message', 'Product added to the cart successfully.');
+            return redirect()->route('addtocart')->with('message', 'Products is added successfully.');
         }
     }
 
@@ -69,6 +69,6 @@ class CartController extends Controller
     {
         Cart::findOrFail($id)->delete();
 
-        return redirect()->route('addtocart')->with('message', 'Cart item deleted successfully.');
+        return redirect()->route('addtocart')->with('message', 'products deleted successfully.');
     }
 }

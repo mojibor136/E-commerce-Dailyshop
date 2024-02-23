@@ -18,16 +18,16 @@ class CheckoutController extends Controller
     public function SandData(Request $request)
     {
         $productItems = $request->input('ProductItems');
-        $processedData = $this->processData($productItems);
-        $multipleItem = $processedData;
+        $processeData = $this->processData($productItems);
+        $multipleItem = $processeData;
         return redirect()->route('receive.data', ['multipleItem' => $multipleItem]);
     }
 
     // Private method to process data for multiple products
     private function processData($productItems)
     {
-        $processedData = array_merge($productItems);
-        return $processedData;
+        $processeData = array_merge($productItems);
+        return $processeData;
     }
 
     // Store shipping information
@@ -56,23 +56,18 @@ class CheckoutController extends Controller
             'address' => $request->address,
         ];
 
-        Session::put('ShippingData' ,$data);
+        $productsData = $request->input('productsData');
+        $processeData = array_merge($productsData);
+        DD($processeData);
+        // Session::put('ShippingData' ,$data);
 
-        return redirect()->route('payment');
+        // return redirect()->route('payment');
     }
 
     // Display payment view
     public function payment()
     {
         $orderId = Session::get('ShippingData');
-
-        if ($orderId) {
-            $userId = Auth::id();
-            $cartItems = Cart::where('user_id', $userId)->where('cart_type', 'user')->get();
-            return view('payment', compact('cartItems'));
-        } else {
-            return back();
-        }
     }
 
     // Place an order
