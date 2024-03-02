@@ -12,8 +12,8 @@
                 <table class="table">
                     <thead class="table-light">
                         <tr>
-                            <th><input type="checkbox" name="" id=""></th>
                             <th>Id</th>
+                            <th>Category Img</th>
                             <th>Category Name</th>
                             <th>Sub Category</th>
                             <th>product</th>
@@ -24,16 +24,22 @@
                     <tbody class="table-border-bottom-0">
                         @foreach ($categories as $category)
                             <tr>
-                                <td><input type="checkbox"></td>
                                 <td>{{ $category->id }}</td>
+                                <td><img src="{{ asset('assets/image/CategoryImg/' . $category->category_img) }}"
+                                        alt="" width="40" height="40"></td>
                                 <td>{{ $category->category_name }}</td>
                                 <td>{{ $category->subcategory_count }}</td>
                                 <td>{{ $category->product_count }}</td>
                                 <td>{{ $category->slug }}</td>
                                 <td>
-                                    <a href="{{ route('editcategory', $category->id) }}" class="btn btn-primary">Edit</a>
-                                    <a href="{{ route('deletecategory', $category->id) }}"
-                                        class="btn btn-warning">Delete</a>
+                                    <div class="button">
+                                        <form action="{{ route('editcategory', $category->id) }}" method="get">
+                                            <button class="btn btn-primary">Edit</button>
+                                        </form>
+                                        <form action="{{ route('deletecategory', $category->id) }}" method="get">
+                                            <button class="btn btn-warning">Delete</button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

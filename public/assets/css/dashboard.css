@@ -242,8 +242,21 @@ header .menu ul a:hover {
     overflow: scroll;
 }
 
+.content-bar main table tbody tr {
+    padding: 0 5px;
+}
+
 .content-bar main table tbody tr td {
     text-transform: capitalize;
+}
+
+.content-bar main table tbody tr .button {
+    display: inline-flex;
+    ;
+}
+
+.content-bar main table tbody tr td form {
+    margin: 0 2px;
 }
 
 main .container .card .table-responsive table tbody tr td .btn {

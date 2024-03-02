@@ -35,8 +35,6 @@ use Illuminate\Support\Facades\Route;
 // Route::controller(CommonController::class)->group(function () {
 //     Route::get('/receive-data', 'receiveData')->name('receive.data');
 // });
-Route::get('/get-data', [Controller::class, 'getData']);
-Route::get('/test/{id}', 'TestController@index')->name('test');
 Route::controller(ProductsController::class)->group(function () {
     Route::get('/', 'Index')->name('home');
     Route::get('/Product/Details/{id}/{productName}', 'ProductDetails')->name('product.details');
@@ -51,6 +49,7 @@ Route::controller(SearchController::class)->group(function () {
 });
 Route::controller(Controller::class)->group(function () {
     Route::get('/Test', 'Test')->name('Test');
+    Route::post('/test/data' , 'TestData')->name('test.data');
 });
 Route::middleware('auth')->group(function () {
     Route::controller(CartController::class)->group(function () {
@@ -99,7 +98,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/add-product', 'Index')->name('addproduct');
             Route::get('/all-product', 'AllProduct')->name('allproduct');
             Route::post('/store-product', 'StoreProduct')->name('storeproduct');
-            Route::get('/product-delete/{id}', 'DeleteProduct')->name('delete');
+            Route::get('/products-delete/{id}', 'DeleteProduct')->name('delete.product');
+            Route::get('/products-edit/{id}' , 'EditProduct')->name('edit.product');
         });
 
         Route::controller(OrderController::class)->group(function () {

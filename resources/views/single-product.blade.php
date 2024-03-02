@@ -24,7 +24,7 @@
     }
 
     .main-container {
-        padding: 20px 80px;
+        padding: 20px 30px;
     }
 
     .main-container .alert .message {
@@ -366,7 +366,7 @@
         }
 
         .product-container .product-card {
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         }
     }
 
@@ -403,7 +403,7 @@
         }
 
         .product-container .product-card {
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         }
     }
 
@@ -508,7 +508,7 @@
         }
 
         .product-container .product-card {
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
             grid-gap: 5px;
         }
 
@@ -602,14 +602,18 @@
         }
 
         .product-container .product-card {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
         }
 
     }
 
-    @media (max-width: 320px) {
+    @media (max-width: 375px) {
         .product-details {
             padding-right: 10px;
+        }
+
+        .product-container .product-card {
+            grid-template-columns: 1fr 1fr;
         }
 
         .icon-inner a {
@@ -630,11 +634,11 @@
             @foreach ($SingleProducts as $Product)
                 <div class="product-img">
                     <div class="big-img">
-                        <img id="img" src="{{ asset('assets/img/product/oppo a17.jfif') }}">
+                        <img id="img" src="{{ asset('assets/image/ProductImg/' . $Product->product_img) }}">
                     </div>
 
                     <div class="small-box">
-                        <div class="small-img">
+                        {{-- <div class="small-img">
                             <img src="{{ asset('assets/img/product/images (2).jfif') }}" onclick="showImg(this.src)">
                         </div>
                         <div class="small-img">
@@ -645,7 +649,7 @@
                         </div>
                         <div class="small-img">
                             <img src="{{ asset('assets/img/product/nokia2.jfif') }}" onclick="showImg(this.src)">
-                        </div>
+                        </div> --}}
                     </div>
 
                 </div>
@@ -691,7 +695,9 @@
                     <div class="button">
                         <form action="{{ route('buynow.products') }}" method="post">
                             @csrf
-                            <input type="hidden" name="SingleProducts[id]" value="{{ $Product['id'] }}">
+                            <input type="hidden" name="SingleProducts[productsId]" value="{{ $Product['id'] }}">
+                            <input type="hidden" name="SingleProducts[productsImg]"
+                                value="{{ $Product['product_img'] }}">
                             <input type="hidden" name="SingleProducts[name]" value="{{ $Product['product_name'] }}">
                             <input type="hidden" name="SingleProducts[price]" value="{{ $Product['product_price'] }}">
                             <input type="hidden" name="SingleProducts[quantity]" value="1" class="hiddenQuantity">
@@ -731,7 +737,7 @@
                     <a
                         href="{{ route('product.details', ['id' => $Product->id, 'productName' => $Product->product_name]) }}">
                         <li class="card">
-                            <img src="{{ asset('assets/img/product/3pis.jpg') }}" alt="">
+                            <img src="{{ asset('assets/image/ProductImg/' . $Product->product_img) }}" alt="">
                             <div class="text">
                                 <span class="titel">{{ $Product->product_name }}</span>
                                 <div class="price">

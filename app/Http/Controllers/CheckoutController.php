@@ -58,16 +58,17 @@ class CheckoutController extends Controller
 
         $productsData = $request->input('productsData');
         $processeData = array_merge($productsData);
-        DD($processeData);
-        // Session::put('ShippingData' ,$data);
-
-        // return redirect()->route('payment');
+        Session::put('processeData' ,$processeData);
+        $shippingId =  Shipping::create($data);
+        Session::put('shippingId',$shippingId);
+        return redirect()->route('payment');
     }
 
     // Display payment view
     public function payment()
     {
-        $orderId = Session::get('ShippingData');
+        $processeData = Session::get('processeData');
+        return view('payment')->with('processeData',$processeData);
     }
 
     // Place an order
@@ -81,42 +82,34 @@ class CheckoutController extends Controller
         $payment = Payment::create($paymentData);
 
         $customerId = Auth::id();
+        $shippingId = session::get('shippingId');
         $orderData = [
             'customer_id' => $customerId,
-            'shipping_id' => Session::get('shippingId'),
+            'shipping_id' => $shippingId->id,
             'payment_id' => $payment->id,
             'order_type' => 'user',
             'status' => 'pending',
             'total' => $request->total,
         ];
-
-        $order = Order::create($orderData);
-
-        $userId = Auth::id();
-        $cartItems = Cart::where('cart_type', 'user')->where('user_id', $userId)->get();
-
-        foreach ($cartItems as $cartItem) {
-            $orderDetailData = [
-                'order_id' => $order->id,
-                'product_id' => $cartItem->product_id, // Assuming this is the correct column
-                'product_name' => $cartItem->product_name,
-                'product_price' => $cartItem->product_price,
-                'quantity' => $cartItem->quantity,
-                'product_img' => $cartItem->product_img,
-            ];
-
-            OrderDetail::create($orderDetailData);
-        }
-
-        if (!isset($request->total)) {
-            Session::forget('shippingId');
-        }
-
-        // Redirect to a confirmation page or any other relevant page
+            $orderId = Order::create($orderData);
+            session::forget('shippingId');
+            $processeData = Session::get('processeData');
+            $orderDetailsData = [];
+            foreach($processeData as $index => $productsData){
+                $orderDetailsData[] = [
+                    'order_id' => $orderId->id,
+                    'product_id' =>$productsData['productsId'],
+                    'product_name' => $productsData['name'],
+                    'product_price' => $productsData['price'],
+                    'quantity' => $productsData['quantity'],
+                    'product_img' => 'null',
+                ];
+            };
+            OrderDetail::insert($orderDetailsData);
+            session::forget('processeData');
         return redirect()->route('order.confirmation');
     }
 
-    // Display order confirmation
     public function OrderConfirmation()
     {
         return 'Successfully Order Confirmation';

@@ -207,7 +207,8 @@
         cursor: pointer;
         display: flex;
         align-items: center;
-        font-weight: 400;
+        font-weight: 600;
+        color: #2d393f;
     }
 
     header .icon i .count {
@@ -253,23 +254,18 @@
 
     .menu ul a {
         text-decoration: none;
-        color: #41464b;
-        font-weight: 500;
+        color: #475359;
+        font-weight: 700;
         display: flex;
-        padding: 3px 0;
+        padding: 3px 5px;
         align-items: center;
         text-transform: capitalize;
-    }
-
-    .menu ul a i {
-        padding-left: 5px;
-        font-size: 16px;
     }
 
     .menu ul a li {
         list-style: none;
         font-size: 13.5px;
-        padding: 5px 1px;
+        padding: 2px 1px;
         margin-top: 5px;
         padding-right: 40px;
         font-family: sans-serif;
@@ -311,9 +307,6 @@
     }
 
     @media (max-width: 640px) {
-        body {
-            background: #f8f9fa;
-        }
 
         .top-header {
             display: none;

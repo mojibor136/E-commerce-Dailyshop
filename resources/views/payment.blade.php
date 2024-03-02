@@ -238,21 +238,30 @@
                             $total = 0;
                             $delivery = 80;
                         @endphp
-                        @foreach ($cartItems as $items)
+                        @foreach ($processeData as $index => $items)
                             <tr>
                                 <td class="align-middle">
-                                    <img src="{{ asset('assets/img/product/uujjjj.jpg') }}" alt="">
+                                    <img src="{{ asset('assets/image/ProductImg/' . $items['productsImg']) }}" alt="">
                                 </td>
-                                <td class="align-middle">shirt smart shirt smart shirt x{{ $items->quantity }}</td>
+                                <td class="align-middle">{{ $items['name'] }} x{{ $items['quantity'] }}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td class="align-middle">{{ $items->quantity * $items->product_price }}Tk</td>
+                                <td class="align-middle">{{ $items['quantity'] * $items['price'] }}Tk</td>
                             </tr>
                             @php
-                                $price = $items->quantity * $items->product_price;
+                                $price = $items['quantity'] * $items['price'];
                                 $total = $total + $price;
                             @endphp
+                            <form action="{{ route('order.place') }}" method="post">
+                                <input type="hidden" value="{{ $items['productsId'] }}"
+                                    name="productsData[{{ $index }}][id]">
+                                <input type="hidden" value="{{ $items['name'] }}"
+                                    name="productsData[{{ $index }}][name]">
+                                <input type="hidden"
+                                    value="{{ $items['quantity'] }}"name="productsData[{{ $index }}][quantity]">
+                                <input type="hidden" value="{{ $items['quantity'] * $items['price'] }}"
+                                    name="productsData[{{ $index }}][price]">
                         @endforeach
                     </tbody>
                     <thead>
@@ -267,30 +276,29 @@
                     </thead>
                 </table>
             </div>
-            <form action="{{ route('order.place') }}" method="post">
-                @csrf
-                <input type="hidden" value="{{ $total + $delivery }}" name="total">
-                <div class="payment-bar">
-                    <div class="">
-                        <h4>Payment Method</h4>
-                    </div>
-                    <div class="form-group">
-                        <label for="Bkash" class="btn btn-warning bkash">Bkash</label>
-                        <label for="Nagad" class="btn nagad">Nagad</label>
-                        <div class="form-control mt-2 number-box">
-                            <div class="Number">+8801311899083</div>
-                            <div class="icon"><i class="ri-file-copy-line"></i></div>
-                        </div>
-                    </div>
-                    <div class="form-group mt-2">
-                        <label for="Sand Number" class="mb-1">Sand Number</label>
-                        <input type="text" class="form-control" name="sand-number" value="Enter your sand number">
-                    </div>
-                    <div class="form-group mt-3">
-                        <button type="submit" class="btn btn-primary">SAND</button>
-                        <button type="submit" class="btn btn-success confirm">CONFIRM ORDER</button>
+            @csrf
+            <input type="hidden" value="{{ $total + $delivery }}" name="total">
+            <div class="payment-bar">
+                <div class="">
+                    <h4>Payment Method</h4>
+                </div>
+                <div class="form-group">
+                    <label for="Bkash" class="btn btn-warning bkash">Bkash</label>
+                    <label for="Nagad" class="btn nagad">Nagad</label>
+                    <div class="form-control mt-2 number-box">
+                        <div class="Number">+8801311899083</div>
+                        <div class="icon"><i class="ri-file-copy-line"></i></div>
                     </div>
                 </div>
+                <div class="form-group mt-2">
+                    <label for="Sand Number" class="mb-1">Sand Number</label>
+                    <input type="text" class="form-control" name="sand-number" placeholder="Enter your sand number">
+                </div>
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-primary">SAND</button>
+                    <button type="submit" class="btn btn-success confirm">CONFIRM ORDER</button>
+                </div>
+            </div>
         </div>
     </main>
     <!-- ORDER BUTTON SECTION -->

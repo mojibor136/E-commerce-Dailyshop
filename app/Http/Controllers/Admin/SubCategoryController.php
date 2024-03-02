@@ -59,7 +59,6 @@ class SubCategoryController extends Controller
       public function DeleteSubCategory($id){
         $category_id = SubCategory::where('id' , $id)->value('category_id');
         SubCategory::findOrFail($id)->delete();
-
         Category::where('id' , $category_id)->decrement('subcategory_count' , 1);
         return redirect()->route('allsubcategory')->with('massage', 'Delete SubCategory Successful');
       }

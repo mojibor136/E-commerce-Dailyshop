@@ -12,7 +12,6 @@
                 <table class="table">
                     <thead class="table-light">
                         <tr>
-                            <th><input type="checkbox"></th>
                             <th>Id</th>
                             <th>Img</th>
                             <th>Product Name</th>
@@ -24,18 +23,23 @@
                     <tbody class="table-border-bottom-0">
                         @foreach ($products as $product)
                             <tr>
-                                <td><input type="checkbox"></td>
                                 <td>{{ $product->id }}</td>
                                 <td>
-                                    <img src="{{ asset('upload/1783679396005652.jpg') }}" alt="Product Image"
-                                        width="50">
+                                    <img src="{{ asset('assets/image/ProductImg/' . $product->product_img) }}"
+                                        alt="Product Image" width="50">
                                 </td>
                                 <td>{{ $product->product_name }}</td>
                                 <td>{{ $product->product_price }}</td>
                                 <td><a href="" class="btn btn-success">Active</a></td>
                                 <td>
-                                    <a href="" class="btn btn-primary">Edit</a>
-                                    <a href="{{ route('delete', $product->id) }}" class="btn btn-warning">Delete</a>
+                                    <div class="button">
+                                        <form action="{{ route('edit.product', $product->id) }}" method="get">
+                                            <button class="btn btn-primary">Edit</button>
+                                        </form>
+                                        <form action="{{ route('delete.product', $product->id) }}" method="get">
+                                            <button class="btn btn-warning">Delete</button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

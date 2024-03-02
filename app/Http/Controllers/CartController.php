@@ -14,13 +14,11 @@ class CartController extends Controller
     // Display the products and the items in the user's cart
     public function Cart()
     {
-        $products = Product::latest()->paginate(6);
+        $Products = Product::latest()->paginate(6);
         $userId = Auth::id();
         $cartItems = Cart::where('cart_type', 'user')->where('user_id', $userId)->get();
-        session(['cartItems' => $cartItems]);
-
         // Pass data to the 'addtocart' view
-        return view('addtocart', compact('products'))->with('cartItems', $cartItems);
+        return view('addtocart', compact('Products'))->with('cartItems', $cartItems);
     }
 
     // Process the data for a single product

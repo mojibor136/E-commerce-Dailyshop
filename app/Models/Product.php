@@ -14,7 +14,7 @@ class Product extends Model
         'product_short_desc',
         'product_long_desc',
         'product_category_name',
-        'product_subcategory_name', // এখানে ভুল ছিল, সঠিক করে দেওয়া হয়েছে
+        'product_subcategory_name',
         'product_category_id',
         'product_subcategory_id',
         'quantity',

@@ -19,7 +19,7 @@
     }
 
     .main-container {
-        padding: 0 80px;
+        padding: 0 30px;
     }
 
     .card-container {
@@ -205,8 +205,11 @@
         background-color: #fff;
         border-top-right-radius: 3px;
         border-top-left-radius: 3px;
+        border-bottom: 1px solid #dee2e6;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
-
 
     .product-container .type span {
         text-transform: capitalize;
@@ -223,26 +226,27 @@
         border: none;
     }
 
-    .card a {
+    .product-card a {
         text-decoration: none;
     }
 
-    .card a .card {
+    .product-card a .card {
         overflow: hidden;
-        border-radius: 3px;
+        border-radius: 2px;
+        border: none;
     }
 
-    .card a .card img {
+    .product-card a .card img {
         max-width: 100%;
         height: 160px;
     }
 
-    .card a .card .text {
+    .product-card a .card .text {
         padding: 2px 5px;
         line-height: 1.2;
     }
 
-    .card a .card .text .titel {
+    .product-card a .card .text .titel {
         text-transform: capitalize;
         font-size: 13.5px;
         color: #353535;
@@ -254,39 +258,48 @@
         overflow: hidden;
     }
 
-    .product-card a .card .text .tk span {
-        color: #084298;
-        font-weight: 600;
+    .product-card a .card .text .price {
+        padding: 2.1px 0;
+        padding-bottom: 1px;
+        display: flex;
+        align-items: center;
     }
 
-    .product-card a .card .text .discount {
-        font-size: 11px;
-        padding: 1.5px 0;
-        font-weight: 700;
+    .product-card a .card .text .price .price {
         color: #41464b;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 14px;
     }
 
-    .product-card a .card .text .discount span:first-child {
-        font-weight: 700;
-        color: #41464b;
+    .product-card a .card .text .price .discount {
+        color: #6c757d;
+        font-size: 10px;
+        margin-left: 3px;
+        font-weight: 800;
+    }
+
+    .product-card a .card .text .price .discount span {
+        text-transform: uppercase;
         text-decoration: line-through;
     }
 
-    .card a .card .text .star {
+    .product-card a .card .text .star {
         font-size: 13px;
         position: relative;
         padding-bottom: 2px;
     }
 
-    .card a .card .text .star i {
+    .product-card a .card .text .star i {
         color: orange;
     }
 
-    .card a .card .text .star span {
+    .product-card a .card .text .star span {
         color: #676767;
+        font-weight: 600;
     }
 
-    .card a .card .text .star .charge {
+    .product-card a .card .text .star .charge {
         color: #676767;
         text-transform: capitalize;
         position: absolute;
@@ -298,7 +311,8 @@
 
     @media (max-width: 1024px) {
         .product-container .product-card {
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+            gap: 5px;
         }
     }
 
@@ -312,7 +326,7 @@
         }
 
         .product-container .product-card {
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         }
     }
 
@@ -423,7 +437,8 @@
                             @foreach ($cartItems as $items)
                                 <tr>
                                     <td class="align-middle">
-                                        <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
+                                        <img src="{{ asset('assets/image/ProductImg/' . $items->product_img) }}"
+                                            alt="">
                                     </td>
                                     <td class="align-middle">{{ $items->product_name }}</td>
                                     <td class="align-middle"><input type="text" style="text-align: center;"
@@ -470,8 +485,10 @@
                 </div>
                 <form action="{{ route('Sand.Data') }}" class="checkout">
                     @foreach ($cartItems as $index => $items)
-                        <input type="hidden" name="ProductItems[{{ $index }}][id]"
-                            value="{{ $items['id'] }}">
+                        <input type="hidden" name="ProductItems[{{ $index }}][productsId]"
+                            value="{{ $items['product_id'] }}">
+                        <input type="hidden" name="ProductItems[{{ $index }}][productsImg]"
+                            value="{{ $items['product_img'] }}">
                         <input type="hidden" name="ProductItems[{{ $index }}][name]"
                             value="{{ $items['product_name'] }}">
                         <input type="hidden" name="ProductItems[{{ $index }}][price]"
@@ -489,20 +506,18 @@
                 <span>latest products</span>
             </div>
             <div class="card product-card">
-                @foreach ($products as $Product)
+                @foreach ($Products as $Product)
                     <a
                         href="{{ route('product.details', ['id' => $Product->id, 'productName' => $Product->product_name]) }}">
                         <li class="card">
-                            <img src="{{ asset('assets/img/product/sssrit.webp') }}" alt="">
+                            <img src="{{ asset('assets/image/ProductImg/' . $Product->product_img) }}" alt="">
                             <div class="text">
                                 <span class="titel">{{ $Product->product_name }}</span>
-                                <div class="tk">
-                                    <span>${{ $Product->product_price }}</span>
-                                </div>
-                                <div class="discount">
-                                    <span>$620</span>
-                                    <span>32%</span>
-                                    <span>5k-Stock</span>
+                                <div class="price">
+                                    <span class="price">bdt:{{ $Product->product_price }}</span>
+                                    <div class="discount">
+                                        <span>bdt:570</span>
+                                    </div>
                                 </div>
                                 <div class="star">
                                     <i class="ri-star-fill"></i>

@@ -107,10 +107,6 @@
 
 
     @media (max-width: 640px) {
-        body {
-            background: #f8f9fa;
-        }
-
         .footer-row {
             display: grid;
             grid-template-columns: 1fr 1fr;

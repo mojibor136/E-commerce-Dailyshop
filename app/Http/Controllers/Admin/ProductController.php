@@ -22,7 +22,7 @@ class ProductController extends Controller
     }
 
     public function StoreProduct(Request $request){
-        $request->validate([
+            $request->validate([
             'product_name' =>'required',
             'product_price' =>'required',
             'product_long_desc' =>'required|max:255',
@@ -31,13 +31,15 @@ class ProductController extends Controller
             'product_subcategory_id' =>'required',
             'quantity'=> 'required',
             'kay_word' =>'required',
-            'product_img' =>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Image validation added
+            'product_img' =>'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            // 'productImg' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
-        $img = $request->file('product_img');
-        $img_name = hexdec(uniqid()).'.'. $img->getClientOriginalExtension();
-        $img->move(public_path('assets/img/ProductImg'), $img_name);
-        $img_url = '/' . $img_name;
+        $imageName = '';
+        if($image = $request->file('product_img')){
+            $imageName = time().'-'.uniqid().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('assets/image/ProductImg'), $imageName);
+        }
 
         $category_id = $request->product_category_id;
         $subcategory_id = $request->product_subcategory_id;
@@ -55,7 +57,7 @@ class ProductController extends Controller
             'product_subcategory_name' => $product_subcategory_name,
             'quantity' => $request->quantity,
             'kay_word' => $request->kay_word,
-            'product_img' => $img_url,
+            'product_img' => $imageName,
         ]);
         SubCategory::where('id' , $subcategory_id)->increment('product_count');
         Category::where('id' , $category_id)->increment('product_count');
@@ -69,5 +71,11 @@ class ProductController extends Controller
         SubCategory::where('id' , $subcategory_id)->decrement('product_count' , 1);
         Category::where('id' ,$category_id)->decrement('product_count' , 1);
         return redirect()->route('allproduct')->with('massage', 'Deleted Products Successful');
+    }
+    public function EditProduct($id){
+        $products = Product::where('id',$id)->get();
+        $subcategory = SubCategory::latest()->get();
+        $category = Category::latest()->get();
+        return view('admin.edit.editProduct',compact('subcategory' , 'category','products'));
     }
 }

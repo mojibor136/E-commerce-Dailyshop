@@ -27,9 +27,9 @@
 
                 <div class="slideshow-container">
                     <div class="banner">
-                        <img class="slides-img" src="{{ asset('assets/img/product/banner.jpg') }}" alt="">
-                        <img class="slides-img" src="{{ asset('assets/img/product/banner1.jpg') }}" alt="">
-                        <img class="slides-img" src="{{ asset('assets/img/product/banner3.jpg') }}" alt="">
+                        <img class="slides-img" src="{{ asset('assets/img/banner/banner.jpg') }}" alt="">
+                        <img class="slides-img" src="{{ asset('assets/img/banner/banner1.jpg') }}" alt="">
+                        <img class="slides-img" src="{{ asset('assets/img/banner/banner3.jpg') }}" alt="">
                         <div class="slider-btn">
                             <div class="prev"></div>
                             <div class="next"></div>
@@ -41,7 +41,6 @@
         {{-- /* categories container all html*/ --}}
         <div class="categories-container">
             <div class="categories-card">
-                <img src="{{ asset('assets/img/product/vivo v23.jfif') }}" alt="">
             </div>
         </div>
         </div>
@@ -56,7 +55,7 @@
                     <a
                         href="{{ route('product.details', ['id' => $TopSelle->id, 'productName' => $TopSelle->product_name]) }}">
                         <li class="card">
-                            <img src="{{ asset('assets/img/product/iphone14.jpg') }}" alt="">
+                            <img src="{{ asset('assets/image/ProductImg/' . $TopSelle->product_img) }}" alt="">
                             <div class="text">
                                 <span class="titel">{{ $TopSelle->product_name }}</span>
                                 <div class="price">
@@ -93,7 +92,8 @@
                     @foreach ($Categories as $Category)
                         <a href="">
                             <li class="card">
-                                <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
+                                <img src="{{ asset('assets/image/CategoryImg/1709013029-65dd782536cd3.jpg') }}"
+                                    alt="">
                                 <span>{{ $Category->category_name }}</span>
                             </li>
                         </a>
@@ -105,14 +105,13 @@
         <div class="product-container">
             <div class="type">
                 <span>latest products</span>
-                <a href="">view more</a>
             </div>
             <div class="card product-card">
                 @foreach ($Products as $Product)
                     <a
                         href="{{ route('product.details', ['id' => $Product->id, 'productName' => $Product->product_name]) }}">
                         <li class="card">
-                            <img src="{{ asset('assets/img/product/oppo a17.jfif') }}" alt="">
+                            <img src="{{ asset('assets/image/ProductImg/' . $Product->product_img) }}" alt="">
                             <div class="text">
                                 <span class="titel">{{ $Product->product_name }}</span>
                                 <div class="price">
@@ -156,7 +155,7 @@
                     url = url.replace(':id', item.id).replace(':slug', item.slug);
                     CategoryNames +=
                         `<a href="${url}" class="card">
-                            <img src="{{ asset('assets/img/product/vivo v23.jfif') }}" alt="">
+                            <img src="{{ asset('assets/img/banner/vivo.jfif') }}" alt="">
                             <span>${CategoryName.join(' ')}</span>
                         </a>`;
                 });

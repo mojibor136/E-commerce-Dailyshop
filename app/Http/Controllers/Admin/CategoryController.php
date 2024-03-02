@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
+use App\Models\SubCategory;
 
 class CategoryController extends Controller
 {
@@ -24,14 +26,15 @@ class CategoryController extends Controller
          'category_img' =>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
          ]);
          
-         $img = $request->file('category_img');
-         $img_name = hexdec(uniqid()).'.'. $img->getClientOriginalExtension();
-         $img->move(public_path('assets/img/CategoryImg'), $img_name);
-         $img_url = '/' . $img_name;
+         $imageName = '';
+         if($image = $request->file('category_img')){
+             $imageName = time().'-'.uniqid().'.'.$image->getClientOriginalExtension();
+             $image->move(public_path('assets/image/CategoryImg'), $imageName);
+         }
          $data = [
             'category_name' =>$request->category_name,
             'slug' => strtolower(str_replace('','-', $request->category_name)), 
-            'category_img' => $img_url,
+            'category_img' => $imageName,
         ];
         Category::insert($data);
         return redirect()->route('allcategory')->with('massage', 'Added Category Successful');
@@ -39,8 +42,9 @@ class CategoryController extends Controller
 
 
     public function DeleteCategory($id){
-      $delete_category = $id;
-      Category::findOrFail($delete_category)->delete();
+      Category::findOrFail($id)->delete();
+      SubCategory::where('category_id',$id)->delete();
+      Product::where('product_category_id',$id)->delete();
       return redirect()->route('allcategory')->with('massage', 'Deleted Category Successful');
    }
 

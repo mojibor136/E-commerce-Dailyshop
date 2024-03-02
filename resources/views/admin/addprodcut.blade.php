@@ -64,7 +64,10 @@
                                 <label for="formFileDisabled" class="form-label">ADD PRODCUT IMG</label>
                                 <input class="form-control" type="file" id="formFileDisabled" name="product_img" />
                             </div>
-
+                            <div>
+                                <label for="formFileDisabled" class="form-label">ADD MULTIPLE IMG</label>
+                                <input class="form-control" multiple type="file" id="formFileDisabled" name="multipleImg[]" />
+                            </div>
                             <button type="submit" class="btn btn-primary mt-3" style="float: right;">SUBMIT
                                 PRODUCT</button>
                         </form>
