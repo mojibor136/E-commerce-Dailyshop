@@ -15,17 +15,19 @@ class Controller extends BaseController
         return view('test');
     }
 
-    public function testData(Request $request)
-    {
-        if ($request->hasFile('productImg')) {
-            $productImgs = $request->file('productImg');
+    public function testData(Request $request){
 
-            foreach ($productImgs as $key => $productImg) {
-                $extension = $productImg->getClientOriginalExtension();
-                dd($extension);
+        if($request->hasFile('productImg')){
+            $uploadedFiles = [];
+
+            foreach($request->file('productImg') as $key=> $multipleImg){
+                $uploadedFiles[] = [
+                'originalName' => $multipleImg->getClientOriginalName(),
+                ];
             }
-        } else {
-            dd('No files found');
+            dd($uploadedFiles);
         }
+        
     }
+
 }

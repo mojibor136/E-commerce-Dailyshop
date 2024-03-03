@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\SubCategory;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImg;
 
 class ProductController extends Controller
 {
@@ -32,7 +33,7 @@ class ProductController extends Controller
             'quantity'=> 'required',
             'kay_word' =>'required',
             'product_img' =>'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-            // 'productImg' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'productImg' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         $imageName = '';
@@ -59,6 +60,22 @@ class ProductController extends Controller
             'kay_word' => $request->kay_word,
             'product_img' => $imageName,
         ]);
+
+        if($request->hasFile('multipleImg')){
+            $uploadedFiles = [];
+
+            foreach($request->file('multipleImg') as $key=> $multipleImg){
+                $multipleImgName = time().'-'.uniqid().'.'.$multipleImg->getClientOriginalExtension();
+                $multipleImg->move(public_path('assets/image/ProductImg'), $multipleImgName);
+                $uploadedFiles[] = [
+                    'product_id' => $product->id,
+                    'productImg' => $multipleImgName,
+                ];
+            }
+            
+            ProductImg::insert($uploadedFiles);
+        }
+
         SubCategory::where('id' , $subcategory_id)->increment('product_count');
         Category::where('id' , $category_id)->increment('product_count');
         return redirect()->route('allproduct')->with('massage', 'Added Products Successful');
