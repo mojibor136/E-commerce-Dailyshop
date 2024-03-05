@@ -58,9 +58,8 @@ class CheckoutController extends Controller
 
         $productsData = $request->input('productsData');
         $processeData = array_merge($productsData);
-        Session::put('processeData' ,$processeData);
-        $shippingId =  Shipping::create($data);
-        Session::put('shippingId',$shippingId);
+        Session::put('processeData', $processeData);
+        Session::put('shipping', $data);
         return redirect()->route('payment');
     }
 
@@ -68,7 +67,7 @@ class CheckoutController extends Controller
     public function payment()
     {
         $processeData = Session::get('processeData');
-        return view('payment')->with('processeData',$processeData);
+        return view('payment')->with('processeData', $processeData);
     }
 
     // Place an order
@@ -79,34 +78,37 @@ class CheckoutController extends Controller
             'status' => 'pending',
         ];
 
+        $shippingData = Session::get('shipping');
+        $shipping = Shipping::create($shippingData);
         $payment = Payment::create($paymentData);
 
         $customerId = Auth::id();
-        $shippingId = session::get('shippingId');
         $orderData = [
             'customer_id' => $customerId,
-            'shipping_id' => $shippingId->id,
+            'shipping_id' => $shipping->id,
             'payment_id' => $payment->id,
             'order_type' => 'user',
             'status' => 'pending',
             'total' => $request->total,
         ];
-            $orderId = Order::create($orderData);
-            session::forget('shippingId');
-            $processeData = Session::get('processeData');
-            $orderDetailsData = [];
-            foreach($processeData as $index => $productsData){
-                $orderDetailsData[] = [
-                    'order_id' => $orderId->id,
-                    'product_id' =>$productsData['productsId'],
-                    'product_name' => $productsData['name'],
-                    'product_price' => $productsData['price'],
-                    'quantity' => $productsData['quantity'],
-                    'product_img' => 'null',
-                ];
-            };
-            OrderDetail::insert($orderDetailsData);
-            session::forget('processeData');
+        $orderId = Order::create($orderData);
+        Session::forget('shippingId');
+        $processeData = Session::get('processeData');
+        $orderDetailsData = [];
+        foreach ($processeData as $index => $productsData) {
+            $orderDetailsData[] = [
+                'order_id' => $orderId->id,
+                'product_id' => $productsData['productsId'],
+                'product_name' => $productsData['name'],
+                'product_price' => $productsData['price'],
+                'quantity' => $productsData['quantity'],
+                'product_img' => 'null',
+            ];
+        }
+        OrderDetail::insert($orderDetailsData);
+        $productId = collect($processeData)->pluck('productsId')->toArray();
+        Product::whereIn('id', $productId)->decrement('quantity', 1);
+        Session::forget('processeData');
         return redirect()->route('order.confirmation');
     }
 
