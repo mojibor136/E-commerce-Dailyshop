@@ -92,6 +92,7 @@ class CheckoutController extends Controller
             'total' => $request->total,
         ];
         $orderId = Order::create($orderData);
+
         Session::forget('shippingId');
         $processeData = Session::get('processeData');
         $orderDetailsData = [];
@@ -109,11 +110,25 @@ class CheckoutController extends Controller
         $productId = collect($processeData)->pluck('productsId')->toArray();
         Product::whereIn('id', $productId)->decrement('quantity', 1);
         Session::forget('processeData');
+        
+        // Check if delete flag is set in the session
+        if (Session::get('delete')) {
+            // Remove cart data
+            $this->clearCart();
+            Session::forget('delete');
+        }
+        
         return redirect()->route('order.confirmation');
     }
 
     public function OrderConfirmation()
     {
         return 'Successfully Order Confirmation';
+    }
+
+    private function clearCart()
+    {
+        // Assuming you have a Cart model
+        Cart::where('user_id', Auth::id())->delete();
     }
 }

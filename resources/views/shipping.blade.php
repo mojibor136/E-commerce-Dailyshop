@@ -405,6 +405,8 @@
                                         <img src="{{ asset('assets/image/ProductImg/' . $items['productsImg']) }}"
                                             alt="">
                                     </td>
+                                    <td>
+                                    </td>
                                     <td>{{ $items['name'] }}X{{ $items['quantity'] }}</td>
                                     <td></td>
                                     <td></td>

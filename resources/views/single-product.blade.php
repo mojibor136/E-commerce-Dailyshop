@@ -692,6 +692,7 @@
                         <input type="text" value="1" name="quantity" class="quantityText"
                             oninput="hiddenQuantity()">
                     </div>
+                    @if ($Product->quantity > 0)
                     <div class="button">
                         <form action="{{ route('buynow.products') }}" method="post">
                             @csrf
@@ -710,6 +711,9 @@
                             <input type="submit" class="btn btn-warning" value="Add To Cart">
                         </form>
                     </div>
+                    @else
+                    <p class="text-danger">This product is not available.</p>
+                    @endif
                 </div>
         </div>
         </div>

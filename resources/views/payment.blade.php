@@ -241,7 +241,8 @@
                         @foreach ($processeData as $index => $items)
                             <tr>
                                 <td class="align-middle">
-                                    <img src="{{ asset('assets/image/ProductImg/' . $items['productsImg']) }}" alt="">
+                                    <img src="{{ asset('assets/image/ProductImg/' . $items['productsImg']) }}"
+                                        alt="">
                                 </td>
                                 <td class="align-middle">{{ $items['name'] }} x{{ $items['quantity'] }}</td>
                                 <td></td>
