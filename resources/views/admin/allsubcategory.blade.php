@@ -16,6 +16,9 @@
                             <th>SubCategory Name</th>
                             <th>Category</th>
                             <th>Product</th>
+                            <th></th>
+                            <th></th>
+                            <th> </th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -26,6 +29,9 @@
                                 <td>{{ $subcategory->subcategory_name }}</td>
                                 <td>{{ $subcategory->category_name }}</td>
                                 <td>{{ $subcategory->product_count }}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <div class="button">
                                         <form action="{{ route('editsubcategory', $subcategory->id) }}" method="get">

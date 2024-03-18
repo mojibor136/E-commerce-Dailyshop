@@ -30,7 +30,7 @@ class ProductController extends Controller
         $products = Product::where('product_category_id',$id)->latest()->paginate(6);
         $slug = Category::where('slug',$slug)->get();
         if($products->isEmpty()){
-            $massage = 'No Products';
+            $massage = 'Not available products';
             return view('filter-product' , compact('massage'));
         }
         elseif($slug->isEmpty()){

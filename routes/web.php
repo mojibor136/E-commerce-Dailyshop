@@ -49,7 +49,6 @@ Route::controller(SearchController::class)->group(function () {
 });
 Route::controller(Controller::class)->group(function () {
     Route::get('/Test', 'Test')->name('Test');
-    Route::post('/test/data' , 'TestData')->name('test.data');
 });
 Route::middleware('auth')->group(function () {
     Route::controller(CartController::class)->group(function () {
@@ -100,6 +99,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/store-product', 'StoreProduct')->name('storeproduct');
             Route::get('/products-delete/{id}', 'DeleteProduct')->name('delete.product');
             Route::get('/products-edit/{id}' , 'EditProduct')->name('edit.product');
+            Route::post('/update-products', 'UpdateProduct')->name('update.product');
         });
 
         Route::controller(OrderController::class)->group(function () {

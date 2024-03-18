@@ -10,12 +10,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <form action="{{route('test.data')}}" method="post" enctype="multipart/form-data">
-            @csrf
-            <input type="file" name="productImg[]" multiple />
-            <button type="submit">Upload</button>
-        </form>
-        
+        <textarea name="" id="" cols="30" rows="10">{{$test}}</textarea>
     </div>
 </body>
 </html>

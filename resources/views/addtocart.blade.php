@@ -494,7 +494,8 @@
                         <input type="hidden" name="ProductItems[{{ $index }}][price]"
                             value="{{ $items['product_price'] }}">
                         <input type="hidden" name="ProductItems[{{ $index }}][quantity]"
-                            value="{{ $items['quantity'] }}" class="hiddenQuantity">                    @endforeach
+                            value="{{ $items['quantity'] }}" class="hiddenQuantity">
+                    @endforeach
                     <input type="submit" class="btn btn-success mt-3" style="width: 100%;" value="CHECKOUT">
                 </form>
             </div>

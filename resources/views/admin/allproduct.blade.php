@@ -15,6 +15,7 @@
                             <th>Id</th>
                             <th>Img</th>
                             <th>Product Name</th>
+                            <th>category</th>
                             <th>Price</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -29,6 +30,8 @@
                                         alt="Product Image" width="50">
                                 </td>
                                 <td>{{ $product->product_name }}</td>
+                                <td>{{ $categories->where('id', $product->product_category_id)->first()->category_name }}
+                                </td>
                                 <td>{{ $product->product_price }}</td>
                                 <td><a href="" class="btn btn-success">Active</a></td>
                                 <td>

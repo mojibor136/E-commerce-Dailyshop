@@ -18,8 +18,9 @@ class ProductController extends Controller
     }
 
     public function AllProduct(){
-        $products = Product::latest()->get(); // Latest products first
-        return view('admin.allproduct' , compact('products'));
+        $products = Product::get();
+        $categories = Category::get();
+        return view('admin.allproduct' , compact('products','categories'));
     }
 
     public function StoreProduct(Request $request){
@@ -94,5 +95,40 @@ class ProductController extends Controller
         $subcategory = SubCategory::latest()->get();
         $category = Category::latest()->get();
         return view('admin.edit.editProduct',compact('subcategory' , 'category','products'));
+    }
+
+    public function UpdateProduct(Request $request){
+        $request->validate([
+            'product_img' =>'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+        ]);
+        $Productid = $request->Productid;
+        $imageName = '';
+        if($image = $request->file('product_img')){
+            $imageName = time().'-'.uniqid().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('assets/image/ProductImg'), $imageName);
+        }
+
+        if($request->file('product_img')){
+            Product::findOrFail($Productid)->update([
+                'product_name' => $request->product_name,
+                'product_price' => $request->product_price,
+                'product_short_desc' => $request->product_short_desc,
+                'product_long_desc' => $request->product_long_desc,
+                'quantity' => $request->quantity,
+                'kay_word' => $request->kay_word,
+                'product_img' => $imageName,
+            ]);    
+        }
+        else{
+            Product::findOrFail($Productid)->update([
+                'product_name' => $request->product_name,
+                'product_price' => $request->product_price,
+                'product_short_desc' => $request->product_short_desc,
+                'product_long_desc' => $request->product_long_desc,
+                'quantity' => $request->quantity,
+                'kay_word' => $request->kay_word,
+            ]);
+        }
+        return redirect()->route('allproduct')->with('massage', 'Update Successful');
     }
 }

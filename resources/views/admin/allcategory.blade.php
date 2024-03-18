@@ -17,7 +17,6 @@
                             <th>Category Name</th>
                             <th>Sub Category</th>
                             <th>product</th>
-                            <th>Slug</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -30,7 +29,6 @@
                                 <td>{{ $category->category_name }}</td>
                                 <td>{{ $category->subcategory_count }}</td>
                                 <td>{{ $category->product_count }}</td>
-                                <td>{{ $category->slug }}</td>
                                 <td>
                                     <div class="button">
                                         <form action="{{ route('editcategory', $category->id) }}" method="get">

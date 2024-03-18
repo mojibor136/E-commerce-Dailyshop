@@ -693,26 +693,29 @@
                             oninput="hiddenQuantity()">
                     </div>
                     @if ($Product->quantity > 0)
-                    <div class="button">
-                        <form action="{{ route('buynow.products') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="SingleProducts[productsId]" value="{{ $Product['id'] }}">
-                            <input type="hidden" name="SingleProducts[productsImg]"
-                                value="{{ $Product['product_img'] }}">
-                            <input type="hidden" name="SingleProducts[name]" value="{{ $Product['product_name'] }}">
-                            <input type="hidden" name="SingleProducts[price]" value="{{ $Product['product_price'] }}">
-                            <input type="hidden" name="SingleProducts[quantity]" value="1" class="hiddenQuantity">
-                            <input type="submit" class="btn btn-primary" value="Buy Now">
-                        </form>
-                        <form action="{{ route('addtocart.products') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ $Product->id }}">
-                            <input type="hidden" value="1" name="quantity" class="hiddenQuantity">
-                            <input type="submit" class="btn btn-warning" value="Add To Cart">
-                        </form>
-                    </div>
+                        <div class="button">
+                            <form action="{{ route('buynow.products') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="SingleProducts[productsId]" value="{{ $Product['id'] }}">
+                                <input type="hidden" name="SingleProducts[productsImg]"
+                                    value="{{ $Product['product_img'] }}">
+                                <input type="hidden" name="SingleProducts[name]"
+                                    value="{{ $Product['product_name'] }}">
+                                <input type="hidden" name="SingleProducts[price]"
+                                    value="{{ $Product['product_price'] }}">
+                                <input type="hidden" name="SingleProducts[quantity]" value="1"
+                                    class="hiddenQuantity">
+                                <input type="submit" class="btn btn-primary" value="Buy Now">
+                            </form>
+                            <form action="{{ route('addtocart.products') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $Product->id }}">
+                                <input type="hidden" value="1" name="quantity" class="hiddenQuantity">
+                                <input type="submit" class="btn btn-warning" value="Add To Cart">
+                            </form>
+                        </div>
                     @else
-                    <p class="text-danger">This product is not available.</p>
+                        <p class="text-danger">This product is not available.</p>
                     @endif
                 </div>
         </div>
@@ -786,26 +789,30 @@
                 </a>
             </div>
         </div>
-        <div class="button">
-            <form action="{{ route('buynow.products') }}" method="post">
-                @csrf
-                <div class="button-buyNow">
-                    <input type="hidden" name="SingleProducts[id]" value="{{ $Product['id'] }}">
-                    <input type="hidden" name="SingleProducts[name]" value="{{ $Product['product_name'] }}">
-                    <input type="hidden" name="SingleProducts[price]" value="{{ $Product['product_price'] }}">
-                    <input type="hidden" name="SingleProducts[quantity]" value="1" class="hiddenQuantity">
-                    <input type="submit" class="button-inner btn btn-primary" value="Buy Now">
-                </div>
-            </form>
-            <form action="{{ route('addtocart.products') }}" method="post">
-                @csrf
-                <div class="button-addcart">
-                    <input type="hidden" class="hiddenQuantity" value="1" name="quantity">
-                    <input type="hidden" name="id" value="{{ $Product->id }}">
-                    <input type="submit" class="button-inner btn" value="Add To Cart">
-                </div>
-            </form>
-        </div>
+        @foreach ($SingleProducts as $Product)
+            <div class="button">
+                <form action="{{ route('buynow.products') }}" method="post">
+                    @csrf
+                    <div class="button-buyNow">
+                        <input type="hidden" name="SingleProducts[productsId]" value="{{ $Product['id'] }}">
+                        <input type="hidden" name="SingleProducts[productsImg]"
+                            value="{{ $Product['product_img'] }}">
+                        <input type="hidden" name="SingleProducts[name]" value="{{ $Product['product_name'] }}">
+                        <input type="hidden" name="SingleProducts[price]" value="{{ $Product['product_price'] }}">
+                        <input type="hidden" name="SingleProducts[quantity]" value="1" class="hiddenQuantity">
+                        <input type="submit" class="button-inner btn btn-primary" value="Buy Now">
+                    </div>
+                </form>
+                <form action="{{ route('addtocart.products') }}" method="post">
+                    @csrf
+                    <div class="button-addcart">
+                        <input type="hidden" name="id" value="{{ $Product->id }}">
+                        <input type="hidden" value="1" name="quantity" class="hiddenQuantity">
+                        <input type="submit" class="button-inner btn" value="Add To Cart">
+                    </div>
+                </form>
+            </div>
+        @endforeach
     </div>
     <script src="{{ asset('assets/js/app.js') }}"></script>
 </body>

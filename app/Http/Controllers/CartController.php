@@ -24,6 +24,9 @@ class CartController extends Controller
     // Process the data for a single product
     public function BuyNow(Request $request)
     {
+        $request->validate([
+            'SingleProducts' => 'required',
+        ]);
         $singleProducts = $request->input('SingleProducts');
         $singleItem = $singleProducts;
         return redirect()->route('receive.data', ['singleItem' => $singleItem]);
@@ -67,6 +70,6 @@ class CartController extends Controller
     {
         Cart::findOrFail($id)->delete();
 
-        return redirect()->route('addtocart')->with('message', 'products deleted successfully.');
+        return redirect()->route('addtocart')->with('message', 'Products deleted successfully.');
     }
 }

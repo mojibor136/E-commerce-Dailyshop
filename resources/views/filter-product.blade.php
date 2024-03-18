@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/welcome.css') }}">
 </head>
 <style>
     .main-container {
@@ -252,76 +253,6 @@
         align-items: center;
     }
 
-    .product-card a {
-        text-decoration: none;
-    }
-
-    .product-card a .card {
-        overflow: hidden;
-    }
-
-    .product-card a .card img {
-        max-width: 100%;
-        height: 160px;
-    }
-
-    .product-card a .card .text {
-        padding: 2px 5px;
-        line-height: 1.2;
-    }
-
-    .product-card a .card .text .titel {
-        text-transform: capitalize;
-        font-size: 13.5px;
-        color: #353535;
-        font-weight: 600;
-        font-family: system-ui;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    .product-card a .card .text .tk span {
-        color: #084298;
-        font-weight: 600;
-    }
-
-    .product-card a .card .text .discount {
-        font-size: 11px;
-        padding: 1.5px 0;
-        font-weight: 700;
-        color: #41464b;
-    }
-
-    .product-card a .card .text .discount span:first-child {
-        font-weight: 700;
-        color: #41464b;
-        text-decoration: line-through;
-    }
-
-    .product-card a .card .text .star {
-        font-size: 13px;
-        position: relative;
-        padding-bottom: 2px;
-    }
-
-    .product-card a .card .text .star i {
-        color: orange;
-    }
-
-    .product-card a .card .text .star span {
-        color: #676767;
-    }
-
-    .product-card a .card .text .star .charge {
-        color: #676767;
-        text-transform: capitalize;
-        position: absolute;
-        top: 0;
-        right: 0;
-    }
-
     @media (max-width: 1280px) {}
 
     @media (max-width: 1024px) {
@@ -448,19 +379,7 @@
         {{-- /* Category-container all html*/ --}}
         <div class="category-container">
             <div class="card category-card border-0">
-                <ul>
-                    @php
-                        $categories = getCategoryData();
-                    @endphp
-                    @foreach ($categories as $category)
-                        <a href="{{ route('category.product', ['id' => $category->id, 'slug' => $category->slug]) }}">
-                            <li class="card">
-                                <img src="{{ asset('assets/img/product/sstr.jpg') }}" alt="">
-                                <span>{{ $category->category_name }}</span>
-                            </li>
-                        </a>
-                    @endforeach
-                </ul>
+                <ul></ul>
             </div>
         </div>
 
@@ -630,6 +549,7 @@
                         </div>
                     </div>
                 </div>
+                {{-- /* Products container all html*/ --}}
                 <div class="product-container">
                     @if (isset($massage))
                         <div class="massage">
@@ -644,16 +564,15 @@
                                 <a
                                     href="{{ route('product.details', ['id' => $Product->id, 'productName' => $Product->product_name]) }}">
                                     <li class="card">
-                                        <img src="{{ asset('assets/img/product/sssrit.webp') }}" alt="">
+                                        <img src="{{ asset('assets/image/ProductImg/' . $Product->product_img) }}"
+                                            alt="">
                                         <div class="text">
                                             <span class="titel">{{ $Product->product_name }}</span>
-                                            <div class="tk">
-                                                <span>${{ $Product->product_price }}</span>
-                                            </div>
-                                            <div class="discount">
-                                                <span>$620</span>
-                                                <span>32%</span>
-                                                <span>5k-Stock</span>
+                                            <div class="price">
+                                                <span class="price">bdt:{{ $Product->product_price }}</span>
+                                                <div class="discount">
+                                                    <span>bdt:570</span>
+                                                </div>
                                             </div>
                                             <div class="star">
                                                 <i class="ri-star-fill"></i>
@@ -677,6 +596,30 @@
     </div>
     </div>
     <script src="{{ asset('assets/js/filter.js') }}"></script>
+    <script>
+        let CategoryNames = '';
+        fetch('/GetCategoriesData')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(item => {
+                    let CategoryName = item.category_name.split(' ', 1);
+                    let CategoryId = item.id;
+                    let CategorySlug = item.slug;
+                    var url = '{{ route('category.product', ['id' => ':id', 'slug' => ':slug']) }}';
+                    url = url.replace(':id', item.id).replace(':slug', item.slug);
+                    CategoryNames +=
+                        `<a href="${url}" class="card">
+                    <li>
+                    <img src="{{ asset('assets/img/banner/vivo.jfif') }}" alt="">
+                    <span>${CategoryName.join(' ')}</span>
+                    </li>
+                </a>`;
+                });
+                let CategoryElement = document.querySelector('.category-card ul');
+                CategoryElement.innerHTML = CategoryNames;
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
     @include('layouts.footer')
 </body>
 

@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- remixicon -->
-    <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('remixicon/remixicon.css')); ?>">
     <!-- bootstrap start -->
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('bootstrap/css/bootstrap.css')); ?>">
     <!-- bootstrap end -->
 </head>
 <style>
@@ -412,19 +412,19 @@
             <li><a href="">sell on online</a></li>
             <li><a href="">customer care</a></li>
             <li><a href="">track my order</a></li>
-            <li><a href="{{ route('reseller') }}">daily shop affiliate program</a></li>
+            <li><a href="<?php echo e(route('reseller')); ?>">daily shop affiliate program</a></li>
         </ul>
     </div>
 
     <!-- MAIN HEADER -->
     <header>
         <div class="logo">
-            <a href="{{ route('home') }}">
+            <a href="<?php echo e(route('home')); ?>">
                 <h4>dailyshop</h4>
             </a>
         </div>
         <div class="search-bar">
-            <form action="{{ route('search.product') }}" method="GET">
+            <form action="<?php echo e(route('search.product')); ?>" method="GET">
                 <div class="form-control search-box">
                     <div class="dropdown-bar">
                         <div class="select-bar">
@@ -437,13 +437,13 @@
                 </div>
             </form>
             <ul class="menu-bar">
-                @php
+                <?php
                     $categories = getCategoryData();
-                @endphp
-                @foreach ($categories as $category)
+                ?>
+                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <a
-                        href="{{ route('category.product', ['id' => $category->id, 'slug' => $category->slug]) }}">{{ $category->category_name }}</a>
-                @endforeach
+                        href="<?php echo e(route('category.product', ['id' => $category->id, 'slug' => $category->slug])); ?>"><?php echo e($category->category_name); ?></a>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </ul>
         </div>
         <div class="icon">
@@ -454,17 +454,17 @@
                     </div>
                 </i>
             </a>
-            <a href="{{ route('addtocart') }}">
+            <a href="<?php echo e(route('addtocart')); ?>">
                 <i class="ri-shopping-cart-line">
-                    @php
+                    <?php
                         $totalItem = getTotalItems();
-                    @endphp
+                    ?>
 
-                    @if ($totalItem > 0)
+                    <?php if($totalItem > 0): ?>
                         <div class="count">
-                            <span>{{ $totalItem }}</span>
+                            <span><?php echo e($totalItem); ?></span>
                         </div>
-                    @endif
+                    <?php endif; ?>
                 </i>
             </a>
 
@@ -495,31 +495,32 @@
                     <i class="ri-settings-3-fill"></i>
                     <li>setting</li>
                 </a>
-                @if (Auth::check())
-                    <a href="{{ route('logout') }}">
+                <?php if(Auth::check()): ?>
+                    <a href="<?php echo e(route('logout')); ?>">
                         <i class="ri-logout-box-r-line"></i>
                         <li>logout</li>
                     </a>
-                @else
-                <a href="{{ route('login') }}">
+                <?php else: ?>
+                <a href="<?php echo e(route('login')); ?>">
                     <i class="ri-logout-box-r-line"></i>
                     <li>login</li>
                 </a>
-                @endif
+                <?php endif; ?>
             </ul>
         </div>
     </header>
     <!-- HEADER TOW -->
     <div class="header-tow-ul">
-        <form action="{{ route('search.product') }}" method="GET">
+        <form action="<?php echo e(route('search.product')); ?>" method="GET">
             <div class="search-box">
                 <i class="ri-search-line"></i>
                 <input type="text" name="search" placeholder="Search in dailyshop">
             </div>
         </form>
     </div>
-    <script src="{{ asset('assets/js/header.js') }}"></script>
+    <script src="<?php echo e(asset('assets/js/header.js')); ?>"></script>
 
 </body>
 
 </html>
+<?php /**PATH C:\Users\ADMIN\Desktop\e-commarce\resources\views/layouts/header.blade.php ENDPATH**/ ?>

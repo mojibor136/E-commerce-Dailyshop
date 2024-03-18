@@ -35,7 +35,7 @@
         </div>
         <div class="profile-bar">
             <div class="profile-box">
-                <img src="{{ asset('assets/img/product/omor.png') }}" alt="">
+                <img src="{{ asset('assets/img/banner/mojibor.png') }}" alt="">
                 <div class="name">
                     <h6>Admin</h6>
                     <div class="arr"></div>
@@ -66,7 +66,6 @@
                     <div class="dropdownButton">
                         <i class="ri-dashboard-2-line"></i>
                         <span>my dashboard</span>
-                        <div class="nav-arr"></div>
                     </div>
                     <ul class="dropdownContent" style="display: none;">
                         <a href="">
@@ -79,7 +78,6 @@
                     <div class="dropdownButton">
                         <i class="ri-layout-grid-fill"></i>
                         <span>Category</span>
-                        <div class="nav-arr"></div>
                     </div>
                     <ul class="dropdownContent" style="display: none;">
                         <a href="{{ route('addcategory') }}">
@@ -95,7 +93,6 @@
                     <div class="dropdownButton">
                         <i class="ri-dashboard-fill"></i>
                         <span>subcategory</span>
-                        <div class="nav-arr"></div>
                     </div>
                     <ul class="dropdownContent" style="display: none;">
                         <a href="{{ route('addsubcategory') }}">
@@ -111,7 +108,6 @@
                     <div class="dropdownButton">
                         <i class="ri-product-hunt-line"></i>
                         <span>manage product</span>
-                        <div class="nav-arr"></div>
                     </div>
                     <ul class="dropdownContent" style="display: none;">
                         <a href="{{ route('allproduct') }}">
@@ -127,7 +123,6 @@
                     <div class="dropdownButton">
                         <i class="ri-order-play-line"></i>
                         <span>manage order</span>
-                        <div class="nav-arr"></div>
                     </div>
                     <ul class="dropdownContent" style="display: none;">
                         <a href="{{ route('allorder') }}">
@@ -148,7 +143,6 @@
                     <div class="dropdownButton">
                         <i class="ri-group-fill"></i>
                         <span>manage customer</span>
-                        <div class="nav-arr"></div>
                     </div>
                     <ul class="dropdownContent" style="display: none;">
                         <a href="">
@@ -164,7 +158,6 @@
                     <div class="dropdownButton">
                         <i class="ri-settings-3-fill"></i>
                         <span>setting</span>
-                        <div class="nav-arr"></div>
                     </div>
                     <ul class="dropdownContent" style="display: none;">
                         <a href="">

@@ -12,22 +12,8 @@ class Controller extends BaseController
 {
     public function test()
     {
-        return view('test');
-    }
-
-    public function testData(Request $request){
-
-        if($request->hasFile('productImg')){
-            $uploadedFiles = [];
-
-            foreach($request->file('productImg') as $key=> $multipleImg){
-                $uploadedFiles[] = [
-                'originalName' => $multipleImg->getClientOriginalName(),
-                ];
-            }
-            dd($uploadedFiles);
-        }
-        
+        $test = 'hello md mojibor Rahman  welcome to my website';
+        return view('test',compact('test'));
     }
 
 }

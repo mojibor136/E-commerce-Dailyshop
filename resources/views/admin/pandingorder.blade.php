@@ -102,25 +102,28 @@
                             <th>view</th>
                         </tr>
                     </thead>
-                    <tbody class="table-border-bottom-0">
+                    @if (isset($massage))
+                    @else
                         @foreach ($orders as $order)
-                            <tr>
-                                <td style="padding-left: 15px;">{{ $order->id }}</td>
-                                <td>{{ $order->user->name }}</td>
-                                <td>{{ $order->user->email }}</td>
-                                <td>{{ $order->total }}</td>
-                                <td>{{ $order->order_type }}</td>
-                                <td>12-01-2023</td>
-                                <td><a href="" class="text-success">{{$order->status}}</a></td>
-                                <td><a href="{{ $order->id }}" class="btn btn-outline-danger border-danger">View</a>
-                                </td>
-                            </tr>
+                            <tbody class="table-border-bottom-0">
+                                <tr>
+                                    <td style="padding-left: 15px;">{{ $order->id }}</td>
+                                    <td>{{ $order->user->name }}</td>
+                                    <td>{{ $order->user->email }}</td>
+                                    <td>{{ $order->total }}</td>
+                                    <td>{{ $order->order_type }}</td>
+                                    <td>12-01-2023</td>
+                                    <td><a href="" class="text-success">{{ $order->status }}</a></td>
+                                    <td><a href="{{ $order->id }}" class="btn btn-outline-danger border-danger">View</a>
+                                    </td>
+                                </tr>
                         @endforeach
-                    </tbody>
+                        </tbody>
+                        <div class="pagination-container mt-3 mb-3">
+                            {{ $orders->links() }}
+                        </div>
+                    @endif
                 </table>
-                <div class="pagination-container mt-3 mb-3">
-                    {{ $orders->links() }}
-                </div>
             </div>
             <div class="card order-details-popup">
                 <div class="popup-content">

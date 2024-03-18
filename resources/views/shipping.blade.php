@@ -436,6 +436,7 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
+                                <th></th>
                                 <th>{{ $total + $delivery }}Tk</th>
                                 <input type="hidden" value="{{ $total + $delivery }}"
                                     name="productsData[{{ $index }}][total]">

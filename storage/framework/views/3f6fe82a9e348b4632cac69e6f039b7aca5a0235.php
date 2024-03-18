@@ -1,35 +1,35 @@
 <!-- <!DOCTYPE html> -->
-@include('layouts.header')
+<?php echo $__env->make('layouts.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/welcome.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('remixicon/remixicon.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('bootstrap/css/bootstrap.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/welcome.css')); ?>">
 </head>
 
 <body>
     <main class="main-container">
-        {{-- Header container slider all html --}}
+        
         <div class="header-container">
             <div class="category-banner">
                 <div class="category">
                     <ul>
-                        @foreach ($Categories as $Category)
+                        <?php $__currentLoopData = $Categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <a
-                                href="{{ route('category.product', ['id' => $Category->id, 'slug' => $Category->slug]) }}">
-                                <li>{{ $Category->category_name }}</li>
+                                href="<?php echo e(route('category.product', ['id' => $Category->id, 'slug' => $Category->slug])); ?>">
+                                <li><?php echo e($Category->category_name); ?></li>
                                 <div class="arr"></div>
                             </a>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                 </div>
 
                 <div class="slideshow-container">
                     <div class="banner">
-                        <img class="slides-img" src="{{ asset('assets/img/banner/banner.jpg') }}" alt="">
-                        <img class="slides-img" src="{{ asset('assets/img/banner/banner1.jpg') }}" alt="">
-                        <img class="slides-img" src="{{ asset('assets/img/banner/banner3.jpg') }}" alt="">
+                        <img class="slides-img" src="<?php echo e(asset('assets/img/banner/banner.jpg')); ?>" alt="">
+                        <img class="slides-img" src="<?php echo e(asset('assets/img/banner/banner1.jpg')); ?>" alt="">
+                        <img class="slides-img" src="<?php echo e(asset('assets/img/banner/banner3.jpg')); ?>" alt="">
                         <div class="slider-btn">
                             <div class="prev"></div>
                             <div class="next"></div>
@@ -38,28 +38,28 @@
                 </div>
             </div>
         </div>
-        {{-- /* categories container all html*/ --}}
+        
         <div class="categories-container">
             <div class="categories-card">
             </div>
         </div>
         </div>
-        {{-- /* top selles Products container all html*/ --}}
+        
         <div class="top-product-container">
             <div class="type">
                 <span>top salling</span>
                 <a href="">view more</a>
             </div>
             <div class="card top-product-card">
-                @foreach ($TopSelles as $TopSelle)
+                <?php $__currentLoopData = $TopSelles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $TopSelle): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <a
-                        href="{{ route('product.details', ['id' => $TopSelle->id, 'productName' => $TopSelle->product_name]) }}">
+                        href="<?php echo e(route('product.details', ['id' => $TopSelle->id, 'productName' => $TopSelle->product_name])); ?>">
                         <li class="card">
-                            <img src="{{ asset('assets/image/ProductImg/' . $TopSelle->product_img) }}" alt="">
+                            <img src="<?php echo e(asset('assets/image/ProductImg/' . $TopSelle->product_img)); ?>" alt="">
                             <div class="text">
-                                <span class="titel">{{ $TopSelle->product_name }}</span>
+                                <span class="titel"><?php echo e($TopSelle->product_name); ?></span>
                                 <div class="price">
-                                    <span class="price">bdt:{{ $TopSelle->product_price }}</span>
+                                    <span class="price">bdt:<?php echo e($TopSelle->product_price); ?></span>
                                     <div class="discount">
                                         <span>bdt:570</span>
                                     </div>
@@ -78,10 +78,10 @@
                             </div>
                         </li>
                     </a>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
-        {{-- /* Category-container all html*/ --}}
+        
         <div class="category-container">
             <div class="type">
                 <span>all category</span>
@@ -89,33 +89,33 @@
             </div>
             <div class="card category-card border-0">
                 <ul>
-                    @foreach ($Categories as $Category)
-                        <a href="{{ route('category.product', ['id' => $Category->id, 'slug' => $Category->slug]) }}">
+                    <?php $__currentLoopData = $Categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <a href="<?php echo e(route('category.product', ['id' => $Category->id, 'slug' => $Category->slug])); ?>">
                             <li class="card">
-                                <img src="{{ asset('assets/image/CategoryImg/1709013029-65dd782536cd3.jpg') }}"
+                                <img src="<?php echo e(asset('assets/image/CategoryImg/1709013029-65dd782536cd3.jpg')); ?>"
                                     alt="">
-                                <span>{{ $Category->category_name }}</span>
+                                <span><?php echo e($Category->category_name); ?></span>
                             </li>
                         </a>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </ul>
             </div>
         </div>
-        {{-- /* Products container all html*/ --}}
+        
         <div class="product-container">
             <div class="type">
                 <span>latest products</span>
             </div>
             <div class="card product-card">
-                @foreach ($Products as $Product)
+                <?php $__currentLoopData = $Products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <a
-                        href="{{ route('product.details', ['id' => $Product->id, 'productName' => $Product->product_name]) }}">
+                        href="<?php echo e(route('product.details', ['id' => $Product->id, 'productName' => $Product->product_name])); ?>">
                         <li class="card">
-                            <img src="{{ asset('assets/image/ProductImg/' . $Product->product_img) }}" alt="">
+                            <img src="<?php echo e(asset('assets/image/ProductImg/' . $Product->product_img)); ?>" alt="">
                             <div class="text">
-                                <span class="titel">{{ $Product->product_name }}</span>
+                                <span class="titel"><?php echo e($Product->product_name); ?></span>
                                 <div class="price">
-                                    <span class="price">bdt:{{ $Product->product_price }}</span>
+                                    <span class="price">bdt:<?php echo e($Product->product_price); ?></span>
                                     <div class="discount">
                                         <span>bdt:570</span>
                                     </div>
@@ -134,14 +134,14 @@
                             </div>
                         </li>
                     </a>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
     </main>
     <!-- FOOTER  -->
-    @include('layouts.footer')
-    @include('layouts.bottom-button')
-    <script src="{{ asset('assets/js/tempalate.js') }}"></script>
+    <?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('layouts.bottom-button', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <script src="<?php echo e(asset('assets/js/tempalate.js')); ?>"></script>
     <script>
         let CategoryNames = '';
         fetch('/GetCategoriesData')
@@ -151,11 +151,11 @@
                     let CategoryName = item.category_name.split(' ', 1);
                     let CategoryId = item.id;
                     let CategorySlug = item.slug;
-                    var url = '{{ route('category.product', ['id' => ':id', 'slug' => ':slug']) }}';
+                    var url = '<?php echo e(route('category.product', ['id' => ':id', 'slug' => ':slug'])); ?>';
                     url = url.replace(':id', item.id).replace(':slug', item.slug);
                     CategoryNames +=
                         `<a href="${url}" class="card">
-                            <img src="{{ asset('assets/img/banner/vivo.jfif') }}" alt="">
+                            <img src="<?php echo e(asset('assets/img/banner/vivo.jfif')); ?>" alt="">
                             <span>${CategoryName.join(' ')}</span>
                         </a>`;
                 });
@@ -169,3 +169,4 @@
 </body>
 
 </html>
+<?php /**PATH C:\Users\ADMIN\Desktop\e-commarce\resources\views/welcome.blade.php ENDPATH**/ ?>

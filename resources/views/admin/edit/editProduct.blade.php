@@ -10,7 +10,7 @@
                         <small class="text-muted float-end">Default label</small>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('storeproduct') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('update.product') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @foreach ($products as $product)
                                 <div class="mb-3">
@@ -22,54 +22,41 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="basic-default-company">PRODUCT PRICE</label>
                                     <input type="text" class="form-control" id="basic-default-company"
-                                        name="product_price" placeholder="PRODUCTT PRICE" value="{{ $product['product_price'] }}"/>
+                                        name="product_price" placeholder="PRODUCTT PRICE"
+                                        value="{{ $product['product_price'] }}" />
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="basic-default-company">SHORT DESCAPTION</label>
-                                    <textarea class="form-control" id="product_short_desc" rows="3" name="product_short_desc"></textarea>
+                                    <textarea class="form-control" id="product_short_desc" rows="3" name="product_short_desc">{{ $product['product_short_desc'] }}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="basic-default-fullname">LONG DESCAPTION</label>
-                                    <textarea class="form-control" id="product_long_desc" rows="6" name="product_long_desc"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="basic-default-fullname">SELECT CATEGORY</label>
-                                    <select class="form-select" id="product_category_id" name="product_category_id"
-                                        aria-label="Default select example">
-                                        <option selected>SELECT CATEGORY</option>
-                                        @foreach ($category as $category)
-                                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="basic-default-company">SELECT SUBCATEGORY</label>
-                                    <select class="form-select" id="product_subcategory_id" name="product_subcategory_id"
-                                        aria-label="Default select example">
-                                        <option selected>SELECT SUB-CATEGORY</option>
-                                        @foreach ($subcategory as $subcategory)
-                                            <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    <textarea class="form-control" id="product_long_desc" rows="6" name="product_long_desc">{{ $product['product_long_desc'] }}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="basic-default-company">QUANTITY</label>
                                     <input type="text" class="form-control" id="basic-default-company" name="quantity"
-                                        placeholder="QUANTITY" value="{{$product['quantity']}}"/>
+                                        placeholder="QUANTITY" value="{{ $product['quantity'] }}" />
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="basic-default-company">ADD KEY-WORD</label>
                                     <input type="text" class="form-control" id="basic-default-company" name="kay_word"
-                                        placeholder="KEY-WORDS" value="{{$product['kay_word']}}"/>
+                                        placeholder="KEY-WORDS" value="{{ $product['kay_word'] }}" />
+                                </div>
+                                <div class="mb-3">
+                                    <img src="{{ asset('assets/image/ProductImg/' . $product->product_img) }}"
+                                        alt="" width="65">
                                 </div>
                                 <div>
                                     <label for="formFileDisabled" class="form-label">ADD PRODCUT IMG</label>
-                                    <input class="form-control" type="file" id="formFileDisabled" name="product_img" />
+                                    <input class="form-control" type="file" id="formFileDisabled" name="product_img"
+                                        value="md mojibor" />
                                 </div>
                             @endforeach
                             <button type="submit" class="btn btn-primary mt-3" style="float: right;">UPDATE
                                 PRODUCT</button>
+                            <input type="hidden" name="Productid" value="{{ $product['id'] }}">
+                            <input type="hidden" value="{{ asset('assets/image/ProductImg/' . $product->product_img) }} " name="productName">
                         </form>
                     </div>
                 </div>

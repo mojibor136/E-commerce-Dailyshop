@@ -216,6 +216,7 @@ body {
     border: none;
     height: 240px;
     overflow: hidden;
+    border-radius: 0;
 }
 
 .top-product-card a {
@@ -332,6 +333,7 @@ body {
 
 .category-container .category-card {
     background-color: transparent;
+    border-radius: 0;
 }
 
 .category-card ul {
@@ -354,7 +356,7 @@ body {
 }
 
 .category-card a .card {
-    border-radius: 3px;
+    border-radius: 0;
     overflow: hidden;
     border: none;
 }
@@ -401,6 +403,7 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 10px;
     border: none;
+    border-radius: 0;
 }
 
 .product-card a {
@@ -493,10 +496,6 @@ body {
 }
 
 @media (max-width: 1024px) {
-    .main-container {
-        padding: 0 30px;
-    }
-
     .top-product-container .top-product-card {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         gap: 5px;
