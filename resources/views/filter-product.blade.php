@@ -69,6 +69,7 @@
     /* FILTER CONTENT */
     .filter-content {
         width: 180px;
+        margin-bottom: 20px;
     }
 
     .filter-content ul {
@@ -140,6 +141,7 @@
         font-size: 20px;
         margin: 0;
         color: #41464b;
+        text-transform: capitalize;
     }
 
     .result-bar {
@@ -147,6 +149,7 @@
         line-height: 40px;
         font-weight: 500;
         color: #41464b;
+        text-transform: capitalize;
     }
 
     .sort-content {
@@ -224,8 +227,7 @@
     }
 
     .product-container .type {
-        padding: 10px 2px;
-        padding-top: 0;
+        padding: 8px 2px;
     }
 
     .product-container .type span {
@@ -251,6 +253,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        text-transform: uppercase;
     }
 
     @media (max-width: 1280px) {}
@@ -339,6 +342,30 @@
             padding-top: 2px;
             text-transform: capitalize;
         }
+
+        .main-container {
+            padding: 0 6.5px;
+        }
+
+        .category-container {
+            margin-top: 70px;
+        }
+
+        .category-card ul {
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        }
+
+        .filter-content {
+            width: 160px;
+        }
+
+        .product-container .product-card {
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 5px;
+        }
+        .footer{
+            margin-bottom: 0;
+        }
     }
 
     @media (max-width: 475px) {
@@ -371,6 +398,75 @@
         .header-tow-ul .search-box input {
             width: 300px;
         }
+
+        .category-card ul {
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        }
+
+        .filter-content {
+            width: 150px;
+        }
+
+        .filter-box h1 {
+            font-size: 16px;
+        }
+
+        .result-bar {
+            line-height: 20px;
+            font-display: 13px;
+        }
+
+        .product-container .product-card {
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+        }
+
+        @media (max-width: 475px) {
+            .main-container {
+                padding: 0 4px;
+            }
+
+            .product-container .massage {
+                font-size: 12px;
+            }
+
+            .filter-content {
+                width: 130px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .filter-box h1 {
+                display: none;
+            }
+
+            .sort-content {
+                flex-direction: column-reverse;
+            }
+
+            .filter-content {
+                width: 150px;
+            }
+
+            .product-container .product-card {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .header-tow-ul .search-box input {
+                width: 250px;
+            }
+
+            .category-card ul {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+
+            .filter-content {
+                width: 130px;
+            }
+        }
     }
 </style>
 
@@ -397,83 +493,115 @@
                     @endforeach
                 </ul>
 
-                <ul>
-                    <span class="type">price</span>
-                    <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
-                    </li>
-                </ul>
+                <form action="{{ route('PriceFiltur') }}" method="get">
+                    <ul>
+                        <span class="type">price</span>
+                        <li>
+                            <input type="radio" name="price" value="100-500">
+                            <span>100-500</span>
+                        </li>
+                        <li>
+                            <input type="radio" name="price" value="500-1000">
+                            <span>500-1000</span>
+                        </li>
+                        <li>
+                            <input type="radio" name="price" value="1000-1500">
+                            <span>1000-1500</span>
+                        </li>
+                        <li>
+                            <input type="radio" name="price" value="1500-2000">
+                            <span>1500-2000</span>
+                        </li>
+                        <li>
+                            <input type="radio" name="price" value="2000-2500">
+                            <span>2000-2500</span>
+                        </li>
+                        <li>
+                            <input type="radio" name="price" value="3000-3500">
+                            <span>3000-3500</span>
+                        </li>
+                        <input type="submit" class="mt-2 mb-2">
+                    </ul>
+                </form>
 
                 <ul>
                     <span class="type">brand</span>
                     <li>
-                        <input type="checkbox">
+                        <input type="radio">
                         <span>Fashoin</span>
                     </li>
                     <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
+                        <input type="radio">
+                        <span>Ramond</span>
                     </li>
                     <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
+                        <input type="radio">
+                        <span>Indian</span>
                     </li>
                 </ul>
-
-                <ul>
-                    <span class="type">size</span>
-                    <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
-                    </li>
-                </ul>
-
+                <form action="{{ route('SizeFiltur') }}" method="get">
+                    <ul>
+                        <span class="type">size</span>
+                        <li>
+                            <input type="radio" value="38" name="size">
+                            <span>38</span>
+                        </li>
+                        <li>
+                            <input type="radio" value="39" name="size">
+                            <span>39</span>
+                        </li>
+                        <li>
+                            <input type="radio" value="40" name="size">
+                            <span>40</span>
+                        </li>
+                        <li>
+                            <input type="radio" value="41" name="size">
+                            <span>41</span>
+                        </li>
+                        <li>
+                            <input type="radio" value="42" name="size">
+                            <span>42</span>
+                        </li>
+                        <li>
+                            <input type="radio" value="43" name="size">
+                            <span>43</span>
+                        </li>
+                        <li>
+                            <input type="radio" value="44" name="size">
+                            <span>44</span>
+                        </li>
+                    </ul>
+                    <input type="submit">
+                </form>
                 <ul>
                     <span class="type">Color Family</span>
                     <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
+                        <input type="radio">
+                        <span>Red</span>
                     </li>
                     <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
+                        <input type="radio">
+                        <span>Yellow</span>
                     </li>
                     <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
+                        <input type="radio">
+                        <span>DarkBlue</span>
                     </li>
                 </ul>
 
                 <ul>
                     <span class="type">Location</span>
                     <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
+                        <input type="radio">
+                        <span>dhaka</span>
                     </li>
                     <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
+                        <input type="radio">
+                        <span>lalmonirhat</span>
                     </li>
                     <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
+                        <input type="radio">
+                        <span>sylhet</span>
                     </li>
                 </ul>
 
@@ -481,16 +609,16 @@
                 <ul>
                     <span class="type">Warranty Type</span>
                     <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
+                        <input type="radio">
+                        <span>2year</span>
                     </li>
                     <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
+                        <input type="radio">
+                        <span>1yaer</span>
                     </li>
                     <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
+                        <input type="radio">
+                        <span>6manth</span>
                     </li>
                 </ul>
 
@@ -498,16 +626,16 @@
                 <ul>
                     <span class="type">Gender</span>
                     <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
+                        <input type="radio">
+                        <span>Female</span>
                     </li>
                     <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
+                        <input type="radio">
+                        <span>Male</span>
                     </li>
                     <li>
-                        <input type="checkbox">
-                        <span>Fashoin</span>
+                        <input type="radio">
+                        <span>Others</span>
                     </li>
                 </ul>
 
@@ -515,26 +643,45 @@
             </div>
             <div class="product-content">
                 <div class="filter-box">
-                    <h1>Network Components</h1>
+                    @if (isset($categorySlugs))
+                        @foreach ($categorySlugs as $slug)
+                            <h1> {{ $slug->slug }}</h1>
+                        @endforeach
+                    @else
+                        @foreach ($categoriesData as $category)
+                            <h1>{{ $category['categorySlug'] }}</h1>
+                        @endforeach
+                    @endif
                     <div class="sort-content">
                         <div class="result-bar">
-                            <span>11,174 items found for "</span>
-                            <span>Network Components</span>
+                            <span>11,174 items found for</span>
+                            @if (isset($categorySlugs))
+                                @foreach ($categorySlugs as $slug)
+                                    <span>
+                                        {{ $slug->slug }}
+                                    </span>
+                                @endforeach
+                            @else
+                                @foreach ($categoriesData as $category)
+                                    <span>{{ $category['categorySlug'] }}</span>
+                                @endforeach
+                            @endif
                         </div>
                         <div class="category-filter">
                             <div class="dropdown-bar  Click-Category">
                                 <div class="select-bar">
-                                    @if (isset($massage))
-                                        <div class="massage">
-                                            <span>{{ $massage }}</span>
-                                        </div>
-                                        <div class="caret"></div>
-                                    @else
-                                        @foreach ($slug as $slug)
-                                            <span class="selected">{{ $slug->slug }}</span>
-                                            <div class="caret"></div>
-                                        @endforeach
-                                    @endif
+                                    <span class="selected">
+                                        @if (isset($categorySlugs))
+                                            @foreach ($categorySlugs as $slug)
+                                                <span> {{ $slug->slug }}</span>
+                                            @endforeach
+                                        @else
+                                            @foreach ($categoriesData as $category)
+                                                <span>{{ $category['categorySlug'] }}</span>
+                                            @endforeach
+                                        @endif
+                                    </span>
+                                    <div class="caret"></div>
                                 </div>
                                 <ul class="category-bar">
                                     @php
@@ -551,16 +698,16 @@
                 </div>
                 {{-- /* Products container all html*/ --}}
                 <div class="product-container">
-                    @if (isset($massage))
+                    @if (isset($error))
                         <div class="massage">
-                            <span>{{ $massage }}</span>
+                            <span>{{ $error }} Not available products</span>
                         </div>
                     @else
                         <div class="type">
-                            <span>latest products</span>
+                            <span>All products</span>
                         </div>
                         <div class="card product-card">
-                            @foreach ($products as $Product)
+                            @foreach ($priceProducts ?? ($products ?? $productSizes) as $Product)
                                 <a
                                     href="{{ route('product.details', ['id' => $Product->id, 'productName' => $Product->product_name]) }}">
                                     <li class="card">

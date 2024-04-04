@@ -29,6 +29,7 @@ class CartController extends Controller
         ]);
         $singleProducts = $request->input('SingleProducts');
         $singleItem = $singleProducts;
+        dd($singleItem);
         return redirect()->route('receive.data', ['singleItem' => $singleItem]);
     }
     // Add a product to the user's cart

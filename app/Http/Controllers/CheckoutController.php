@@ -73,8 +73,13 @@ class CheckoutController extends Controller
     // Place an order
     public function orderPlace(Request $request)
     {
+
+        $request->validate([
+            'method' => 'required',
+            'sand-number' => 'required',
+        ]);
         $paymentData = [
-            'payment_method' => 'bkash',
+            'payment_method' => $request->method,
             'status' => 'pending',
         ];
 
@@ -123,7 +128,7 @@ class CheckoutController extends Controller
 
     public function OrderConfirmation()
     {
-        return 'Successfully Order Confirmation';
+        return redirect()->route('home');
     }
 
     private function clearCart()

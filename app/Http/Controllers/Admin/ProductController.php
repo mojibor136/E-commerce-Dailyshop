@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\SubCategory;
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\ProductImg;
+use App\Models\ProductDetaile;
 
 class ProductController extends Controller
 {
@@ -74,7 +74,7 @@ class ProductController extends Controller
                 ];
             }
             
-            ProductImg::insert($uploadedFiles);
+            ProductDetaile::insert($uploadedFiles);
         }
 
         SubCategory::where('id' , $subcategory_id)->increment('product_count');
@@ -88,6 +88,7 @@ class ProductController extends Controller
         Product::findOrFail($id)->delete();
         SubCategory::where('id' , $subcategory_id)->decrement('product_count' , 1);
         Category::where('id' ,$category_id)->decrement('product_count' , 1);
+        ProductDetaile::where('product_id',$id)->delete();
         return redirect()->route('allproduct')->with('massage', 'Deleted Products Successful');
     }
     public function EditProduct($id){
@@ -108,6 +109,19 @@ class ProductController extends Controller
             $image->move(public_path('assets/image/ProductImg'), $imageName);
         }
 
+        if($request->hasFile('multipleImg')){
+            $uploadedFiles = [];
+
+            foreach($request->file('multipleImg') as $key=> $multipleImg){
+                $multipleImgName = time().'-'.uniqid().'.'.$multipleImg->getClientOriginalExtension();
+                $multipleImg->move(public_path('assets/image/ProductImg'), $multipleImgName);
+                $uploadedFiles[] = [
+                    'product_id' => $Productid,
+                    'productImg' => $multipleImgName,
+                ];
+            }
+        }
+
         if($request->file('product_img')){
             Product::findOrFail($Productid)->update([
                 'product_name' => $request->product_name,
@@ -117,7 +131,7 @@ class ProductController extends Controller
                 'quantity' => $request->quantity,
                 'kay_word' => $request->kay_word,
                 'product_img' => $imageName,
-            ]);    
+            ]);
         }
         else{
             Product::findOrFail($Productid)->update([
@@ -129,6 +143,10 @@ class ProductController extends Controller
                 'kay_word' => $request->kay_word,
             ]);
         }
+
+        // ProductDetaile::insert($uploadedFiles); 
+        // ProductDetaile::findOrFail($Productid)->update($uploadedFiles);
+
         return redirect()->route('allproduct')->with('massage', 'Update Successful');
     }
 }

@@ -233,11 +233,6 @@
         color: #fff;
     }
 
-    /* Header tow ul all css */
-    .header-tow-ul {
-        display: none;
-    }
-
     /* Menu all css */
     .menu {
         position: absolute;
@@ -316,90 +311,10 @@
             display: none;
         }
 
-        .header-tow-ul {
-            background-color: #f85606;
-            width: 100%;
-            display: flex;
-            position: absolute;
-            top: 0;
-            justify-content: space-evenly;
-            padding: 10px 15px;
-        }
-
-        .header-tow-ul form {
-            margin: 0;
-        }
-
-        .sticky_header_tow {
-            background-color: #f85606;
-            top: 0;
-            position: fixed;
-            z-index: 9999;
-        }
-
-        .header-tow-ul .search-box {
-            display: flex;
-            line-height: 35px;
-            height: 35px;
-            border-radius: 5px;
-            overflow: hidden;
-            margin: auto 0;
-            cursor: pointer;
-            background-color: #ffffff;
-        }
-
-        .header-tow-ul .search-box i {
-            font-size: 22px;
-            color: #636464;
-            height: 100%;
-            padding: 0 5px;
-        }
-
-        .header-tow-ul .search-box input {
-            width: 400px;
-            height: 100%;
-            outline: none;
-            border: none;
-            font-size: 14px;
-            text-transform: capitalize;
-        }
-
-        .header-tow-ul .search-box input::placeholder {
-            color: #636464;
-            font-size: 16px;
-        }
-
         @media (max-width: 475px) {
             header {
                 display: none;
             }
-
-            .header-tow-ul {
-                background-color: #f85606;
-                width: 100%;
-                display: flex;
-                justify-content: space-evenly;
-                padding: 10px 15px;
-            }
-
-            .header-tow-ul .search-box {
-                display: flex;
-                line-height: 35px;
-                height: 35px;
-                margin: auto 0;
-                cursor: pointer;
-                background-color: #ffffff;
-            }
-
-            .header-tow-ul .search-box input {
-                width: 300px;
-            }
-        }
-    }
-
-    @media (max-width: 320px) {
-        .header-tow-ul .search-box input {
-            width: 260px;
         }
     }
 </style>
@@ -475,11 +390,11 @@
         </div>
         <div class="menu">
             <ul>
-                <a href="#">
+                <a href="<?php echo e(route('home')); ?>">
                     <i class="ri-home-4-line"></i>
                     <li>home</li>
                 </a>
-                <a href="#">
+                <a href="<?php echo e(route('addtocart')); ?>">
                     <i class="ri-shopping-cart-line"></i>
                     <li>addToCart</li>
                 </a>
@@ -501,23 +416,14 @@
                         <li>logout</li>
                     </a>
                 <?php else: ?>
-                <a href="<?php echo e(route('login')); ?>">
-                    <i class="ri-logout-box-r-line"></i>
-                    <li>login</li>
-                </a>
+                    <a href="<?php echo e(route('login')); ?>">
+                        <i class="ri-logout-box-r-line"></i>
+                        <li>login</li>
+                    </a>
                 <?php endif; ?>
             </ul>
         </div>
     </header>
-    <!-- HEADER TOW -->
-    <div class="header-tow-ul">
-        <form action="<?php echo e(route('search.product')); ?>" method="GET">
-            <div class="search-box">
-                <i class="ri-search-line"></i>
-                <input type="text" name="search" placeholder="Search in dailyshop">
-            </div>
-        </form>
-    </div>
     <script src="<?php echo e(asset('assets/js/header.js')); ?>"></script>
 
 </body>

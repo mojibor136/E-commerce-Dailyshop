@@ -16,7 +16,7 @@ body {
 }
 
 .main-container {
-    padding: 0 80px;
+    padding: 0 70px;
 }
 
 /*--------Category banner all css------------ */
@@ -563,10 +563,6 @@ body {
 
     .main-container {
         padding: 0;
-    }
-
-    main {
-        margin-top: 55px;
     }
 
     .header-container {

@@ -1,5 +1,6 @@
 <!-- <!DOCTYPE html> -->
 <?php echo $__env->make('layouts.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('layouts.PhoneHeader', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <html lang="en">
 
 <head>
@@ -92,7 +93,7 @@
                     <?php $__currentLoopData = $Categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <a href="<?php echo e(route('category.product', ['id' => $Category->id, 'slug' => $Category->slug])); ?>">
                             <li class="card">
-                                <img src="<?php echo e(asset('assets/image/CategoryImg/1709013029-65dd782536cd3.jpg')); ?>"
+                                <img src="<?php echo e(asset('assets/image/CategoryImg/' . $Category->category_img)); ?>"
                                     alt="">
                                 <span><?php echo e($Category->category_name); ?></span>
                             </li>
@@ -140,7 +141,6 @@
     </main>
     <!-- FOOTER  -->
     <?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <?php echo $__env->make('layouts.bottom-button', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <script src="<?php echo e(asset('assets/js/tempalate.js')); ?>"></script>
     <script>
         let CategoryNames = '';

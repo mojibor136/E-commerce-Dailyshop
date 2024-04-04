@@ -1,5 +1,6 @@
 <!-- <!DOCTYPE html> -->
 @include('layouts.header')
+@include('layouts.PhoneHeader')
 <html lang="en">
 
 <head>
@@ -92,7 +93,7 @@
                     @foreach ($Categories as $Category)
                         <a href="{{ route('category.product', ['id' => $Category->id, 'slug' => $Category->slug]) }}">
                             <li class="card">
-                                <img src="{{ asset('assets/image/CategoryImg/1709013029-65dd782536cd3.jpg') }}"
+                                <img src="{{ asset('assets/image/CategoryImg/' . $Category->category_img) }}"
                                     alt="">
                                 <span>{{ $Category->category_name }}</span>
                             </li>
@@ -140,7 +141,6 @@
     </main>
     <!-- FOOTER  -->
     @include('layouts.footer')
-    @include('layouts.bottom-button')
     <script src="{{ asset('assets/js/tempalate.js') }}"></script>
     <script>
         let CategoryNames = '';

@@ -19,7 +19,7 @@
     }
 
     .main-container {
-        padding: 0 30px;
+        padding: 0 70px;
     }
 
     .card-container {
@@ -64,6 +64,10 @@
         height: fit-content;
         width: 100%;
         margin: 5px 0;
+    }
+
+    .card-container .cart-content li {
+        text-align: center;
     }
 
     .card-container .cart-content .table> :not(caption)>*>* {
@@ -424,38 +428,42 @@
                 <!-- ORDER TABLE PRODUCT SECTION  -->
 
                 <div class="cart-content">
-                    <table class="table">
-                        <tbody>
-                            @php
-                                $total = 0;
-                            @endphp
-                            @if (session()->has('message'))
-                                <div class="alert alert-success">
-                                    <li>{{ session()->get('message') }}</li>
-                                </div>
-                            @endif
-                            @foreach ($cartItems as $items)
-                                <tr>
-                                    <td class="align-middle">
-                                        <img src="{{ asset('assets/image/ProductImg/' . $items->product_img) }}"
-                                            alt="">
-                                    </td>
-                                    <td class="align-middle">{{ $items->product_name }}</td>
-                                    <td class="align-middle"><input type="text" style="text-align: center;"
-                                            class="form-control" value="{{ $items->quantity }}"></td>
-                                    <td class="align-middle">{{ $items->quantity * $items->product_price }}TK</td>
-                                    <td class="align-middle">
-                                        <a href="{{ route('delete.cart.item', $items->id) }}"
-                                            class="btn btn-outline-warning border-warning">remove</a>
-                                    </td>
-                                </tr>
-                                @php
-                                    $price = $items->quantity * $items->product_price;
-                                    $total = $total + $price;
-                                @endphp
-                            @endforeach
-                        </tbody>
-                    </table>
+                    @php
+                        $total = 0;
+                    @endphp
+                    @if (session()->has('message'))
+                        <div class="alert alert-success">
+                            <li>{{ session()->get('message') }}</li>
+                        </div>
+                    @endif
+                    @if ($cartItems->isEmpty())
+                        <li><span>Not available products</span></li>
+                    @else
+                        <table class="table">
+                            <tbody>
+                                @foreach ($cartItems as $items)
+                                    <tr>
+                                        <td class="align-middle">
+                                            <img src="{{ asset('assets/image/ProductImg/' . $items->product_img) }}"
+                                                alt="">
+                                        </td>
+                                        <td class="align-middle">{{ $items->product_name }}</td>
+                                        <td class="align-middle"><input type="text" style="text-align: center;"
+                                                class="form-control" value="{{ $items->quantity }}"></td>
+                                        <td class="align-middle">{{ $items->quantity * $items->product_price }}TK</td>
+                                        <td class="align-middle">
+                                            <a href="{{ route('delete.cart.item', $items->id) }}"
+                                                class="btn btn-outline-warning border-warning">remove</a>
+                                        </td>
+                                    </tr>
+                                    @php
+                                        $price = $items->quantity * $items->product_price;
+                                        $total = $total + $price;
+                                    @endphp
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
                 </div>
             </div>
             <!--ORDER PRODUCT LIST SECTION -->
@@ -496,7 +504,12 @@
                         <input type="hidden" name="ProductItems[{{ $index }}][quantity]"
                             value="{{ $items['quantity'] }}" class="hiddenQuantity">
                     @endforeach
-                    <input type="submit" class="btn btn-success mt-3" style="width: 100%;" value="CHECKOUT">
+                    @if ($cartItems->isEmpty())
+                        <input type="submit" disabled class="btn btn-success mt-3" style="width: 100%;"
+                            value="CHECKOUT">
+                    @else
+                        <input type="submit" class="btn btn-success mt-3" style="width: 100%;" value="CHECKOUT">
+                    @endif
                 </form>
             </div>
         </div>

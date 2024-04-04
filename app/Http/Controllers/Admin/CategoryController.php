@@ -55,14 +55,31 @@ class CategoryController extends Controller
    
    public function UpdateCategory(Request $request){
       $request->validate([
-          'category_name'=>'required|unique:categories'
+          'category_name'=>'required',
+          'category_img' =>'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
           ]);
-          
-      $category_id = $request->category_id;
-      Category::findOrFail($category_id)->update([
-          'category_name' =>$request->category_name,   
-          'slug' =>strtolower(str_replace('','-', $request->category_name)), 
-      ]);
+
+          $imageName = '';
+          if($image = $request->file('category_img')){
+              $imageName = time().'-'.uniqid().'.'.$image->getClientOriginalExtension();
+              $image->move(public_path('assets/image/CategoryImg'), $imageName);
+          }
+
+      $categoryId = $request->category_id;
+
+      if($request->file('category_img')){
+         Category::findOrFail($categoryId)->update([
+            'category_name' =>$request->category_name,   
+            'slug' =>strtolower(str_replace('','-', $request->category_name)),
+            'category_img' => $imageName,
+        ]);
+      }
+      else{
+         Category::findOrFail($categoryId)->update([
+            'category_name' =>$request->category_name,   
+            'slug' =>strtolower(str_replace('','-', $request->category_name)),
+        ]);
+      }
             return redirect()->route('allcategory')->with('massage', 'Updated Category Successful');
 }
 

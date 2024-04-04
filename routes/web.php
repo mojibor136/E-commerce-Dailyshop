@@ -40,6 +40,8 @@ Route::controller(ProductsController::class)->group(function () {
     Route::get('/Product/Details/{id}/{productName}', 'ProductDetails')->name('product.details');
     Route::get('/category/product/{id}/{slug}' , 'ProductFilter')->name('category.product');
     Route::get('/GetCategoriesData','GetCategoriesData')->name('GetCategoriesData');
+    Route::get('/Products/Price/Filtur','PriceFiltur')->name('PriceFiltur');
+    Route::get('/Products/Size/Filtur','SizeFiltur')->name('SizeFiltur');
 });
 Route::controller(CommonController::class)->group(function () {
     Route::get('/Checkout', 'receiveData')->name('receive.data');
@@ -49,6 +51,9 @@ Route::controller(SearchController::class)->group(function () {
 });
 Route::controller(Controller::class)->group(function () {
     Route::get('/Test', 'Test')->name('Test');
+    Route::post('/Data' , 'Data')->name('Data');
+    Route::get('/Products-Data' , 'ProductsData')->name('ProductsData');
+    Route::get('/Price-Data','PriceData')->name('PriceData');
 });
 Route::middleware('auth')->group(function () {
     Route::controller(CartController::class)->group(function () {

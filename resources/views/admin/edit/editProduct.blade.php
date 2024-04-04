@@ -49,14 +49,17 @@
                                 </div>
                                 <div>
                                     <label for="formFileDisabled" class="form-label">ADD PRODCUT IMG</label>
-                                    <input class="form-control" type="file" id="formFileDisabled" name="product_img"
-                                        value="md mojibor" />
+                                    <input class="form-control" type="file" id="formFileDisabled" name="product_img" />
+                                </div>
+                                <div>
+                                    <label for="formFileDisabled" class="form-label">ADD MULTIPLE IMG</label>
+                                    <input class="form-control" multiple type="file" id="formFileDisabled"
+                                        name="multipleImg[]" />
                                 </div>
                             @endforeach
                             <button type="submit" class="btn btn-primary mt-3" style="float: right;">UPDATE
                                 PRODUCT</button>
                             <input type="hidden" name="Productid" value="{{ $product['id'] }}">
-                            <input type="hidden" value="{{ asset('assets/image/ProductImg/' . $product->product_img) }} " name="productName">
                         </form>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 @include('layouts.header')
-
+@include('layouts.PhoneHeader')
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +24,7 @@
     }
 
     .main-container {
-        padding: 20px 30px;
+        padding: 20px 70px;
     }
 
     .main-container .alert .message {
@@ -270,7 +270,7 @@
         background-color: transparent;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-gap: 10px;
+        grid-gap: 5px;
         border: none;
     }
 
@@ -417,7 +417,6 @@
             grid-template-columns: 1fr;
             background-color: #ffffff;
             cursor: pointer;
-            margin-top: 55px;
         }
 
         .single-product {
@@ -638,18 +637,12 @@
                     </div>
 
                     <div class="small-box">
-                        {{-- <div class="small-img">
-                            <img src="{{ asset('assets/img/product/images (2).jfif') }}" onclick="showImg(this.src)">
-                        </div>
-                        <div class="small-img">
-                            <img src="{{ asset('assets/img/product/images.jfif') }}" onclick="showImg(this.src)">
-                        </div>
-                        <div class="small-img">
-                            <img src="{{ asset('assets/img/product/sstr.jpg') }}" onclick="showImg(this.src)">
-                        </div>
-                        <div class="small-img">
-                            <img src="{{ asset('assets/img/product/nokia2.jfif') }}" onclick="showImg(this.src)">
-                        </div> --}}
+                        @foreach ($productsImgs as $productsImg)
+                            <div class="small-img">
+                                <img src="{{ asset('assets/image/ProductImg/' . $productsImg->productImg) }}"
+                                    onclick="showImg(this.src)">
+                            </div>
+                        @endforeach
                     </div>
 
                 </div>

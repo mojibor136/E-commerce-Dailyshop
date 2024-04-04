@@ -62,7 +62,7 @@
         cursor: pointer
     }
 
-    main .payment-bar {
+    main .payment-method {
         width: 100%;
         height: fit-content;
         padding: 20px;
@@ -72,25 +72,41 @@
         border-radius: 5px;
     }
 
-    main .payment-bar .form-group button {
+    main .payment-method .form-group button {
         width: 100%;
     }
 
-    main .payment-bar .form-group .number-box {
+    main .payment-method .form-group .number-box {
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
 
-    main .payment-bar .form-group .number-box .icon {
+    main .payment-method .form-group .number-box .icon {
         cursor: pointer;
     }
 
-    main .payment-bar .form-group .nagad {
-        border: 1px solid #333;
+    main .payment-method .method {
+        display: flex;
     }
 
-    main .payment-bar .form-group .btn-primary {
+    main .payment-method .form-group .nagad {
+        margin-left: 10px;
+    }
+
+    main .payment-method .form-group .nagad,
+    main .payment-method .form-group .bkash {
+        padding: 5px 10px;
+        border-radius: 18px;
+        cursor: pointer;
+    }
+
+    main .payment-method .form-group .nagad label,
+    main .payment-method .form-group .bkash label {
+        cursor: pointer;
+    }
+
+    main .payment-method .form-group .btn-primary {
         display: none;
     }
 
@@ -279,13 +295,21 @@
             </div>
             @csrf
             <input type="hidden" value="{{ $total + $delivery }}" name="total">
-            <div class="payment-bar">
+            <div class="payment-method">
                 <div class="">
                     <h4>Payment Method</h4>
                 </div>
+                <div class="form-group method">
+                    <div class="bkash btn btn-danger">
+                        <input type="radio" value="bkash" name="method">
+                        <label for="Bkash">Bkash</label>
+                    </div>
+                    <div class="nagad btn btn-warning">
+                        <input type="radio" value="nagad" name="method">
+                        <label for="Nagad">Nagad</label>
+                    </div>
+                </div>
                 <div class="form-group">
-                    <label for="Bkash" class="btn btn-warning bkash">Bkash</label>
-                    <label for="Nagad" class="btn nagad">Nagad</label>
                     <div class="form-control mt-2 number-box">
                         <div class="Number">+8801311899083</div>
                         <div class="icon"><i class="ri-file-copy-line"></i></div>

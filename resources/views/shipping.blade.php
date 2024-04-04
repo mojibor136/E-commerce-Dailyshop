@@ -47,11 +47,12 @@
     /* Main container styles */
     main {
         display: flex;
+        padding: 20px 70px;
     }
 
     /* Order form styles */
     main .order-form {
-        width: 60%;
+        width: 50%;
         background-color: #fff;
         border-radius: 5px;
         padding: 20px;
@@ -73,7 +74,7 @@
     /* Order content container styles */
     .order-content-container {
         margin: 0 10px;
-        width: 40%;
+        width: 50%;
     }
 
     /* Order content styles */
@@ -210,17 +211,6 @@
     }
 
     /* Media queries for responsiveness */
-    @media (max-width: 1280px) {
-        main {
-            margin: 2% 5%;
-        }
-    }
-
-    @media (max-width: 1024px) {
-        main {
-            margin: 2% 4%;
-        }
-    }
 
     @media (max-width: 768px) {
         nav {
@@ -229,14 +219,15 @@
 
         main {
             display: flex;
+            padding: 20px 30px;
         }
 
         main .order-form {
-            width: 100%;
+            width: 45%;
         }
 
         .order-content-container {
-            width: 100%;
+            width: 55%;
         }
 
         main .order-content {
@@ -257,15 +248,10 @@
             display: inline-flex;
         }
 
-        .order-content-container {
-            margin: 10px 0;
-            width: 100%;
-        }
-
         main {
             display: flex;
             flex-direction: column;
-            margin: 70px 10px 90px 10px;
+            padding: 80px 5px;
         }
 
         main .order-content table thead tr th {
@@ -273,13 +259,12 @@
         }
 
         main .order-form {
-            width: 100%;
-            margin: 5px 0;
+            width: auto;
         }
 
-        main .order-content {
-            margin-bottom: 15px;
-            padding: 10px 20px;
+        .order-content-container {
+            margin: 10px 0;
+            width: auto;
         }
 
         .summary-ul button {
@@ -300,19 +285,12 @@
     }
 
     @media (max-width: 475px) {
-        /* Adjustments for smaller screens if needed */
-    }
-
-    @media (max-width: 320px) {
         main {
-            margin-bottom: 75px;
-        }
-
-        .order-content-container {
-            width: 100%;
-            margin-bottom: 30px;
+            padding-bottom: 80px;
         }
     }
+
+    @media (max-width: 320px) {}
 </style>
 
 <body>
@@ -387,6 +365,7 @@
                         <thead>
                             <tr>
                                 <th>PRODUCT</th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>

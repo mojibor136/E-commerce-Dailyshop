@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/welcome.css') }}">
 </head>
+<style>
+    .notAvailable {
+        display: flex;
+        justify-content: center;
+        padding: 15px 0;
+    }
+
+    .notAvailable span {
+        color: red;
+    }
+</style>
 
 <body>
     <main class="main-container">
@@ -101,42 +112,47 @@
                 </ul>
             </div>
         </div>
-        {{-- /* Products container all html*/ --}}
-        <div class="product-container">
-            <div class="type">
-                <span>latest products</span>
-            </div>
-            <div class="card product-card">
-                @foreach ($Products as $Product)
-                    <a
-                        href="{{ route('product.details', ['id' => $Product->id, 'productName' => $Product->product_name]) }}">
-                        <li class="card">
-                            <img src="{{ asset('assets/image/ProductImg/' . $Product->product_img) }}" alt="">
-                            <div class="text">
-                                <span class="titel">{{ $Product->product_name }}</span>
-                                <div class="price">
-                                    <span class="price">bdt:{{ $Product->product_price }}</span>
-                                    <div class="discount">
-                                        <span>bdt:570</span>
+        @if ($Products->isEmpty())
+            <li class="notAvailable"><span>Not available products</span></li>
+        @else
+            {{-- /* Products container all html*/ --}}
+            <div class="product-container">
+                <div class="type">
+                    <span>latest products</span>
+                </div>
+                <div class="card product-card">
+                    @foreach ($Products as $Product)
+                        <a
+                            href="{{ route('product.details', ['id' => $Product->id, 'productName' => $Product->product_name]) }}">
+                            <li class="card">
+                                <img src="{{ asset('assets/image/ProductImg/' . $Product->product_img) }}"
+                                    alt="">
+                                <div class="text">
+                                    <span class="titel">{{ $Product->product_name }}</span>
+                                    <div class="price">
+                                        <span class="price">bdt:{{ $Product->product_price }}</span>
+                                        <div class="discount">
+                                            <span>bdt:570</span>
+                                        </div>
+                                    </div>
+                                    <div class="star">
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-half-line"></i>
+                                        <span>(25)</span>
+                                        <div class="charge">
+                                            <span>free</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="star">
-                                    <i class="ri-star-fill"></i>
-                                    <i class="ri-star-fill"></i>
-                                    <i class="ri-star-fill"></i>
-                                    <i class="ri-star-fill"></i>
-                                    <i class="ri-star-half-line"></i>
-                                    <span>(25)</span>
-                                    <div class="charge">
-                                        <span>free</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </a>
-                @endforeach
+                            </li>
+                        </a>
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endif
     </main>
     <!-- FOOTER  -->
     @include('layouts.footer')
