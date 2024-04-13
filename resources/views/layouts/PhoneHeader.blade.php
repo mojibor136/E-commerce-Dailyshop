@@ -15,6 +15,12 @@
         box-sizing: border-box;
     }
 
+    .fixed-header {
+        position: fixed;
+        top: 0;
+        z-index: 99999;
+    }
+
     .phone-header-container {
         width: 100%;
         display: flex;
@@ -177,14 +183,25 @@
                     @php
                         $categories = getCategoryData();
                     @endphp
-                  @foreach ($categories as $category)
-                  <a href=""><span>{{$category->category_name}}</span></a>
-                  @endforeach
+                    @foreach ($categories as $category)
+                        <a href=""><span>{{ $category->category_name }}</span></a>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
     <script>
+        window.addEventListener('scroll', function() {
+            let iconLogo = document.querySelector('.icon-logo');
+            let header = document.querySelector('.header');
+            if (pageYOffset >= 200) {
+                header.classList.add('fixed-header');
+                iconLogo.style.display = 'none';
+            } else {
+                header.classList.remove('fixed-header');
+                iconLogo.style.display = 'revert-layer';
+            }
+        })
         let dropdownBtn = document.querySelector('.dropdown-menu-bar');
         let dropdownCategory = document.querySelector('.dropdown-category');
         let one = true;

@@ -19,7 +19,7 @@ class LoginController extends Controller
         'password' => 'required',
     ]);
     $user_login = $request->only('email', 'password');
-
+    
     if (!Auth::attempt($user_login)) {
         return redirect()->route('login');
     }

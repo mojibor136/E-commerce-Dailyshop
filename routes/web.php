@@ -18,6 +18,7 @@ use App\Http\Controllers\Reseller\ResellerController;
 use App\Http\Controllers\Reseller\Auth\ResellerLogoutController;
 use App\Http\Controllers\Reseller\Auth\ResellerLoginController;
 use App\Http\Controllers\Reseller\Auth\ResellerRegisterController;
+use App\Http\Controllers\Reseller\Auth\ForgetController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -153,6 +154,9 @@ Route::prefix('Reseller')->group(function () {
     Route::controller(ResellerRegisterController::class)->group(function () {
         Route::get('/Register', 'RegisterForm')->name('reseller.register.form');
         Route::post('/Store', 'Store')->name('reseller.register');
+    });
+    Route::controller(ForgetController::class)->group(function () {
+        Route::get('/Forget-Password','ForgetPasswordShow')->name('forget.password.show');
     });
 });
 

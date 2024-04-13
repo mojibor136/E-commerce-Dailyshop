@@ -8,6 +8,7 @@ use App\Models\Reseller\Reseller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ResellerRegisterController extends Controller
 {
@@ -23,11 +24,18 @@ class ResellerRegisterController extends Controller
         'password' => 'required',
     ]);
 
-     $reseller = Reseller::create([
-        'name' =>$request->name,
-        'email' =>$request->email,
-        'password' => Hash::make($request->password),
-      ]);
+$reseller = new Reseller([
+    'name' => $request->name,
+    'email' => $request->email,
+    'password' => Hash::make($request->password),
+]);
+
+$rememberToken = Str::random(60);
+
+$reseller->remember_token = $rememberToken;
+
+$reseller->save();
+
 
       Auth::guard('reseller')->login($reseller);
 

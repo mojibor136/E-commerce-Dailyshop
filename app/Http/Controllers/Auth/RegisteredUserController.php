@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
@@ -32,11 +33,18 @@ class RegisteredUserController extends Controller
             'password' => 'required',
         ]);
 
-       $user = User::create([
+        $user = new User([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        
+        $rememberToken = Str::random(35);
+        
+        $user->remember_token = $rememberToken;
+        
+        $user->save();
+        
 
         Auth::login($user);
 
