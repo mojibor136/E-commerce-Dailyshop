@@ -373,11 +373,6 @@
                                 <th>TOTAL</th>
                             </tr>
                         </thead>
-                        @php
-                            $total = 0;
-                            $delivery = 80;
-                        @endphp
-                        @foreach ($multipleItem ?? [$singleItem] as $index => $items)
                             <tbody>
                                 <tr>
                                     <td>
@@ -386,27 +381,12 @@
                                     </td>
                                     <td>
                                     </td>
-                                    <td>{{ $items['name'] }}X{{ $items['quantity'] }}</td>
+                                    <td>t3qgwqtg3q3tX2</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td>{{ $items['quantity'] * $items['price'] }}Tk</td>
+                                    <td>5000Tk</td>
                                 </tr>
-                                @php
-                                    $price = $items['quantity'] * $items['price'];
-                                    $total = $total + $price;
-                                @endphp
-                                <input type="hidden" value="{{ $items['productsId'] }}"
-                                    name="productsData[{{ $index }}][productsId]">
-                                <input type="hidden" value="{{ $items['productsImg'] }}"
-                                    name="productsData[{{ $index }}][productsImg]">
-                                <input type="hidden" value="{{ $items['name'] }}"
-                                    name="productsData[{{ $index }}][name]">
-                                <input type="hidden"
-                                    value="{{ $items['quantity'] }}"name="productsData[{{ $index }}][quantity]">
-                                <input type="hidden" value="{{ $items['quantity'] * $items['price'] }}"
-                                    name="productsData[{{ $index }}][price]">
-                        @endforeach
                         </tbody>
                         <thead>
                             <tr>
@@ -416,9 +396,7 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th>{{ $total + $delivery }}Tk</th>
-                                <input type="hidden" value="{{ $total + $delivery }}"
-                                    name="productsData[{{ $index }}][total]">
+                                <th>250Tk</th>
                             </tr>
                         </thead>
                     </table>
@@ -429,22 +407,18 @@
                     <h4>Total Summary</h4>
                     <div class="summary-li">
                         <p>Items Total</p>
-                        @php
-                            $totalItem = getTotalItems();
-                        @endphp
-                        <p>({{ $totalItem }})</p>
                     </div>
                     <div class="summary-li">
                         <p>Delivery Fee</p>
-                        <p style="text-transform: uppercase;">{{ $delivery }}tk</p>
+                        <p style="text-transform: uppercase;">200tk</p>
                     </div>
                     <div class="summary-li">
                         <p>Total Payment</p>
-                        <p style="text-transform: uppercase;">{{ $delivery + $total }}tk</p>
+                        <p style="text-transform: uppercase;">7000tk</p>
                     </div>
                     <div class="summary-li" id="total-div">
                         <p>Total</p>
-                        <p style="text-transform: uppercase;">{{ $delivery + $total }}tk</p>
+                        <p style="text-transform: uppercase;">780tk</p>
                     </div>
                     <input type="submit" class="btn btn-success" value="PLACE ORDER">
                 </div>
